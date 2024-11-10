@@ -27,10 +27,8 @@ const fetchBlogData = async (slug, userId) => {
 };
 
 export async function generateMetadata({ params }) {
-  // const session = await auth();
-  // let userId = session ? session.user.userId : "";
-
-  const blog = await fetchBlogData(params.slug);
+  const { slug } = await params;
+  const blog = await fetchBlogData(slug);
 
   if (!blog) {
     return {
@@ -46,7 +44,7 @@ export async function generateMetadata({ params }) {
       title: blog.heading,
       description: blog.description,
       images: [blog.featuredImage],
-      url: `${hostname}/blog/${params.slug}`,
+      url: `${hostname}/blog/${slug}`,
     },
     twitter: {
       card: "summary_large_image",
@@ -64,8 +62,8 @@ const Page = async ({ params }) => {
   const ipResponse = await fetch(`${process.env.HOSTNAME}/api/v1/ip`, {
     cache: "no-store",
   });
-
-  const blog = await fetchBlogData(params.slug);
+  const { slug } = await params;
+  const blog = await fetchBlogData(slug);
 
   const contentWithLineBreaks = blog.content;
 
@@ -112,7 +110,7 @@ const Page = async ({ params }) => {
             )}
             <div className="ml-2 flex flex-wrap gap-0 items-center">
               <LikeButton
-                blogId={params.slug}
+                blogId={slug}
                 initialLikes={blog.likes}
                 userId={userId}
               />

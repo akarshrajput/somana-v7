@@ -8,7 +8,7 @@ const Logo = () => {
   if (resolvedTheme === "light") {
     return (
       <Link href="/" className="font-semibold flex items-center gap-1">
-        <img src="somana-logo.png" className="h-10 brightness-125" />
+        <img src="/somana-logo.png" className="h-10 brightness-125" />
       </Link>
     );
   }

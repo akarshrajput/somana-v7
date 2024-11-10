@@ -18,7 +18,7 @@ const MusicGrid = ({ api }) => {
             "Content-Type": "application/json",
           },
         });
-        console.log(response);
+        // console.log(response);
         setPodcasts(response.data.data.tracks);
       } catch (err) {
         console.error("Error fetching podcasts:", err);
