@@ -15,15 +15,21 @@ const rubik = Rubik({
   display: "swap",
 });
 
-const fetchBlogData = async (slug, userId) => {
-  const res = await fetch(`${hostname}/api/v1/blogs/slug/${slug}`, {
-    cache: "no-store",
-  });
-  if (!res.ok) {
+const fetchBlogData = async (slug) => {
+  try {
+    const res = await fetch(
+      `${process.env.HOSTNAME}/api/v1/blogs/slug/${slug}`,
+      {
+        cache: "no-store",
+      }
+    );
+    if (!res.ok) throw new Error("Failed to fetch blog data");
+    const data = await res.json();
+    return data.data;
+  } catch (error) {
+    console.error("Error fetching blog data:", error);
     return null;
   }
-  const data = await res.json();
-  return data.data;
 };
 
 export async function generateMetadata({ params }) {

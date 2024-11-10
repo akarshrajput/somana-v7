@@ -16,7 +16,7 @@ const rubik = Rubik({
 // Fetch blogs with a simple query
 const fetchBlogs = async () => {
   const res = await axios.get(`/api/v1/blogs?limit=9`);
-  console.log(res.data.data.blogs);
+  // console.log(res.data.data.blogs);
   return res?.data?.data;
 };
 

@@ -12,7 +12,7 @@ const rubik = Rubik({
 });
 
 export const metadata = {
-  title: "Somana : [ Main ]",
+  title: "Somana | Explore",
   description:
     "Somana : Explore blogs, music, podcasts, movies, anime and many more...",
 };
