@@ -1,5 +1,5 @@
 import { GooglePlayLogo } from "@phosphor-icons/react/dist/ssr";
-import { signInAction } from "../_lib/actions";
+import { signInAction, signInGithub } from "../_lib/actions";
 import {
   BookOpen,
   Facebook,
@@ -32,7 +32,7 @@ const page = () => {
             </button>
           </form>
           <form
-            action={signInAction}
+            action={signInGithub}
             className="flex items-center text-center justify-center w-full"
           >
             <button
