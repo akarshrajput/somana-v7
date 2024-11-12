@@ -2,6 +2,7 @@ import AddComment from "@/app/_components/storyComponents/AddComment";
 // import AlertDialogComponent from "@/app/_components/storyComponents/AlertDialog";
 import BlogComments from "@/app/_components/storyComponents/BlogComments";
 import BlogDate from "@/app/_components/storyComponents/BlogDate";
+import DeleteButton from "@/app/_components/storyComponents/DeleteBlog";
 import LikeButton from "@/app/_components/storyComponents/LikeButton";
 import { auth } from "@/app/_lib/auth";
 import { LineVertical, SealCheck } from "@phosphor-icons/react/dist/ssr";
@@ -130,6 +131,7 @@ const Page = async ({ params }) => {
             {userId === blog.author._id && (
               <div className="md:ml-auto flex items-center gap-2">
                 {/* <UpdateBlogButton blog={blog} /> */}
+                <DeleteButton blogId={blog._id} />
 
                 {/* <AlertDialogComponent blogId={blog._id} /> */}
               </div>

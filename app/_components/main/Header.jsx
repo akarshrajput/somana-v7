@@ -9,7 +9,7 @@ import ProfileMenu from "../userComponents/ProfileMenu";
 const Header = async () => {
   const session = await auth();
   return (
-    <div className="border border-neutral-200 bg-white z-50 fixed w-[800px] m-4 rounded-2xl py-1.5 px-2 flex items-center gap-1 text-sm shadow-sm">
+    <div className="border border-neutral-200 bg-white z-50 fixed w-[800px] m-4 rounded-full py-1.5 px-2 flex items-center gap-1 text-sm shadow-sm">
       <div className="mr-4">
         <Logo />
       </div>
@@ -46,6 +46,7 @@ const Header = async () => {
       </Link>
 
       <div className="ml-auto flex items-center gap-2">
+        <input placeholder="Search" className="border rounded-full p-2 px-4" />
         <ThemeButton />
         {session?.user?.userId ? (
           <ProfileMenu session={session} />

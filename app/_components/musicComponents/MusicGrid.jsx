@@ -16,7 +16,6 @@ const MusicGrid = () => {
     queryKey: ["tracks"],
     queryFn: fetchMusic,
   });
-  console.log(data);
 
   return (
     <div>
