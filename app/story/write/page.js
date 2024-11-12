@@ -7,18 +7,9 @@ const page = async () => {
   const supabaseURL = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const hostname = process.env.HOSTNAME;
 
-  //   if (!session?.user) {
-  //     return (
-  //       <UserLoginError>
-  //         <p>You have to logged in to write your blog.</p>
-  //         <LoginButton />
-  //       </UserLoginError>
-  //     );
-  //   }
-
   return (
-    <div className="px-2 my-10 flex justify-center">
-      <div className="w-6/6 md:w-5/6">
+    <div className="px-2 my-10 mt-24 flex justify-center">
+      <div className="w-[1200px]">
         <WriteBlog
           session={session}
           supabaseURL={supabaseURL}

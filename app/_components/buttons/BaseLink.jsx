@@ -4,7 +4,7 @@ const BaseLink = ({ href = "#", className, children }) => {
   return (
     <Link
       href={href}
-      className={`${className} bg-black flex items-center gap-1 text-sm z-auto text-white font-medium py-2 px-3 rounded-md`}
+      className={`${className} w-fit bg-black flex items-center gap-1 text-sm z-auto text-white font-medium py-2 px-3 rounded-md`}
     >
       {children}
     </Link>

@@ -399,6 +399,7 @@ const WriteBlog = ({ supabaseURL, session, hostname }) => {
         <div className="border border-stone-400 rounded-lg overflow-hidden">
           <QuillEditor value={content} onChange={handleContentChange} />
         </div>
+        {/* <Tiptap /> */}
 
         <div className="py-1">
           {isLoading ? (

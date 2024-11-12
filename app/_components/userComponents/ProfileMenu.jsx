@@ -13,6 +13,7 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import Link from "next/link";
 
 const ProfileMenu = ({ session }) => {
   return (
@@ -29,10 +30,12 @@ const ProfileMenu = ({ session }) => {
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <DropdownMenuItem>
-            Profile
-            <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
-          </DropdownMenuItem>
+          <Link href="/me">
+            <DropdownMenuItem>
+              Profile
+              <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
+            </DropdownMenuItem>
+          </Link>
           <DropdownMenuItem>
             Billing
             <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>

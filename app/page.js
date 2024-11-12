@@ -25,11 +25,11 @@ import MusicList from "./_components/musicComponents/MusicList";
 
 export default function Home() {
   return (
-    <div className="px-2 flex justify-center mt-24">
+    <div className="px-2 flex justify-center mt-20">
       <div className="w-[1200px]">
-        <div className="mb-4 flex flex-wrap gap-2">
+        <div className="mb-4 mt-1 flex flex-wrap gap-2">
           <RainbowButton>
-            <Link href="/story/write">Upload</Link>
+            <Link href="/upload">Upload</Link>
             <MonitorArrowUp weight="bold" />
           </RainbowButton>
           <BaseLink href="music/playlist">
@@ -73,7 +73,7 @@ export default function Home() {
               <StoryGrid />
             </div>
           </div>
-          <div className="col-span-2 mt-12 border-neutral-200">
+          <div className="col-span-2 border-neutral-200">
             <div className="flex flex-col gap-8">
               <div className="font-medium flex-col">
                 <PodcastGrid api="/api/v1/podcasts?limit=6" />

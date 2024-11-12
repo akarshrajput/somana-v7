@@ -76,9 +76,6 @@ const StoryGrid = () => {
                   >
                     {post.genre}
                   </Link>
-                  {post.usedAI && (
-                    <Sparkle className="text-black size-3" weight="fill" />
-                  )}
                 </div>
               </div>
 
@@ -99,11 +96,21 @@ const StoryGrid = () => {
                     alt="Featured Image"
                   />
                 </div>
+                <div className="absolute bottom-2 left-2 flex items-center gap-1">
+                  <BookOpen
+                    weight="bold"
+                    className="size-6 text-black bg-neutral-100 p-1 rounded-full"
+                  />
 
-                <BookOpen
-                  weight="bold"
-                  className="absolute size-6 bottom-2 left-2 text-black bg-neutral-100 p-1 rounded-full"
-                />
+                  <div>
+                    {post.usedAI && (
+                      <Sparkle
+                        className="size-6 text-yellow-700 bg-neutral-100 p-1 rounded-full"
+                        weight="fill"
+                      />
+                    )}
+                  </div>
+                </div>
               </div>
 
               {/* <p className="text-xs text-gray-500 dark:text-gray-300 mt-1 line-clamp-3">

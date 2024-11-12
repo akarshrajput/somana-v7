@@ -4,46 +4,26 @@ import axios from "axios";
 import Link from "next/link";
 import { ApplePodcastsLogo } from "@phosphor-icons/react/dist/ssr";
 import LoadingSmall from "../main/LoadingSmall";
+import { useQuery } from "@tanstack/react-query";
 
-const PodcastGrid = ({ api }) => {
-  const [podcasts, setPodcasts] = useState([]);
-  const [loading, setLoading] = useState(false);
+const fetchPodcasts = async () => {
+  const res = await axios.get(`/api/v1/podcasts?limit=6`);
+  return res?.data?.data;
+};
 
-  useEffect(() => {
-    const fetchPodcasts = async () => {
-      try {
-        setLoading(true);
-        const response = await axios.get(api, {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-        setPodcasts(response.data.data.podcasts);
-      } catch (err) {
-        console.error("Error fetching podcasts:", err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchPodcasts();
-  }, [api]);
-
+const PodcastGrid = () => {
+  const { data, loading } = useQuery({
+    queryKey: ["podcasts"],
+    queryFn: fetchPodcasts,
+  });
   return (
     <div>
-      {/* <p className="mb-2 font-medium flex items-center gap-1">
-        <ApplePodcastsLogo weight="bold" />
-        Podcasts
-        <button className="text-sm p-0.5 px-2 bg-green-300 rounded-md">
-          More podcasts
-        </button>
-      </p> */}
       {loading ? (
         <LoadingSmall />
       ) : (
         <>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-            {podcasts.map((podcast) => (
+            {data?.podcasts.map((podcast) => (
               <PodcastInfo key={podcast._id} podcast={podcast} />
             ))}
           </div>
