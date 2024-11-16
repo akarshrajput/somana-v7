@@ -1,14 +1,7 @@
 import Link from "next/link";
 import { ThemeButton } from "../buttons/ThemeBtn";
-import SparklesText from "@/components/ui/sparkles-text";
 import Logo from "./Logo";
-import {
-  ArrowLineUp,
-  ArrowUp,
-  Circle,
-  Keyhole,
-  Upload,
-} from "@phosphor-icons/react/dist/ssr";
+import { Circle } from "@phosphor-icons/react/dist/ssr";
 import { auth } from "@/app/_lib/auth";
 import ProfileMenu from "../userComponents/ProfileMenu";
 

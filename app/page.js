@@ -4,21 +4,6 @@ import PodcastGrid from "./_components/podcastComponents/PodcastGrid";
 import MusicGrid from "./_components/musicComponents/MusicGrid";
 import BaseLink from "./_components/buttons/BaseLink";
 import SparklesText from "@/components/ui/sparkles-text";
-import {
-  Butterfly,
-  Camera,
-  DotsThreeOutline,
-  EyeSlash,
-  FolderLock,
-  ImageBroken,
-  LinuxLogo,
-  MonitorArrowUp,
-  MusicNote,
-  Newspaper,
-  Play,
-  Rabbit,
-  TrendUp,
-} from "@phosphor-icons/react/dist/ssr";
 import { RainbowButton } from "@/components/ui/rainbow-button";
 import Link from "next/link";
 import MusicList from "./_components/musicComponents/MusicList";
