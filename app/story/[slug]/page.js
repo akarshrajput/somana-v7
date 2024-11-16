@@ -97,7 +97,9 @@ const Page = async ({ params }) => {
             </div>
 
             <div className="my-4 font-medium">
-              <p className={`font-bold text-3xl leading-tight`}>
+              <p
+                className={`font-bold text-4xl text-neutral-600 leading-tight`}
+              >
                 {blog.heading}
               </p>
             </div>

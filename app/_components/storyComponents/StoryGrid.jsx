@@ -7,6 +7,7 @@ import axios from "axios";
 import { ArrowBigRight } from "lucide-react";
 import { BookOpen, Pen, SealCheck } from "@phosphor-icons/react/dist/ssr";
 import LoadingSmall from "../main/LoadingSmall";
+import CommonNav from "../main/CommonNav";
 
 const rubik = Rubik({
   subsets: ["latin"],
@@ -43,6 +44,7 @@ const StoryGrid = () => {
           Write Story
         </Link>
       </p> */}
+      {/* <CommonNav /> */}
       <div className="mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
         {isLoading ? (
           <LoadingSmall />

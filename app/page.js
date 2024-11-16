@@ -24,7 +24,7 @@ export default function Home() {
                 <PodcastGrid api="/api/v1/podcasts?limit=6" />
               </div>
               <div className="font-medium border-neutral-200 flex-col">
-                <MusicGrid api="/api/v1/music?limit=6" />
+                <MusicGrid apiEndpoint="/api/v1/podcasts?limit=6" />
               </div>
             </div>
           </div>
