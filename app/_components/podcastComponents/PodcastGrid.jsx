@@ -18,26 +18,22 @@ const PodcastGrid = () => {
   });
   return (
     <div>
-      {loading ? (
-        <LoadingSmall />
-      ) : (
-        <>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-            {data?.podcasts.map((podcast) => (
-              <PodcastInfo key={podcast._id} podcast={podcast} />
-            ))}
+      <>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          {data?.podcasts.map((podcast) => (
+            <PodcastInfo key={podcast._id} podcast={podcast} />
+          ))}
+        </div>
+        {isSuccess ? (
+          <div className="flex">
+            <button className="text-green-700 w-fit text-xs underline mt-2">
+              Explore More Podcasts
+            </button>
           </div>
-          {isSuccess ? (
-            <div className="flex">
-              <button className="text-green-700 w-fit text-xs underline mt-2">
-                Explore More Podcasts
-              </button>
-            </div>
-          ) : (
-            ""
-          )}
-        </>
-      )}
+        ) : (
+          ""
+        )}
+      </>
     </div>
   );
 };

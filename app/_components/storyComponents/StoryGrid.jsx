@@ -28,7 +28,7 @@ const fetchBlogs = async () => {
 
 const StoryGrid = () => {
   // Update to use single argument object format for useQuery
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, isSuccess } = useQuery({
     queryKey: ["blogs"],
     queryFn: fetchBlogs,
   });
@@ -51,11 +51,7 @@ const StoryGrid = () => {
       </p> */}
       {/* <CommonNav /> */}
       <div className="mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
-        {isLoading ? (
-          <div>
-            <Spinner weight="bold" className="size-8 animate-spin" />
-          </div>
-        ) : (
+        {isSuccess &&
           data?.blogs?.map((post) => (
             <Link
               href={`/story/${post.slug}`}
@@ -126,8 +122,7 @@ const StoryGrid = () => {
                 {post.description.substring(0, 100)}...
               </p> */}
             </Link>
-          ))
-        )}
+          ))}
       </div>
     </div>
   );
