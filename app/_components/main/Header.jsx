@@ -58,7 +58,7 @@ const Header = async () => {
         ) : (
           <Link
             href="/login"
-            className="bg-black flex items-center gap-1 text-white font-medium py-2 px-3 rounded-lg"
+            className="bg-black flex items-center gap-1 text-white font-medium py-2 px-3 rounded-full"
           >
             Login
           </Link>
