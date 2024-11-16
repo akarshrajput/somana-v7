@@ -42,13 +42,13 @@ const PodcastInfo = ({ podcast }) => {
   return (
     <Link
       href={`/podcast/${podcast._id}?${podcast.podcastName}`}
-      className="group block bg-white dark:bg-gray-800"
+      className="group block"
     >
       <div className="relative">
-        <div className="flex justify-center w-full overflow-hidden h-20 rounded-sm">
+        <div className="flex justify-center w-full overflow-hidden h-20 rounded-md">
           <img
             src={podcast?.featuredImage}
-            className="w-full h-full object-cover rounded-md hover:rounded-sm duration-500"
+            className="w-full h-full object-cover hover:scale-105 duration-300"
             alt="Featured Image"
           />
         </div>

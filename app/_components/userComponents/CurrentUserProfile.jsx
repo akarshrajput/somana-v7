@@ -3,6 +3,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 // import { useToast } from "@chakra-ui/react";
 import { useQuery, useMutation } from "@tanstack/react-query"; // Updated import
+import SpinnerMain from "../main/SpinnerMain";
 // import UpdateUsername from "./UpdateUsername";
 // import LoadingMain from "../main/Loading";
 
@@ -97,7 +98,7 @@ const CurrentUserProfile = ({ session }) => {
     mutation.mutate(userProfile);
   };
 
-  if (isLoading) return <p>Loading</p>;
+  if (isLoading) return <SpinnerMain />;
 
   if (isError) {
     // toast({
