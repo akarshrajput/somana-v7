@@ -13,6 +13,7 @@ import {
 } from "@phosphor-icons/react/dist/ssr";
 import LoadingSmall from "../main/LoadingSmall";
 import CommonNav from "../main/CommonNav";
+import SpinnerMain from "../main/SpinnerMain";
 
 const rubik = Rubik({
   subsets: ["latin"],
@@ -51,7 +52,9 @@ const StoryGrid = () => {
       </p> */}
       {/* <CommonNav /> */}
       <div className="mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
-        {isSuccess &&
+        {isLoading ? (
+          <SpinnerMain />
+        ) : (
           data?.blogs?.map((post) => (
             <Link
               href={`/story/${post.slug}`}
@@ -122,7 +125,8 @@ const StoryGrid = () => {
                 {post.description.substring(0, 100)}...
               </p> */}
             </Link>
-          ))}
+          ))
+        )}
       </div>
     </div>
   );
