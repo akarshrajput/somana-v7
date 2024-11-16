@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Link from "next/link";
-import { ApplePodcastsLogo } from "@phosphor-icons/react/dist/ssr";
+import { ApplePodcastsLogo, TrendUp } from "@phosphor-icons/react/dist/ssr";
 import LoadingSmall from "../main/LoadingSmall";
 import { useQuery } from "@tanstack/react-query";
 
@@ -19,6 +19,13 @@ const PodcastGrid = () => {
   return (
     <div>
       <>
+        {isSuccess ? (
+          <div className="py-2 font-medium text-sm flex items-center gap-1">
+            Podcasts <ApplePodcastsLogo weight="bold" />
+          </div>
+        ) : (
+          ""
+        )}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           {data?.podcasts.map((podcast) => (
             <PodcastInfo key={podcast._id} podcast={podcast} />

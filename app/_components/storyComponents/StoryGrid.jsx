@@ -36,21 +36,6 @@ const StoryGrid = () => {
 
   return (
     <div className="dark:bg-black dark:text-stone-50 mx-auto">
-      {/* <p className="mb-2 font-medium flex items-center gap-1">
-        <Book weight="bold" />
-        Stories
-        <button className="text-sm p-0.5 px-2 bg-green-300 rounded-md">
-          More stories
-        </button>
-        <Link
-          href="/story/write"
-          className="p-0.5 px-2 w-fit flex items-center gap-1 bg-green-300 rounded-md font-medium text-sm"
-        >
-          <Pen weight="bold" />
-          Write Story
-        </Link>
-      </p> */}
-      {/* <CommonNav /> */}
       <div className="mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
         {isLoading ? (
           <SpinnerMain />

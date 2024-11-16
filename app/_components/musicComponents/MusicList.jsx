@@ -20,7 +20,14 @@ const MusicList = () => {
   return (
     <div>
       <>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-10 gap-4">
+        {isSuccess ? (
+          <div className="px-2 font-medium text-sm flex items-center gap-1">
+            More Music <MusicNote weight="bold" />
+          </div>
+        ) : (
+          ""
+        )}
+        <div className="grid p-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-10 gap-4">
           {data?.tracks.map((podcast) => (
             <PodcastInfo key={podcast._id} podcast={podcast} />
           ))}
@@ -49,7 +56,7 @@ const PodcastInfo = ({ podcast }) => {
         <div className="flex justify-center w-full overflow-hidden h-20 rounded-sm">
           <img
             src={podcast?.featuredImage}
-            className="w-full h-full object-cover rounded-md hover:rounded-sm duration-500"
+            className="w-full h-full object-cover hover:scale-105 duration-300"
             alt="Featured Image"
           />
         </div>

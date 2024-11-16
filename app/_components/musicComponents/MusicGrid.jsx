@@ -7,7 +7,7 @@ import LoadingSmall from "../main/LoadingSmall";
 import { useQuery } from "@tanstack/react-query";
 
 const fetchMusic = async () => {
-  const res = await axios.get(`/api/v1/music?limit=9`);
+  const res = await axios.get(`/api/v1/music?limit=6`);
   return res?.data?.data;
 };
 
@@ -20,6 +20,13 @@ const MusicGrid = () => {
   return (
     <div>
       <>
+        {isSuccess ? (
+          <div className="py-2 font-medium text-sm flex items-center gap-1">
+            Music <MusicNote weight="bold" />
+          </div>
+        ) : (
+          ""
+        )}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           {data?.tracks.map((podcast) => (
             <PodcastInfo key={podcast._id} podcast={podcast} />
