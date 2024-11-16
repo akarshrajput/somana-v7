@@ -5,7 +5,12 @@ import { Book, BookmarkSimple, Sparkle, StarFour } from "@phosphor-icons/react";
 import { Rubik } from "next/font/google";
 import axios from "axios";
 import { ArrowBigRight } from "lucide-react";
-import { BookOpen, Pen, SealCheck } from "@phosphor-icons/react/dist/ssr";
+import {
+  BookOpen,
+  Pen,
+  SealCheck,
+  Spinner,
+} from "@phosphor-icons/react/dist/ssr";
 import LoadingSmall from "../main/LoadingSmall";
 import CommonNav from "../main/CommonNav";
 
@@ -47,7 +52,9 @@ const StoryGrid = () => {
       {/* <CommonNav /> */}
       <div className="mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
         {isLoading ? (
-          <LoadingSmall />
+          <div>
+            <Spinner weight="bold" className="size-8 animate-spin" />
+          </div>
         ) : (
           data?.blogs?.map((post) => (
             <Link

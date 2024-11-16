@@ -2,58 +2,41 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Link from "next/link";
-import { ApplePodcastsLogo, MusicNote } from "@phosphor-icons/react/dist/ssr";
+import { MusicNote, Spinner } from "@phosphor-icons/react/dist/ssr";
 import LoadingSmall from "../main/LoadingSmall";
+import { useQuery } from "@tanstack/react-query";
 
-const MusicList = ({ api }) => {
-  const [podcasts, setPodcasts] = useState([]);
-  const [loading, setLoading] = useState(false);
+const fetchMusic = async () => {
+  const res = await axios.get(`/api/v1/music`);
+  return res?.data?.data;
+};
 
-  useEffect(() => {
-    const fetchPodcasts = async () => {
-      try {
-        setLoading(true);
-        const response = await axios.get(api, {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-        // console.log(response);
-        setPodcasts(response.data.data.tracks);
-      } catch (err) {
-        console.error("Error fetching podcasts:", err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchPodcasts();
-  }, [api]);
+const MusicList = () => {
+  const { data, loading, isSuccess } = useQuery({
+    queryKey: ["tracks1"],
+    queryFn: fetchMusic,
+  });
 
   return (
     <div>
-      {/* <p className="mb-2 font-medium flex items-center gap-1">
-        <MusicNote weight="bold" />
-        Music
-        <button className="text-sm p-0.5 px-2 bg-green-300 rounded-md">
-          More tracks
-        </button>
-      </p> */}
-
       {loading ? (
         <LoadingSmall />
       ) : (
         <>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-10 gap-4">
-            {podcasts.map((podcast) => (
+            {data?.tracks.map((podcast) => (
               <PodcastInfo key={podcast._id} podcast={podcast} />
             ))}
           </div>
-          <div className="flex">
-            <button className="text-green-700 w-fit text-xs underline mt-2">
-              Explore More Music
-            </button>
-          </div>
+          {isSuccess ? (
+            <div className="flex">
+              <button className="text-green-700 w-fit text-xs underline mt-2">
+                Explore More Music
+              </button>
+            </div>
+          ) : (
+            ""
+          )}
         </>
       )}
     </div>

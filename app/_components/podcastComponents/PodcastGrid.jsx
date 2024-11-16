@@ -12,7 +12,7 @@ const fetchPodcasts = async () => {
 };
 
 const PodcastGrid = () => {
-  const { data, loading } = useQuery({
+  const { data, loading, isSuccess } = useQuery({
     queryKey: ["podcasts"],
     queryFn: fetchPodcasts,
   });
@@ -27,11 +27,15 @@ const PodcastGrid = () => {
               <PodcastInfo key={podcast._id} podcast={podcast} />
             ))}
           </div>
-          <div className="flex">
-            <button className="text-green-700 w-fit text-xs underline mt-2">
-              Explore More Podcasts
-            </button>
-          </div>
+          {isSuccess ? (
+            <div className="flex">
+              <button className="text-green-700 w-fit text-xs underline mt-2">
+                Explore More Podcasts
+              </button>
+            </div>
+          ) : (
+            ""
+          )}
         </>
       )}
     </div>

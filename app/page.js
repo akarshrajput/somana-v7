@@ -29,8 +29,8 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="my-8 px-2">
-          <MusicList api="/api/v1/music?limit=20" />
+        <div className="my-8">
+          <MusicList />
         </div>
       </div>
     </div>
