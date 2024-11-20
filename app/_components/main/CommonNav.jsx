@@ -39,12 +39,6 @@ const CommonNav = () => {
       <BaseLink href="music/playlist">
         Kids <Rabbit weight="bold" />
       </BaseLink>
-      <BaseLink href="music/playlist">
-        Real Ghost <LinuxLogo weight="bold" />
-      </BaseLink>
-      <BaseLink href="music/playlist">
-        Viral <Camera weight="bold" />
-      </BaseLink>
 
       <BaseLink href="music/playlist">
         News <Newspaper weight="bold" />

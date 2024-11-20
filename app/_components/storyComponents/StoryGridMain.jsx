@@ -22,21 +22,21 @@ const rubik = Rubik({
 
 // Fetch blogs with a simple query
 const fetchBlogs = async () => {
-  const res = await axios.get(`/api/v1/blogs?limit=9`);
+  const res = await axios.get(`/api/v1/blogs?limit=20&sort=1`);
   // console.log(res.data.data.blogs);
   return res?.data?.data;
 };
 
-const StoryGrid = () => {
+const StoryGridMain = () => {
   // Update to use single argument object format for useQuery
   const { data, isLoading, isSuccess } = useQuery({
-    queryKey: ["blogs"],
+    queryKey: ["blogsMain"],
     queryFn: fetchBlogs,
   });
 
   return (
     <div className="dark:bg-black dark:text-stone-50 mx-auto">
-      <CommonNav />
+      {/* <CommonNav /> */}
       <div className="mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
         {isLoading ? (
           <SpinnerMain />
@@ -118,4 +118,4 @@ const StoryGrid = () => {
   );
 };
 
-export default StoryGrid;
+export default StoryGridMain;
