@@ -4,6 +4,7 @@ import Dots from "./_components/designs/Dots";
 import { ThemeProvider } from "./_components/providers/ThemeProvider";
 import ReactQueryProvider from "./_components/providers/ReactQueryProvider";
 import { Rubik } from "next/font/google";
+import { Toaster } from "@/components/ui/toaster";
 
 const fonts = Rubik({
   subsets: ["latin"],
@@ -35,6 +36,7 @@ export default function RootLayout({ children }) {
             {children}
           </ThemeProvider>
         </ReactQueryProvider>
+        <Toaster />
       </body>
     </html>
   );

@@ -2,9 +2,11 @@
 import supabase from "@/app/_lib/supabase";
 import { Info, Upload } from "@phosphor-icons/react/dist/ssr";
 import React, { useState } from "react";
-import toast from "react-hot-toast";
-import LoaderSmall from "../main/LoaderSmall";
+import { useToast } from "@/hooks/use-toast";
 import axios from "axios";
+import SpinnerMain from "../main/SpinnerMain";
+import { ToastAction } from "@/components/ui/toast";
+import { Button } from "@/components/ui/button";
 
 const UploadMusic = ({ supabaseURL, session, hostname }) => {
   const [musicName, setMusicName] = useState("");
@@ -17,6 +19,8 @@ const UploadMusic = ({ supabaseURL, session, hostname }) => {
   const [songLang, setSongLang] = useState("Hindi");
   const [lyrics, setLyrics] = useState("");
   const [isLoading, setIsLoading] = useState("");
+
+  const { toast } = useToast();
 
   const musicCategories = [
     "Love",
@@ -63,21 +67,38 @@ const UploadMusic = ({ supabaseURL, session, hostname }) => {
       !credits ||
       !album
     ) {
-      toast.error("Please fill all fields");
+      toast({
+        title: "Field Error",
+        description: "Please fill all input fields",
+        action: <ToastAction altText="Goto schedule to undo">Undo</ToastAction>,
+      });
       return;
     }
 
     if (audioLink.type.split("/")[0] !== "audio") {
-      toast.error("Only audio files are allowed");
+      toast({
+        title: "Type Error",
+        description: "Only Audio file is allowed",
+        action: <ToastAction altText="Goto schedule to undo">Undo</ToastAction>,
+      });
       return;
     }
 
     if (featuredImage.type.split("/")[0] !== "image") {
-      toast.error("Only image files are allowed");
+      toast({
+        title: "Type Error",
+        description: "Only Image file is allowed",
+        action: <ToastAction altText="Goto schedule to undo">Undo</ToastAction>,
+      });
       return;
     }
 
     try {
+      toast({
+        title: "Uploading Progress",
+        description: "Uploading data in progress",
+        action: <ToastAction altText="Goto schedule to undo">Undo</ToastAction>,
+      });
       setIsLoading(true);
       const imageName = `${Math.random()}-${Date.now()}-${featuredImage?.name}`;
       const imagePath = `${supabaseURL}/storage/v1/object/public/audio-track-images/${imageName}`;
@@ -98,26 +119,46 @@ const UploadMusic = ({ supabaseURL, session, hostname }) => {
       };
       console.log(musicData);
 
+      toast({
+        title: "Uploading Progress",
+        description: "Uploading Audio Image",
+        action: <ToastAction altText="Goto schedule to undo">Undo</ToastAction>,
+      });
       const avatarImage = featuredImage;
       await supabase.storage
         .from("audio-track-images")
         .upload(imageName, avatarImage);
 
+      toast({
+        title: "Uploading Progress",
+        description: "Uploading Audio File",
+        action: <ToastAction altText="Goto schedule to undo">Undo</ToastAction>,
+      });
       const avatarAudio = audioLink;
       await supabase.storage
         .from("audio-tracks")
         .upload(audioName, avatarAudio);
 
+      toast({
+        title: "Uploading Progress",
+        description: "Uploading Audio Data",
+        action: <ToastAction altText="Goto schedule to undo">Undo</ToastAction>,
+      });
       const response = await axios.post(`/api/v1/music`, musicData, {
         headers: {
           "Content-Type": "application/json",
         },
       });
-
+      toast({
+        title: "Uploaded Successfully",
+        description: "Audio data uploaded successfully",
+        action: <ToastAction altText="Goto schedule to undo">Undo</ToastAction>,
+      });
       // const slug = response?.data?.data?.newBlog?.slug;
-      toast.success("Music Uploaded Success!");
+      // toast.success("Music Uploaded Success!");
       // router.push(`/music`);
       // console.log(response);
+
       setMusicName("");
       setMusicType("");
       setAudioLink("");
@@ -127,7 +168,11 @@ const UploadMusic = ({ supabaseURL, session, hostname }) => {
       setCredits("");
       setAlbum("");
     } catch (error) {
-      toast.error("Error posting Blog, Server Error");
+      toast({
+        title: "Error Uploading!",
+        description: "Audio data not uploaded!",
+        action: <ToastAction altText="Goto schedule to undo">Undo</ToastAction>,
+      });
       console.log("Error");
     } finally {
       setIsLoading(false);
@@ -138,26 +183,22 @@ const UploadMusic = ({ supabaseURL, session, hostname }) => {
     <div>
       <form
         onSubmit={handleSubmit}
-        className="rounded-md flex flex-col gap-4 p-4  overflow-hidden border-2 dark:bg-stone-800 dark:border-stone-700 bg-stone-100 border-stone-300"
+        className="flex flex-col gap-4 p-4 overflow-hidden"
       >
-        <div className="flex items-center gap-2">
-          <div className="flex flex-col items-start gap-1">
-            <label>Music file : </label>
-            <input
-              onChange={(e) => setAudioLink(e.target.files[0])}
-              className="border border-stone-300 dark:placeholder:text-stone-200 dark:bg-stone-700 bg-stone-200 dark:border-stone-600 placeholder-stone-600 outline-none py-1 px-2 w-64 rounded-md"
-              type="file"
-            />
-          </div>
-          <div className="flex flex-col items-start gap-1">
-            <label>Featured Image : </label>
-            <input
-              onChange={(e) => setFeaturedImage(e.target.files[0])}
-              className="border border-stone-300 dark:placeholder:text-stone-200 dark:bg-stone-700 bg-stone-200 dark:border-stone-600 placeholder-stone-600 outline-none py-1 px-2 w-64 rounded-md"
-              type="file"
-            />
-          </div>
-        </div>
+        {/* <Button
+          variant="outline"
+          onClick={() => {
+            toast({
+              title: "Scheduled: Catch up ",
+              description: "Friday, February 10, 2023 at 5:57 PM",
+              action: (
+                <ToastAction altText="Goto schedule to undo">Undo</ToastAction>
+              ),
+            });
+          }}
+        >
+          Add to calendar
+        </Button> */}
         <div className="flex items-center flex-wrap gap-4">
           <div className="flex items-center gap-1">
             {/* <label>Song name </label> */}
@@ -165,14 +206,14 @@ const UploadMusic = ({ supabaseURL, session, hostname }) => {
               value={musicName}
               onChange={(e) => setMusicName(e.target.value)}
               placeholder="Song name"
-              className="border border-stone-300 dark:placeholder:text-stone-200 dark:bg-stone-700 bg-stone-200 dark:border-stone-600 placeholder-stone-600 outline-none py-1 px-2 w-64 rounded-md"
+              className="border border-stone-200  dark:placeholder:text-stone-200  bg-stone-50 placeholder-stone-600 py-2 px-2 outline-none rounded-md w-full"
             />
           </div>
           <div className="flex items-center gap-1">
             {/* Removed the commented-out label */}
             <div>
               <select
-                className="border border-stone-300 dark:placeholder:text-stone-200 dark:bg-stone-700 bg-stone-200 dark:border-stone-600 placeholder-stone-600 outline-none py-1 px-2 w-64 rounded-md"
+                className="border border-stone-200  dark:placeholder:text-stone-200  bg-stone-50 placeholder-stone-600 py-2 px-2 outline-none rounded-md w-full"
                 value={musicType}
                 onChange={(e) => setMusicType(e.target.value)}
               >
@@ -189,7 +230,7 @@ const UploadMusic = ({ supabaseURL, session, hostname }) => {
             <input
               value={releaseDate}
               onChange={(e) => setReleaseDate(e.target.value)}
-              className="border border-stone-300 dark:placeholder:text-stone-200 dark:bg-stone-700 bg-stone-200 dark:border-stone-600 placeholder-stone-600 outline-none py-1 px-2 w-64 rounded-md"
+              className="border border-stone-200  dark:placeholder:text-stone-200  bg-stone-50 placeholder-stone-600 py-2 px-2 outline-none rounded-md w-full"
               type="date"
             />
           </div>
@@ -201,7 +242,7 @@ const UploadMusic = ({ supabaseURL, session, hostname }) => {
             <input
               value={credits}
               onChange={(e) => setCredits(e.target.value)}
-              className="border border-stone-300 dark:placeholder:text-stone-200 dark:bg-stone-700 bg-stone-200 dark:border-stone-600 placeholder-stone-600 outline-none py-1 px-2 w-64 rounded-md"
+              className="border border-stone-200  dark:placeholder:text-stone-200  bg-stone-50 placeholder-stone-600 py-2 px-2 outline-none rounded-md w-full"
               placeholder="Credits/Artist names"
             />
           </div>
@@ -210,14 +251,14 @@ const UploadMusic = ({ supabaseURL, session, hostname }) => {
             <input
               value={album}
               onChange={(e) => setAlbum(e.target.value)}
-              className="border border-stone-300 dark:placeholder:text-stone-200 dark:bg-stone-700 bg-stone-200 dark:border-stone-600 placeholder-stone-600 outline-none py-1 px-2 w-64 rounded-md"
+              className="border border-stone-200  dark:placeholder:text-stone-200  bg-stone-50 placeholder-stone-600 py-2 px-2 outline-none rounded-md w-full"
               placeholder="Album name"
             />
           </div>
           <div className="flex items-center gap-1">
             <div>
               <select
-                className="border border-stone-300 dark:placeholder:text-stone-200 dark:bg-stone-700 bg-stone-200 dark:border-stone-600 placeholder-stone-600 outline-none py-1 px-2 w-64 rounded-md"
+                className="border border-stone-200  dark:placeholder:text-stone-200  bg-stone-50 placeholder-stone-600 py-2 px-2 outline-none rounded-md w-full"
                 value={songLang}
                 onChange={(e) => setSongLang(e.target.value)}
               >
@@ -230,6 +271,22 @@ const UploadMusic = ({ supabaseURL, session, hostname }) => {
             </div>
           </div>
         </div>
+        <div className="flex items-center gap-2">
+          <div className="flex flex-col items-start gap-1">
+            <label>Music file : </label>
+            <input
+              onChange={(e) => setAudioLink(e.target.files[0])}
+              type="file"
+            />
+          </div>
+          <div className="flex flex-col items-start gap-1">
+            <label>Featured Image : </label>
+            <input
+              onChange={(e) => setFeaturedImage(e.target.files[0])}
+              type="file"
+            />
+          </div>
+        </div>
 
         <div className="flex items-center gap-2">
           <div className="flex flex-col w-full gap-1">
@@ -238,7 +295,7 @@ const UploadMusic = ({ supabaseURL, session, hostname }) => {
               value={lyrics}
               onChange={(e) => setLyrics(e.target.value)}
               rows={10}
-              className="border w-full resize-none border-stone-300 dark:placeholder:text-stone-200 dark:bg-stone-700 bg-stone-200 dark:border-stone-600 placeholder-stone-600 outline-none py-1 px-2 rounded-md"
+              className="border border-stone-200  dark:placeholder:text-stone-200  bg-stone-50 placeholder-stone-600 py-2 px-2 outline-none rounded-md w-full"
             />
           </div>
         </div>
@@ -255,7 +312,8 @@ const UploadMusic = ({ supabaseURL, session, hostname }) => {
           className="bg-emerald-600 w-fit text-stone-50 flex items-center gap-1 py-1 px-2 rounded-md"
         >
           {isLoading ? (
-            <LoaderSmall />
+            // <LoaderSmall />
+            <SpinnerMain />
           ) : (
             <div className="flex items-center gap-1">
               <p>Upload</p>
