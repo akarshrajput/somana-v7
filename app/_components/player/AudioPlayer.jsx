@@ -19,6 +19,7 @@ const AudioPlayer = ({ audioFile }) => {
   const [muted, setMuted] = useState(false);
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
+  const [loading, setLoading] = useState(true); // Track loading state
 
   useEffect(() => {
     const darkModeClass = document.documentElement.classList.contains("dark");
@@ -47,7 +48,7 @@ const AudioPlayer = ({ audioFile }) => {
       });
 
       audio.addEventListener("timeupdate", () => {
-        setCurrentTime(audio.currentTime); // This will continuously update the state
+        setCurrentTime(audio.currentTime);
         if (progressRef.current) {
           progressRef.current.value =
             (audio.currentTime / audio.duration) * 100;
@@ -55,7 +56,15 @@ const AudioPlayer = ({ audioFile }) => {
       });
 
       audio.addEventListener("ended", () => {
-        handleNextTrack(); // Move to the next track when the current one ends
+        handleNextTrack();
+      });
+
+      audio.addEventListener("waiting", () => {
+        setLoading(true); // Show loading when buffering
+      });
+
+      audio.addEventListener("canplay", () => {
+        setLoading(false); // Hide loading once audio can be played
       });
 
       audio.volume = volume;
@@ -74,6 +83,8 @@ const AudioPlayer = ({ audioFile }) => {
         audio.removeEventListener("loadedmetadata", () => {});
         audio.removeEventListener("timeupdate", () => {});
         audio.removeEventListener("ended", () => {});
+        audio.removeEventListener("waiting", () => {});
+        audio.removeEventListener("canplay", () => {});
       }
     };
   }, [audioFile, volume, playing]);
@@ -88,11 +99,9 @@ const AudioPlayer = ({ audioFile }) => {
     const audio = audioRef.current;
     if (audio) {
       if (playing) {
-        // Pause the audio and store the current time
         audio.pause();
       } else {
-        // Resume the audio from where it left off
-        audio.currentTime = currentTime; // Ensure it resumes from the saved position
+        audio.currentTime = currentTime;
         audio.play().catch((error) => {
           console.error("Error playing audio:", error);
         });
@@ -127,7 +136,7 @@ const AudioPlayer = ({ audioFile }) => {
     const currentIndex = tracksQueue.findIndex((t) => t._id === track._id);
     const nextTrack = tracksQueue[currentIndex + 1];
     if (nextTrack) {
-      setTrack(nextTrack); // Set the next track in context
+      setTrack(nextTrack);
     }
   };
 
@@ -135,7 +144,7 @@ const AudioPlayer = ({ audioFile }) => {
     const currentIndex = tracksQueue.findIndex((t) => t._id === track._id);
     const previousTrack = tracksQueue[currentIndex - 1];
     if (previousTrack) {
-      setTrack(previousTrack); // Set the previous track in context
+      setTrack(previousTrack);
     }
   };
 
@@ -146,66 +155,76 @@ const AudioPlayer = ({ audioFile }) => {
   };
 
   return (
-    <div className="flex items-center gap-0 w-full">
-      <button
-        onClick={handlePreviousTrack}
-        aria-label="Previous"
-        className="text-stone-600 dark:text-stone-200 p-2"
-      >
-        <SkipBack size={24} />
-      </button>
-      <button
-        onClick={handlePlayPause}
-        aria-label={playing ? "Pause" : "Play"}
-        className="text-stone-600 dark:text-stone-200 p-2"
-      >
-        {playing ? <Pause size={24} /> : <Play size={24} />}
-      </button>
-      <button
-        onClick={handleNextTrack}
-        aria-label="Next"
-        className="text-stone-600 dark:text-stone-200 p-2"
-      >
-        <SkipForward size={24} />
-      </button>
-      <div className="relative flex-1">
-        <div
-          className="w-full h-1 bg-stone-300 dark:bg-stone-700 rounded cursor-pointer"
-          onClick={handleProgressClick}
-        >
-          <div
-            className="absolute top-0 left-0 h-1 bg-blue-500 rounded"
-            style={{ width: `${(currentTime / duration) * 100}%` }}
-          ></div>
-        </div>
-        <input
-          ref={progressRef}
-          type="range"
-          min="0"
-          max="100"
-          step="0.1"
-          defaultValue="0"
-          className="absolute inset-0 opacity-0 cursor-pointer"
-          onClick={handleProgressClick}
-        />
+    <div className="flex flex-col gap-2">
+      <div>
+        {loading && (
+          <p className="bg-green-400 rounded-md text-xs w-fit p-1 px-2">
+            Loading Music, Please Wait
+          </p>
+        )}
       </div>
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-0 w-full">
         <button
-          onClick={handleMute}
-          aria-label={muted ? "Unmute" : "Mute"}
-          className="text-stone-600 dark:text-stone-200 ml-2"
+          onClick={handlePreviousTrack}
+          aria-label="Previous"
+          className="text-stone-600 dark:text-stone-200 p-2"
         >
-          {muted || volume === 0 ? (
-            <SpeakerX size={24} />
-          ) : (
-            <SpeakerHigh size={24} />
-          )}
+          <SkipBack size={24} />
         </button>
-        <div className="text-stone-600 dark:text-stone-200 text-xs">
-          {formatTime(currentTime)} / {formatTime(duration)}
+        <button
+          onClick={handlePlayPause}
+          aria-label={playing ? "Pause" : "Play"}
+          className="text-stone-600 dark:text-stone-200 p-2"
+        >
+          {playing ? <Pause size={24} /> : <Play size={24} />}
+        </button>
+        <button
+          onClick={handleNextTrack}
+          aria-label="Next"
+          className="text-stone-600 dark:text-stone-200 p-2"
+        >
+          <SkipForward size={24} />
+        </button>
+        <div className="relative flex-1">
+          <div
+            className="w-full h-1 bg-stone-300 dark:bg-stone-700 rounded cursor-pointer"
+            onClick={handleProgressClick}
+          >
+            <div
+              className="absolute top-0 left-0 h-1 bg-blue-500 rounded"
+              style={{ width: `${(currentTime / duration) * 100}%` }}
+            ></div>
+          </div>
+          <input
+            ref={progressRef}
+            type="range"
+            min="0"
+            max="100"
+            step="0.1"
+            defaultValue="0"
+            className="absolute inset-0 opacity-0 cursor-pointer"
+            onClick={handleProgressClick}
+          />
         </div>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={handleMute}
+            aria-label={muted ? "Unmute" : "Mute"}
+            className="text-stone-600 dark:text-stone-200 ml-2"
+          >
+            {muted || volume === 0 ? (
+              <SpeakerX size={24} />
+            ) : (
+              <SpeakerHigh size={24} />
+            )}
+          </button>
+          <div className="text-stone-600 dark:text-stone-200 text-xs">
+            {formatTime(currentTime)} / {formatTime(duration)}
+          </div>
+        </div>
+
+        <audio ref={audioRef} preload="auto" />
       </div>
-      <audio ref={audioRef} preload="auto" />
     </div>
   );
 };
