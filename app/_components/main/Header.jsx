@@ -4,6 +4,7 @@ import Logo from "./Logo";
 import { Circle } from "@phosphor-icons/react/dist/ssr";
 import { auth } from "@/app/_lib/auth";
 import ProfileMenu from "../userComponents/ProfileMenu";
+import SearchInput from "./SearchInput";
 
 const Header = async () => {
   const session = await auth();
@@ -45,10 +46,7 @@ const Header = async () => {
       </Link>
 
       <div className="ml-auto flex items-center gap-2">
-        <input
-          placeholder="Search"
-          className="rounded-full bg-neutral-100 dark:bg-neutral-800 text-sm text-neutral-700 dark:text-neutral-300 px-4 py-2 placeholder-neutral-400 dark:placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-neutral-300 dark:focus:ring-neutral-600"
-        />
+        <SearchInput />
         <ThemeButton />
         {/* <Link
           href="/upload"

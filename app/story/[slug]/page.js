@@ -4,9 +4,9 @@ import BlogComments from "@/app/_components/storyComponents/BlogComments";
 import BlogDate from "@/app/_components/storyComponents/BlogDate";
 import DeleteButton from "@/app/_components/storyComponents/DeleteBlog";
 import LikeButton from "@/app/_components/storyComponents/LikeButton";
-import { auth } from "@/app/_lib/auth";
 import { LineVertical, SealCheck } from "@phosphor-icons/react/dist/ssr";
 import { Lora, Rubik } from "next/font/google";
+import { auth } from "@/app/_lib/auth";
 
 const lora = Lora({
   subsets: ["latin"],
@@ -15,9 +15,11 @@ const lora = Lora({
 
 // Fetch blog data
 const fetchBlogData = async (slug) => {
+  const session = await auth();
+  const userId = session?.user?.userId;
   try {
     const res = await fetch(
-      `${process.env.HOSTNAME}/api/v1/blogs/slug/${slug}`,
+      `${process.env.HOSTNAME}/api/v1/blogs/slug/${slug}?userId=${userId}`,
       { cache: "no-store" }
     );
     if (!res.ok) throw new Error("Failed to fetch blog data");

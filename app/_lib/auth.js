@@ -40,6 +40,7 @@ const authConfig = {
       const guest = await getUser(session.user.email);
       session.user.userId = guest._id;
       session.user.photo = guest.photo;
+      session.user.role = guest.role;
     },
   },
   pages: {

@@ -337,6 +337,12 @@ const WriteBlog = ({ supabaseURL, session, hostname }) => {
               <option value="Travel">Travel</option>
               <option value="Volunteer">Volunteer</option>
               <option value="Writing">Writing</option>
+              {session.user.role === "admin" ||
+              session.user.role === "guide" ? (
+                <option value="top-10">Top 10</option>
+              ) : (
+                ""
+              )}
             </select>
           </div>
         </div>
