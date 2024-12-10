@@ -87,14 +87,18 @@ const Page = async ({ params }) => {
     <div className="flex justify-center mt-20 py-6 px-4 dark:bg-black dark:text-stone-50">
       <div className="w-[700px]">
         {/* Blog Header */}
-        <div className="flex items-center gap-1">
-          <p className="font-semibold text-green-600">{blog.genre}</p>
-          <LineVertical weight="bold" />
-          <BlogDate
-            className="font-semibold text-sm"
-            blogDate={blog.createdAt}
-          />
-        </div>
+        {blog.genre === "top-10" ? (
+          ""
+        ) : (
+          <div className="flex items-center gap-1">
+            <p className="font-semibold text-green-600">{blog.genre}</p>
+            <LineVertical weight="bold" />
+            <BlogDate
+              className="font-semibold text-sm"
+              blogDate={blog.createdAt}
+            />
+          </div>
+        )}
         <div className="my-4 font-medium">
           <h1 className={`font-semibold  text-3xl leading-tight`}>
             {blog.heading}
@@ -102,14 +106,7 @@ const Page = async ({ params }) => {
         </div>
 
         {/* Author Info */}
-        <div className="flex flex-wrap items-center gap-2">
-          <img
-            className="w-8 h-8 rounded-full"
-            src={blog.author.photo}
-            alt={`${blog.author.name} profile`}
-          />
-          <p className="font-semibold">{blog.author.name}</p>
-          {blog.author.verified && <SealCheck weight="fill" />}
+        {blog.genre === "top-10" ? (
           <div className="ml-2 flex gap-2 items-center">
             <LikeButton
               blogId={slug}
@@ -120,17 +117,38 @@ const Page = async ({ params }) => {
             <p className="font-semibold bg-neutral-100 p-1 px-2 rounded-md text-sm">
               {blog.numberOfViews} views
             </p>
-
-            <p className="font-semibold bg-neutral-100 p-1 px-2 rounded-md text-sm">
-              {blog.readTime} min read
-            </p>
           </div>
-          {userId === blog.author._id && (
-            <div className="flex items-center gap-2">
-              <DeleteButton blogId={blog._id} />
+        ) : (
+          <div className="flex flex-wrap items-center gap-2">
+            <img
+              className="w-8 h-8 rounded-full"
+              src={blog.author.photo}
+              alt={`${blog.author.name} profile`}
+            />
+            <p className="font-semibold">{blog.author.name}</p>
+            {blog.author.verified && <SealCheck weight="fill" />}
+            <div className="ml-2 flex gap-2 items-center">
+              <LikeButton
+                blogId={slug}
+                initialLikes={blog.likes}
+                userId={userId}
+              />
+
+              <p className="font-semibold bg-neutral-100 p-1 px-2 rounded-md text-sm">
+                {blog.numberOfViews} views
+              </p>
+
+              <p className="font-semibold bg-neutral-100 p-1 px-2 rounded-md text-sm">
+                {blog.readTime} min read
+              </p>
             </div>
-          )}
-        </div>
+            {userId === blog.author._id && (
+              <div className="flex items-center gap-2">
+                <DeleteButton blogId={blog._id} />
+              </div>
+            )}
+          </div>
+        )}
 
         {/* Featured Image */}
         <div className="mt-4 flex justify-center">
