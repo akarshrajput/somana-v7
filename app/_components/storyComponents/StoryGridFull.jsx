@@ -56,7 +56,7 @@ const StoryGridFull = () => {
                   />
                   <div className="text-xs font-medium flex items-center gap-1">
                     <Link
-                      href={`p/${post.author.userName}`}
+                      href={`profile/${post.author.userName}`}
                       className="hover:underline"
                     >
                       {post.author.name}
