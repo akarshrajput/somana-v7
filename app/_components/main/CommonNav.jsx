@@ -27,7 +27,7 @@ const CommonNav = () => {
       <BaseLink href="music/playlist">
         Top 10 <TrendUp weight="bold" />
       </BaseLink>
-      <BaseLink href="music/playlist" className="bg-red-600">
+      <BaseLink href="music/playlist">
         Videos <Play weight="fill" />
       </BaseLink>
       <BaseLink href="hello">
@@ -42,6 +42,12 @@ const CommonNav = () => {
 
       <BaseLink href="music/playlist">
         News <Newspaper weight="bold" />
+      </BaseLink>
+      <BaseLink href="music/playlist">
+        Anime <Rabbit weight="bold" />
+      </BaseLink>
+      <BaseLink href="music/playlist">
+        Go Live <Rabbit weight="bold" />
       </BaseLink>
     </div>
   );

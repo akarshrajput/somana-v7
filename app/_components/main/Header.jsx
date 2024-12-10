@@ -8,7 +8,7 @@ import ProfileMenu from "../userComponents/ProfileMenu";
 const Header = async () => {
   const session = await auth();
   return (
-    <div className="border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-black z-50 fixed w-[800px] m-4 rounded-full py-1.5 px-2 flex items-center gap-1 text-sm shadow-sm">
+    <div className="border border-neutral-100 dark:border-neutral-800 bg-white dark:bg-black z-50 fixed w-[800px] m-4 rounded-full py-1.5 px-2 flex items-center gap-1 text-sm shadow-sm">
       <div className="mr-4">
         <Logo />
       </div>
@@ -45,7 +45,10 @@ const Header = async () => {
       </Link>
 
       <div className="ml-auto flex items-center gap-2">
-        <input placeholder="Search" className="border rounded-full p-2 px-4" />
+        <input
+          placeholder="Search"
+          className="rounded-full bg-neutral-100 dark:bg-neutral-800 text-sm text-neutral-700 dark:text-neutral-300 px-4 py-2 placeholder-neutral-400 dark:placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-neutral-300 dark:focus:ring-neutral-600"
+        />
         <ThemeButton />
         {/* <Link
           href="/upload"

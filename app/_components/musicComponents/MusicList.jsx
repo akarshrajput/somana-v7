@@ -7,7 +7,7 @@ import LoadingSmall from "../main/LoadingSmall";
 import { useQuery } from "@tanstack/react-query";
 
 const fetchMusic = async () => {
-  const res = await axios.get(`/api/v1/music`);
+  const res = await axios.get(`/api/v1/music?limit=20`);
   return res?.data?.data;
 };
 

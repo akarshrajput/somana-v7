@@ -7,10 +7,11 @@ import SparklesText from "@/components/ui/sparkles-text";
 import { RainbowButton } from "@/components/ui/rainbow-button";
 import Link from "next/link";
 import MusicList from "./_components/musicComponents/MusicList";
+import StoryGridFull from "./_components/storyComponents/StoryGridFull";
 
 export default function Home() {
   return (
-    <div className="px-2 flex justify-center mt-24">
+    <div className="px-2 py-2 flex justify-center mt-20">
       <div className="w-[1200px]">
         <div className="grid grid-cols-7 gap-12">
           <div className="col-span-5 flex">
@@ -28,6 +29,9 @@ export default function Home() {
               </div>
             </div>
           </div>
+        </div>
+        <div className="my-8">
+          <StoryGridFull />
         </div>
         <div className="my-8">
           <MusicList />
