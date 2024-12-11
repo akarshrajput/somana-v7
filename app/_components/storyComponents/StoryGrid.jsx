@@ -36,7 +36,7 @@ const StoryGrid = () => {
 
   return (
     <div className="dark:bg-black dark:text-stone-50 mx-auto">
-      {isSuccess ? <CommonNav /> : ""}
+      {/* {isSuccess ? <CommonNav /> : ""} */}
       <div className="mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
         {isLoading ? (
           <SpinnerMain />

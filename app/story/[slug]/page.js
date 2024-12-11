@@ -108,15 +108,14 @@ const Page = async ({ params }) => {
         {/* Author Info */}
         {blog.genre === "top-10" ? (
           <div className="ml-2 flex gap-2 items-center">
-            <LikeButton
-              blogId={slug}
-              initialLikes={blog.likes}
-              userId={userId}
-            />
-
             <p className="font-semibold bg-neutral-100 p-1 px-2 rounded-md text-sm">
               {blog.numberOfViews} views
             </p>
+            {(userId === blog.author._id || session.user.role === "admin") && (
+              <div className="flex ml-auto items-center gap-2">
+                <DeleteButton blogId={blog._id} />
+              </div>
+            )}
           </div>
         ) : (
           <div className="flex flex-wrap items-center gap-2">
@@ -142,8 +141,8 @@ const Page = async ({ params }) => {
                 {blog.readTime} min read
               </p>
             </div>
-            {userId === blog.author._id && (
-              <div className="flex items-center gap-2">
+            {(userId === blog.author._id || session.user.role === "admin") && (
+              <div className="flex ml-auto items-center gap-2">
                 <DeleteButton blogId={blog._id} />
               </div>
             )}

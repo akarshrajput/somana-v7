@@ -52,15 +52,15 @@ const FetchMusic = ({ q }) => {
             <PodcastInfo key={podcast._id} podcast={podcast} />
           ))}
         </div>
-        {!loading ? (
+        {/* {!loading ? (
           <div className="flex">
-            <button className="text-green-700 w-fit text-xs underline mt-2">
-              Explore More Music
+            <button className="bg-neutral-200 py-1 px-2 rounded-md w-fit text-xs mt-2">
+              Explore More ...
             </button>
           </div>
         ) : (
           ""
-        )}
+        )} */}
       </>
     </div>
   );

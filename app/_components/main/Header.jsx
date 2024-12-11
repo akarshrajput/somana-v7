@@ -10,7 +10,7 @@ const Header = async () => {
   const session = await auth();
   return (
     <div className="border border-neutral-100 dark:border-neutral-800 bg-white dark:bg-black z-50 fixed w-[800px] m-4 rounded-full py-1.5 px-2 flex items-center gap-1 text-sm shadow-sm">
-      <div className="mr-4">
+      <div className="mr-2">
         <Logo />
       </div>
       <Link

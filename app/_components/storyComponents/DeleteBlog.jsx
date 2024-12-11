@@ -42,7 +42,7 @@ const DeleteButton = ({ blogId }) => {
       {isLoading ? (
         <p>Loading</p>
       ) : (
-        <div className="flex items-center gap-1">
+        <div className="flex text-sm font-semibold items-center gap-1 bg-red-600 text-white py-1 rounded-md px-2">
           <p>Delete</p>
           <Trash weight="bold" />
         </div>

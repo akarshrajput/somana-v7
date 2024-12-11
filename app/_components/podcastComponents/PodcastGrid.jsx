@@ -33,8 +33,8 @@ const PodcastGrid = () => {
         </div>
         {isSuccess ? (
           <div className="flex">
-            <button className="text-green-700 w-fit text-xs underline mt-2">
-              Explore More Podcasts
+            <button className="bg-neutral-200 py-1 px-2 rounded-md w-fit text-xs mt-2">
+              Explore More ...
             </button>
           </div>
         ) : (
