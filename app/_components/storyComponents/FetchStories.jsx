@@ -1,5 +1,5 @@
 "use client";
-import { BookOpen, SealCheck } from "@phosphor-icons/react";
+import { BookOpen, SealCheck, Sparkle } from "@phosphor-icons/react";
 import { Rubik } from "next/font/google";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
