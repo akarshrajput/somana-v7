@@ -17,18 +17,21 @@ const lora = Lora({
 const fetchBlogData = async (slug) => {
   const session = await auth();
   const userId = session?.user?.userId;
-  try {
-    const res = await fetch(
-      `${process.env.HOSTNAME}/api/v1/blogs/slug/${slug}?userId=${userId}`,
-      { cache: "no-store" }
-    );
-    if (!res.ok) throw new Error("Failed to fetch blog data");
-    const data = await res.json();
-    return data.data;
-  } catch (error) {
-    console.error("Error fetching blog data:", error);
-    return null;
-  }
+  let api = "";
+  if (
+    session?.user
+      ? (api = `${process.env.HOSTNAME}/api/v1/blogs/slug/${slug}?userId=${userId}`)
+      : (api = `${process.env.HOSTNAME}/api/v1/blogs/slug/${slug}`)
+  )
+    try {
+      const res = await fetch(api, { cache: "no-store" });
+      if (!res.ok) throw new Error("Failed to fetch blog data");
+      const data = await res.json();
+      return data.data;
+    } catch (error) {
+      console.error("Error fetching blog data:", error);
+      return null;
+    }
 };
 
 // Generate metadata for the page
@@ -111,7 +114,8 @@ const Page = async ({ params }) => {
             <p className="font-semibold bg-neutral-100 p-1 px-2 rounded-md text-sm">
               {blog.numberOfViews} views
             </p>
-            {(userId === blog.author._id || session.user.role === "admin") && (
+            {(userId === blog.author._id ||
+              session?.user?.role === "admin") && (
               <div className="flex ml-auto items-center gap-2">
                 <DeleteButton blogId={blog._id} />
               </div>
@@ -141,7 +145,8 @@ const Page = async ({ params }) => {
                 {blog.readTime} min read
               </p>
             </div>
-            {(userId === blog.author._id || session.user.role === "admin") && (
+            {(userId === blog.author._id ||
+              session?.user?.role === "admin") && (
               <div className="flex ml-auto items-center gap-2">
                 <DeleteButton blogId={blog._id} />
               </div>

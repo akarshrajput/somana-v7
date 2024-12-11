@@ -1,3 +1,4 @@
+import { signOutAction } from "@/app/_lib/actions";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -74,8 +75,11 @@ const ProfileMenu = ({ session }) => {
         <DropdownMenuItem disabled>API</DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
-          Log out
-          <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
+          <form className="w-full h-full text-start" action={signOutAction}>
+            <button className="w-full h-full text-start">Log out</button>
+          </form>
+
+          {/* <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut> */}
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
