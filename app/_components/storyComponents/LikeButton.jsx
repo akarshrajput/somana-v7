@@ -26,29 +26,29 @@ const LikeButton = ({ blogId, initialLikes, userId }) => {
   };
 
   return (
-    <button
-      onClick={handleLike}
-      className={`like-button font-semibold text-sm flex items-center gap-1 ${
-        liked ? "liked" : ""
-      }`}
-    >
-      {liked ? (
-        <Heart
-          className="size-5 ease-out duration-300  text-red-600"
-          weight="fill"
-        />
-      ) : (
-        <Heart
-          className="size-5 hover:scale-125 ease-out duration-300 text-black"
-          weight="bold"
-        />
-      )}{" "}
+    <div className="flex font-semibold text-sm items-center gap-1">
+      <button
+        onClick={handleLike}
+        className={`like-button font-semibold text-sm  ${liked ? "liked" : ""}`}
+      >
+        {liked ? (
+          <Heart
+            className="size-5 ease-out duration-300  text-red-600"
+            weight="fill"
+          />
+        ) : (
+          <Heart
+            className="size-5 hover:scale-125 ease-out duration-300 text-black"
+            weight="bold"
+          />
+        )}{" "}
+      </button>
       <div className="ml-1">
         <p className="bg-neutral-100 p-1 px-2 rounded-md">
           {likes.length} likes
         </p>
       </div>
-    </button>
+    </div>
   );
 };
 
