@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 // import { useToast } from "@chakra-ui/react";
 import { useQuery, useMutation } from "@tanstack/react-query"; // Updated import
 import SpinnerMain from "../main/SpinnerMain";
+import Link from "next/link";
 // import UpdateUsername from "./UpdateUsername";
 // import LoadingMain from "../main/Loading";
 
@@ -134,6 +135,14 @@ const CurrentUserProfile = ({ session }) => {
           <p className="bg-stone-100 dark:bg-stone-800 dark:text-stone-50 dark:border-stone-700 antialiased px-4 py-1 border rounded-md ">
             Subscription : {userProfile.subscription ? "Yes" : "No"}
           </p>
+        </div>
+        <div className="font-medium">
+          <Link
+            href="/mychannel"
+            className="bg-black py-2 px-4 rounded-md text-white"
+          >
+            Your Channels
+          </Link>
         </div>
         <div className="flex flex-col gap-2">
           <label className="flex flex-col gap-1">

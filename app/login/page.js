@@ -8,11 +8,13 @@ import {
   Music,
   Sparkle,
 } from "lucide-react";
+import { LoginCard } from "../_components/main/LoginCard";
 
 const page = () => {
   return (
     <div className="flex justify-center mt-40 gap-10">
-      <div className="flex flex-col w-96 gap-4 items-center bg-neutral-50 shadow-sm rounded-md p-10">
+      <LoginCard />
+      {/* <div className="flex flex-col w-96 gap-4 items-center bg-neutral-50 shadow-sm rounded-md p-10">
         <h1 className="text-4xl font-medium">Login</h1>
         <p className="text-sm flex items-center gap-1 font-medium">
           <LogIn size="10" strokeWidth="3" />
@@ -67,7 +69,7 @@ const page = () => {
             Condition
           </span>
         </p>
-      </div>
+      </div> */}
       {/* <div className="flex flex-col w-96 gap-4 items-center bg-gradient-to-r from-red-200 via-yellow-200 via-green-200 to-blue-200  shadow-sm rounded-md p-10">
         <h1 className="text-2xl flex items-center gap-2 font-medium">
           Welcome to Somana

@@ -1,5 +1,7 @@
 "use client"; // If using the app directory in Next.js 13+
 
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { MagnifyingGlass } from "@phosphor-icons/react";
 import { useRouter } from "next/navigation"; // Use `next/navigation` for client-side navigation in the app directory
 import { useState } from "react";
@@ -16,23 +18,17 @@ export default function SearchInput() {
   };
 
   return (
-    <form
-      onSubmit={handleSearch}
-      className="rounded-full flex items-center bg-neutral-100 dark:bg-neutral-800 text-sm text-neutral-700 dark:text-neutral-300 pl-4 px-2 py-1 placeholder-neutral-400 dark:placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-neutral-300 dark:focus:ring-neutral-600"
-    >
-      <input
+    <form onSubmit={handleSearch} className="flex items-center gap-1">
+      <Input
         type="text"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        placeholder="Search..."
-        className="bg-inherit outline-none"
+        placeholder="Search"
+        className="w-64 outline-none"
       />
-      <button type="submit">
-        <MagnifyingGlass
-          weight="bold"
-          className="bg-neutral-300  p-1.5 size-8 rounded-full"
-        />
-      </button>
+      <Button size="icon">
+        <MagnifyingGlass weight="bold" />
+      </Button>
     </form>
   );
 }

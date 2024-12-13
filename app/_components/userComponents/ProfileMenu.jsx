@@ -20,14 +20,11 @@ const ProfileMenu = ({ session }) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <button>
-          <img
-            className="size-9 shadow-lg rounded-full"
-            src={session?.user?.photo}
-          />
-        </button>
+        <Button size="icon" className="overflow-hidden">
+          <img className="size-9" src={session?.user?.photo} />
+        </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56">
+      <DropdownMenuContent className="w-56 mr-2">
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
