@@ -2,6 +2,13 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Heart, ThumbsDown, ThumbsUp } from "@phosphor-icons/react/dist/ssr";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { Button } from "@/components/ui/button";
 
 const LikeButton = ({ blogId, initialLikes, userId }) => {
   const [likes, setLikes] = useState(initialLikes);
@@ -44,9 +51,16 @@ const LikeButton = ({ blogId, initialLikes, userId }) => {
         )}{" "}
       </button>
       <div className="ml-1">
-        <p className="bg-neutral-100 p-1 px-2 rounded-md">
-          {likes.length} likes
-        </p>
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <p className="px-0 font-medium text-sm">{likes?.length} likes</p>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>{likes?.length} people like this story.</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
       </div>
     </div>
   );

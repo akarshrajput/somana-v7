@@ -7,6 +7,14 @@ import LikeButton from "@/app/_components/storyComponents/LikeButton";
 import { LineVertical, SealCheck } from "@phosphor-icons/react/dist/ssr";
 import { Lora, Rubik } from "next/font/google";
 import { auth } from "@/app/_lib/auth";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 const lora = Lora({
   subsets: ["latin"],
@@ -89,17 +97,28 @@ const Page = async ({ params }) => {
   return (
     <div className="flex justify-center mt-20 py-6 px-4 dark:bg-black dark:text-stone-50">
       <div className="w-[700px]">
-        {/* Blog Header */}
         {blog.genre === "top-10" ? (
           ""
         ) : (
-          <div className="flex items-center gap-1">
-            <p className="font-semibold text-green-600">{blog.genre}</p>
-            <LineVertical weight="bold" />
-            <BlogDate
-              className="font-semibold text-sm"
-              blogDate={blog.createdAt}
-            />
+          <div className="flex items-center gap-4">
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <p className="px-0 font-semibold text-lg text-teal-700">
+                    {blog?.genre}
+                  </p>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>There story belongs to {blog?.genre} category.</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+            <div className="ml-auto">
+              <BlogDate
+                className="font-semibold text-sm"
+                blogDate={blog.createdAt}
+              />
+            </div>
           </div>
         )}
         <div className="my-4 font-medium">
@@ -124,26 +143,48 @@ const Page = async ({ params }) => {
         ) : (
           <div className="flex flex-wrap items-center gap-2">
             <img
-              className="w-8 h-8 rounded-full"
+              className="w-8 h-8 rounded-md"
               src={blog.author.photo}
               alt={`${blog.author.name} profile`}
             />
-            <p className="font-semibold">{blog.author.name}</p>
+            <Link href={`/profile/${blog?.author?.userName}`}>
+              <Button className="px-1" variant="link">
+                {blog.author.name}
+              </Button>
+            </Link>
             {blog.author.verified && <SealCheck weight="fill" />}
-            <div className="ml-2 flex gap-2 items-center">
+            <div className="ml-2 flex gap-3 items-center">
               <LikeButton
                 blogId={slug}
                 initialLikes={blog.likes}
                 userId={userId}
               />
 
-              <p className="font-semibold bg-neutral-100 p-1 px-2 rounded-md text-sm">
-                {blog.numberOfViews} views
-              </p>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <p className="px-0 font-medium text-sm">
+                      {blog?.numberOfViews} views
+                    </p>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>{blog?.numberOfViews} people view this story.</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
 
-              <p className="font-semibold bg-neutral-100 p-1 px-2 rounded-md text-sm">
-                {blog.readTime} min read
-              </p>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <p className="px-0 font-medium text-sm">
+                      {blog?.readTime} min read
+                    </p>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>You can read this story in {blog?.readTime} minutes.</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
             </div>
             {(userId === blog.author._id ||
               session?.user?.role === "admin") && (

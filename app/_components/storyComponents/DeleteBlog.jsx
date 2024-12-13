@@ -3,6 +3,18 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { Trash } from "@phosphor-icons/react";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import { Button } from "@/components/ui/button";
 const DeleteButton = ({ blogId }) => {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
@@ -38,16 +50,40 @@ const DeleteButton = ({ blogId }) => {
   };
 
   return (
-    <button colorScheme="red" disabled={isLoading} onClick={handleDelete}>
-      {isLoading ? (
-        <p>Loading</p>
-      ) : (
-        <div className="flex text-sm font-semibold items-center gap-1 bg-red-600 text-white py-1 rounded-md px-2">
-          <p>Delete</p>
-          <Trash weight="bold" />
-        </div>
-      )}
-    </button>
+    <div>
+      <AlertDialog>
+        <AlertDialogTrigger asChild>
+          <Button variant="destructive">
+            Delete <Trash weight="bold" />
+          </Button>
+        </AlertDialogTrigger>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+            <AlertDialogDescription>
+              This story will be permanently deleted.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <Button
+              variant="destructive"
+              disabled={isLoading}
+              onClick={handleDelete}
+            >
+              {isLoading ? (
+                <p>Deleting</p>
+              ) : (
+                <div className="flex items-center gap-1">
+                  <p>Delete</p>
+                  <Trash weight="bold" />
+                </div>
+              )}
+            </Button>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+    </div>
   );
 };
 

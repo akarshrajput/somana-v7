@@ -1,3 +1,10 @@
+import { Button } from "@/components/ui/button";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import React from "react";
 
 const BlogDate = ({ blogDate, className }) => {
@@ -23,7 +30,18 @@ const BlogDate = ({ blogDate, className }) => {
     displayDate = `${day}-${month}-${year}`;
   }
 
-  return <p className={`${className}`}>{displayDate}</p>;
+  return (
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <p className="px-0  text-sm">{displayDate}</p>
+        </TooltipTrigger>
+        <TooltipContent>
+          <p>This story written on {displayDate}.</p>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
+  );
 };
 
 export default BlogDate;

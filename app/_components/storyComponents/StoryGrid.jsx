@@ -45,13 +45,13 @@ const StoryGrid = () => {
             <Link
               href={`/story/${post.slug}`}
               key={post.id}
-              className="flex cursor-pointer flex-col hover:bg-neutral-100 duration-300 p-2 gap-1 rounded-lg dark:hover:bg-neutral-800"
+              className="flex cursor-pointer flex-col  duration-300 p-2 gap-1"
             >
               <div className="flex items-center gap-2">
                 <img
                   alt="Author"
                   src={post.author.photo}
-                  className="h-6 w-6 rounded-full"
+                  className="h-6 w-6 rounded-md"
                 />
                 <div className="text-xs font-medium flex items-center gap-1">
                   <Link
@@ -83,23 +83,23 @@ const StoryGrid = () => {
               </Link>
 
               <div className="relative">
-                <div className="flex justify-center w-full overflow-hidden h-40 md:h-40 rounded-sm">
+                <div className="flex justify-center w-full overflow-hidden h-40 md:h-40 rounded-md">
                   <img
                     src={post?.featuredImage}
-                    className="w-full h-full object-cover rounded-md hover:rounded-sm duration-500"
+                    className="w-full hover:scale-105 duration-300 h-full object-cover rounded-md"
                     alt="Featured Image"
                   />
                 </div>
                 <div className="absolute bottom-2 left-2 flex items-center gap-1">
                   <BookOpen
                     weight="bold"
-                    className="size-6 text-black bg-neutral-100 p-1 rounded-full"
+                    className="size-6 text-black bg-neutral-100 p-1 rounded-md"
                   />
 
                   <div>
                     {post.usedAI && (
                       <Sparkle
-                        className="size-6 text-yellow-700 bg-neutral-100 p-1 rounded-full"
+                        className="size-6 text-yellow-700 bg-neutral-100 p-1 rounded-md"
                         weight="fill"
                       />
                     )}
