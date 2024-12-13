@@ -12,6 +12,7 @@ import { auth } from "@/app/_lib/auth";
 import ProfileMenu from "../userComponents/ProfileMenu";
 import SearchInput from "./SearchInput";
 import { Button } from "@/components/ui/button";
+import { Upload } from "lucide-react";
 
 const Header = async () => {
   const session = await auth();
@@ -51,6 +52,11 @@ const Header = async () => {
           Live
           <Circle weight="fill" />
         </Link> */}
+        <Link href="/upload">
+          <Button variant="outline" className="px-3">
+            Upload <Upload />
+          </Button>
+        </Link>
         <ThemeButton />
         {/* <Link
           href="/upload"
