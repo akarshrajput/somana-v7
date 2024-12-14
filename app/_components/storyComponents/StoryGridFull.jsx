@@ -45,14 +45,14 @@ const StoryGridFull = () => {
             <Link
               href={`/story/${post.slug}`}
               key={post.id}
-              className="flex cursor-pointer hover:bg-neutral-100 duration-300 p-2 gap-1 rounded-lg dark:hover:bg-neutral-800"
+              className="flex border rounded-md cursor-pointer hover:bg-neutral-100 duration-300 p-1.5 gap-1 dark:hover:bg-neutral-800"
             >
               <div>
                 <div className="flex items-center gap-2">
                   <img
                     alt="Author"
                     src={post.author.photo}
-                    className="h-6 w-6 rounded-full"
+                    className="h-6 w-6 rounded-md"
                   />
                   <div className="text-xs font-medium flex items-center gap-1">
                     <Link

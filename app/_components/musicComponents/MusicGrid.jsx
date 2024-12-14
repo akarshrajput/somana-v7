@@ -20,22 +20,22 @@ const MusicGrid = () => {
   return (
     <div>
       <>
-        {isSuccess ? (
+        {/* {isSuccess ? (
           <div className="py-2 font-medium text-sm flex items-center gap-1">
             Music <MusicNote weight="bold" />
           </div>
         ) : (
           ""
-        )}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+        )} */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
           {data?.tracks.map((podcast) => (
             <PodcastInfo key={podcast._id} podcast={podcast} />
           ))}
         </div>
         {isSuccess ? (
           <div className="flex">
-            <button className="bg-neutral-200 py-1 px-2 rounded-md w-fit text-xs mt-2">
-              Explore More ...
+            <button className="bg-neutral-100 border py-1 px-2 rounded-md w-fit text-xs mt-2">
+              Explore More Music
             </button>
           </div>
         ) : (
@@ -50,7 +50,7 @@ const PodcastInfo = ({ podcast }) => {
   return (
     <Link
       href={`/music/${podcast._id}?${podcast.musicName}`}
-      className="group block"
+      className="group block border p-1 rounded-md"
     >
       <div className="relative">
         <div className="flex justify-center w-full overflow-hidden h-20 rounded-sm">
@@ -62,7 +62,7 @@ const PodcastInfo = ({ podcast }) => {
         </div>
         <MusicNote
           weight="bold"
-          className="absolute size-6 bottom-2 left-2 text-black bg-gray-200 p-1 rounded-full"
+          className="absolute size-6 bottom-2 left-2 text-black bg-gray-200 p-1 rounded-md"
         />
       </div>
       <p className="text-xs truncate font-semibold text-gray-900 dark:text-gray-100 mt-1 transition-colors">

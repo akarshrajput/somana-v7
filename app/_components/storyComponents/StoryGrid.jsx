@@ -45,7 +45,7 @@ const StoryGrid = () => {
             <Link
               href={`/story/${post.slug}`}
               key={post.id}
-              className="flex cursor-pointer flex-col  duration-300 p-2 gap-1"
+              className="flex border rounded-md cursor-pointer flex-col  duration-300 p-1.5 gap-1"
             >
               <div className="flex items-center gap-2">
                 <img
