@@ -1,10 +1,20 @@
 "use client";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-// import { useToast } from "@chakra-ui/react";
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+} from "@/components/ui/select";
 import { useQuery, useMutation } from "@tanstack/react-query"; // Updated import
 import SpinnerMain from "../main/SpinnerMain";
 import Link from "next/link";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 // import UpdateUsername from "./UpdateUsername";
 // import LoadingMain from "../main/Loading";
 
@@ -113,7 +123,7 @@ const CurrentUserProfile = ({ session }) => {
   }
 
   return (
-    <div className="flex flex-col mt-24">
+    <div className="flex flex-col">
       <form
         onSubmit={handleSubmit}
         className="customised-input flex flex-col text-sm gap-4 rounded-md w-full"
@@ -121,188 +131,159 @@ const CurrentUserProfile = ({ session }) => {
         <img
           src={userProfile.photo}
           alt={`${userProfile.name}'s profile`}
-          className="w-36 h-36 rounded-lg border-4 border-stone-300"
+          className="w-36 h-36 rounded-lg border border-stone-300"
         />
         {/* <UpdateUsername userId={userId} userName={userProfile.userName} /> */}
 
-        <div className="flex items-center gap-2">
-          <p className="bg-stone-100 dark:bg-stone-800 dark:text-stone-50 dark:border-stone-700 antialiased px-4 py-1 border rounded-md">
-            {userProfile.name}
-          </p>
-          <p className="bg-stone-100 dark:bg-stone-800 dark:text-stone-50 dark:border-stone-700 antialiased px-4 py-1 border rounded-md ">
-            {userProfile.email}
-          </p>
-          <p className="bg-stone-100 dark:bg-stone-800 dark:text-stone-50 dark:border-stone-700 antialiased px-4 py-1 border rounded-md ">
+        <div className="flex items-center gap-4">
+          <Label>{userProfile.name}</Label>
+          <Label> @{userProfile.userName}</Label>
+          <Label>
             Subscription : {userProfile.subscription ? "Yes" : "No"}
-          </p>
+          </Label>
         </div>
-        <div className="font-medium">
-          <Link
-            href="/mychannel"
-            className="bg-black py-2 px-4 rounded-md text-white"
-          >
-            Your Channels
-          </Link>
-        </div>
-        <div className="flex flex-col gap-2">
+
+        <div className="flex flex-col gap-4">
           <label className="flex flex-col gap-1">
-            <span className="text-gray-700  dark:text-stone-50  ">Bio</span>
-            <textarea
+            <Label>Bio</Label>
+            <Textarea
               name="bio"
               rows={4}
               value={userProfile.bio}
               onChange={handleInputChange}
-              className="bg-stone-100 dark:bg-stone-800 dark:text-stone-50 dark:border-stone-700 resize-none antialiased px-2 py-1.5 border rounded-md"
+              className="resize-none"
             />
           </label>
           <div className="grid grid-cols-3 gap-2">
             <label className="flex flex-col gap-1">
-              <span className="text-gray-700 dark:text-stone-50">
-                Mobile Number
-              </span>
-              <input
+              <Label>Mobile Number</Label>
+              <Input
                 type="text"
                 name="mobileNumber"
                 value={userProfile.mobileNumber}
                 onChange={handleInputChange}
-                className="bg-stone-100 dark:bg-stone-800 dark:text-stone-50 dark:border-stone-700 antialiased px-2 py-1 border rounded-md"
               />
             </label>
             <label className="flex flex-col gap-1">
-              <span className="text-gray-700 dark:text-stone-50">Status</span>
-              <input
+              <Label>Status</Label>
+              <Input
                 type="text"
                 name="status"
                 value={userProfile.status}
                 onChange={handleInputChange}
-                className="bg-stone-100 dark:bg-stone-800 dark:text-stone-50 dark:border-stone-700 antialiased px-2 py-1 border rounded-md"
               />
             </label>
             <label className="flex flex-col gap-1">
-              <span className="text-gray-700 dark:text-stone-50">Gender</span>
-              <select
-                name="gender"
-                value={userProfile.gender}
-                onChange={handleInputChange}
-                className="bg-stone-100 dark:bg-stone-800 dark:text-stone-50 dark:border-stone-700 antialiased px-2 py-1 border rounded-md"
+              <Label>Gender</Label>
+              <Select
+                onValueChange={(value) =>
+                  handleInputChange({ target: { name: "gender", value } })
+                }
               >
-                <option value="" disabled>
-                  Select Gender
-                </option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-              </select>
+                <SelectTrigger>
+                  <SelectValue placeholder="Select Gender" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="male">Male</SelectItem>
+                  <SelectItem value="female">Female</SelectItem>
+                </SelectContent>
+              </Select>
             </label>
           </div>
           <div className="grid grid-cols-3 gap-2">
             <label className="flex flex-col gap-1">
-              <span className="text-gray-700 dark:text-stone-50">City</span>
-              <input
+              <Label>City</Label>
+              <Input
                 type="text"
                 name="city"
                 value={userProfile.city}
                 onChange={handleInputChange}
-                className="bg-stone-100 dark:bg-stone-800 dark:text-stone-50 dark:border-stone-700 antialiased px-2 py-1 border rounded-md"
               />
             </label>
             <label className="flex flex-col gap-1">
-              <span className="text-gray-700 dark:text-stone-50">State</span>
-              <input
+              <Label>State</Label>
+              <Input
                 type="text"
                 name="state"
                 value={userProfile.state}
                 onChange={handleInputChange}
-                className="bg-stone-100 dark:bg-stone-800 dark:text-stone-50 dark:border-stone-700 antialiased px-2 py-1 border rounded-md"
               />
             </label>
             <label className="flex flex-col gap-1">
-              <span className="text-gray-700 dark:text-stone-50">Country</span>
-              <input
+              <Label>Country</Label>
+              <Input
                 type="text"
                 name="country"
                 value={userProfile.country}
                 onChange={handleInputChange}
-                className="bg-stone-100 dark:bg-stone-800 dark:text-stone-50 dark:border-stone-700 antialiased px-2 py-1 border rounded-md"
               />
             </label>
           </div>
           <div className="grid grid-cols-3 gap-2">
             <label className="flex flex-col gap-1">
-              <span className="text-gray-700 dark:text-stone-50">
-                Occupation
-              </span>
-              <input
+              <Label>Occupation</Label>
+              <Input
                 type="text"
                 name="occupation"
                 value={userProfile.occupation}
                 onChange={handleInputChange}
-                className="bg-stone-100 dark:bg-stone-800 dark:text-stone-50 dark:border-stone-700 antialiased px-2 py-1 border rounded-md"
               />
             </label>
             <label className="flex flex-col gap-1">
-              <span className="text-gray-700 dark:text-stone-50">
-                Qualification
-              </span>
-              <input
+              <Label>Qualification</Label>
+              <Input
                 type="text"
                 name="qualification"
                 value={userProfile.qualification}
                 onChange={handleInputChange}
-                className="bg-stone-100 dark:bg-stone-800 dark:text-stone-50 dark:border-stone-700 antialiased px-2 py-1 border rounded-md"
               />
             </label>
             <label className="flex flex-col gap-1">
-              <span className="text-gray-700 dark:text-stone-50">
-                Studied From
-              </span>
-              <input
+              <Label>School / College</Label>
+              <Input
                 type="text"
                 name="studiedFrom"
                 value={userProfile.studiedFrom}
                 onChange={handleInputChange}
-                className="bg-stone-100 dark:bg-stone-800 dark:text-stone-50 dark:border-stone-700 antialiased px-2 py-1 border rounded-md"
               />
             </label>
           </div>
           <div className="grid grid-cols-3 gap-2">
             <label className="flex flex-col gap-1">
-              <span className="text-gray-700 dark:text-stone-50">Nickname</span>
-              <input
+              <Label>Nickname</Label>
+              <Input
                 type="text"
                 name="nickname"
                 value={userProfile.nickname}
                 onChange={handleInputChange}
-                className="bg-stone-100 dark:bg-stone-800 dark:text-stone-50 dark:border-stone-700 antialiased px-2 py-1 border rounded-md"
               />
             </label>
             <label className="flex flex-col gap-1">
-              <span className="text-gray-700 dark:text-stone-50">
-                Marital Status
-              </span>
-              <select
-                type="text"
-                name="maritalStatus"
-                value={userProfile.maritalStatus}
-                onChange={handleInputChange}
-                className="bg-stone-100 
-                antialiased px-2 py-1 border dark:bg-stone-800 dark:text-stone-50 dark:border-stone-700 rounded-md"
+              <Label>Martial Status</Label>
+              <Select
+                onValueChange={(value) =>
+                  handleInputChange({
+                    target: { name: "maritalStatus", value },
+                  })
+                }
               >
-                <option value="" disabled>
-                  Select
-                </option>
-                <option value="single">Single</option>
-                <option value="married">Married</option>
-                <option value="relationship">Relationship</option>
-              </select>
+                <SelectTrigger>
+                  <SelectValue placeholder="Select Marital Status" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="single">Single</SelectItem>
+                  <SelectItem value="married">Married</SelectItem>
+                  <SelectItem value="relationship">Relationship</SelectItem>
+                </SelectContent>
+              </Select>
             </label>
             <label className="flex flex-col gap-1">
-              <span className="text-gray-700 dark:text-stone-50">Company</span>
-              <input
+              <Label>Company / Work</Label>
+              <Input
                 type="text"
                 name="company"
                 value={userProfile.company}
                 onChange={handleInputChange}
-                className="bg-stone-100 dark:bg-stone-800 dark:text-stone-50 dark:border-stone-700  antialiased px-2 py-1 border rounded-md"
               />
             </label>
           </div>
@@ -320,33 +301,26 @@ const CurrentUserProfile = ({ session }) => {
               />
             </label>
             <label className="flex flex-col gap-1">
-              <span className="text-gray-700 dark:text-stone-50">
-                Account Type
-              </span>
-              <select
-                type="text"
-                name="accountType"
-                value={userProfile.accountType}
-                onChange={handleInputChange}
-                className="bg-stone-100 
-                antialiased px-2 py-1 border dark:bg-stone-800 dark:text-stone-50 dark:border-stone-700 rounded-md"
+              <Label>Account Type</Label>
+              <Select
+                onValueChange={(value) =>
+                  handleInputChange({ target: { name: "accountType", value } })
+                }
               >
-                <option value="" disabled>
-                  Select
-                </option>
-                <option value="Personal">Personal</option>
-                <option value="Organization">Organization</option>
-              </select>
+                <SelectTrigger>
+                  <SelectValue placeholder="Select Account Type" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="Personal">Personal</SelectItem>
+                  <SelectItem value="Organization">Organization</SelectItem>
+                </SelectContent>
+              </Select>
             </label>
           </div>
         </div>
-        <button
-          type="submit"
-          disabled={isLoading}
-          className="bg-black text-white font-medium w-fit py-2 px-4 rounded-md mt-4"
-        >
+        <Button className="w-fit" type="submit" disabled={isLoading}>
           {isLoading ? "Updating..." : "Update"}
-        </button>
+        </Button>
       </form>
     </div>
   );

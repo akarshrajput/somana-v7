@@ -1,10 +1,10 @@
-import UserProfile from "@/app/_components/userComponents/UserProfile";
+import { UserProfileTabSwitcher } from "@/app/_components/userComponents/UserProfileTabSwitcher";
 
 const Page = async ({ params }) => {
   return (
-    <div className="flex flex-col items-center">
-      <div className="w-[1200px] px-2 mt-4">
-        <UserProfile username={params.username} />
+    <div className="flex flex-col items-center mt-16">
+      <div className="w-[1200px] py-2">
+        <UserProfileTabSwitcher username={params.username} />
       </div>
     </div>
   );

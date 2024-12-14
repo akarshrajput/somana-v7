@@ -1,0 +1,54 @@
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import CurrentUserProfile from "./CurrentUserProfile";
+
+export function CurrentProfileTabSwitcher({ session }) {
+  return (
+    <Tabs defaultValue="account" className="w-full">
+      <TabsList className="grid w-full grid-cols-6">
+        <TabsTrigger value="account">Account</TabsTrigger>
+        <TabsTrigger value="channel">Channel</TabsTrigger>
+        <TabsTrigger value="story">Story</TabsTrigger>
+        <TabsTrigger value="music">Music</TabsTrigger>
+        <TabsTrigger value="podcast">Podcast</TabsTrigger>
+        <TabsTrigger value="settings">Settings</TabsTrigger>
+      </TabsList>
+      <TabsContent value="account">
+        <CurrentUserProfile session={session} />
+      </TabsContent>
+      <TabsContent value="password">
+        <Card>
+          <CardHeader>
+            <CardTitle>Password</CardTitle>
+            <CardDescription>
+              Change your password here. After saving, you'll be logged out.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-2">
+            <div className="space-y-1">
+              <Label htmlFor="current">Current password</Label>
+              <Input id="current" type="password" />
+            </div>
+            <div className="space-y-1">
+              <Label htmlFor="new">New password</Label>
+              <Input id="new" type="password" />
+            </div>
+          </CardContent>
+          <CardFooter>
+            <Button>Save password</Button>
+          </CardFooter>
+        </Card>
+      </TabsContent>
+    </Tabs>
+  );
+}

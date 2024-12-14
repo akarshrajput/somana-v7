@@ -26,7 +26,7 @@ const UserProfile = ({ username }) => {
   console.log(userProfile);
 
   return (
-    <div className="flex flex-col mt-24">
+    <div className="flex flex-col">
       <div className="customised-input flex flex-col text-sm gap-4 rounded-md w-full">
         <img
           src={userProfile.photo}
