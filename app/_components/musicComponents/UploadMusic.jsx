@@ -7,6 +7,27 @@ import axios from "axios";
 import SpinnerMain from "../main/SpinnerMain";
 import { ToastAction } from "@/components/ui/toast";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { format } from "date-fns";
+import { CalendarIcon } from "lucide-react";
+import { cn } from "@/lib/utils";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Calendar } from "@/components/ui/calendar";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 
 const UploadMusic = ({ supabaseURL, session, hostname }) => {
   const [musicName, setMusicName] = useState("");
@@ -185,103 +206,113 @@ const UploadMusic = ({ supabaseURL, session, hostname }) => {
         onSubmit={handleSubmit}
         className="flex flex-col gap-4 p-4 overflow-hidden"
       >
-        {/* <Button
-          variant="outline"
-          onClick={() => {
-            toast({
-              title: "Scheduled: Catch up ",
-              description: "Friday, February 10, 2023 at 5:57 PM",
-              action: (
-                <ToastAction altText="Goto schedule to undo">Undo</ToastAction>
-              ),
-            });
-          }}
-        >
-          Add to calendar
-        </Button> */}
         <div className="flex items-center flex-wrap gap-4">
-          <div className="flex items-center gap-1">
-            {/* <label>Song name </label> */}
-            <input
+          <div className="flex flex-col gap-2">
+            <Label>Music name : </Label>
+            <Input
               value={musicName}
               onChange={(e) => setMusicName(e.target.value)}
               placeholder="Song name"
-              className="border border-stone-200  dark:placeholder:text-stone-200  bg-stone-50 placeholder-stone-600 py-2 px-2 outline-none rounded-md w-full"
             />
           </div>
-          <div className="flex items-center gap-1">
-            {/* Removed the commented-out label */}
-            <div>
-              <select
-                className="border border-stone-200  dark:placeholder:text-stone-200  bg-stone-50 placeholder-stone-600 py-2 px-2 outline-none rounded-md w-full"
-                value={musicType}
-                onChange={(e) => setMusicType(e.target.value)}
-              >
+          <div className="flex flex-col gap-2">
+            <Label>Type : </Label>
+            <Select
+              value={musicType}
+              onValueChange={(value) => setMusicType(value)}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="Select a category" />
+              </SelectTrigger>
+              <SelectContent>
                 {musicCategories.map((category) => (
-                  <option key={category} value={category}>
+                  <SelectItem key={category} value={category}>
                     {category}
-                  </option>
+                  </SelectItem>
                 ))}
-              </select>
-            </div>
+              </SelectContent>
+            </Select>
           </div>
-          <div className="flex items-center gap-1">
-            {/* <label>Release Date - </label> */}
-            <input
-              value={releaseDate}
-              onChange={(e) => setReleaseDate(e.target.value)}
-              className="border border-stone-200  dark:placeholder:text-stone-200  bg-stone-50 placeholder-stone-600 py-2 px-2 outline-none rounded-md w-full"
-              type="date"
-            />
+          <div className="flex flex-col gap-2">
+            <Label>Relase Date : </Label>
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button
+                  variant={"outline"}
+                  className={cn(
+                    "w-[280px] justify-start text-left font-normal",
+                    !releaseDate && "text-muted-foreground"
+                  )}
+                >
+                  <CalendarIcon />
+                  {releaseDate ? (
+                    format(releaseDate, "PPP")
+                  ) : (
+                    <span>Pick a Date</span>
+                  )}
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-auto p-0">
+                <Calendar
+                  mode="single"
+                  selected={releaseDate}
+                  onSelect={setReleaseDate}
+                  initialFocus
+                />
+              </PopoverContent>
+            </Popover>
           </div>
         </div>
 
         <div className="flex items-center gap-2">
-          <div className="flex items-center gap-1">
-            {/* <label>Credits (artist names) : </label> */}
-            <input
+          <div className="flex flex-col gap-2">
+            <Label>Artists : </Label>
+            <Input
               value={credits}
               onChange={(e) => setCredits(e.target.value)}
-              className="border border-stone-200  dark:placeholder:text-stone-200  bg-stone-50 placeholder-stone-600 py-2 px-2 outline-none rounded-md w-full"
-              placeholder="Credits/Artist names"
+              placeholder="Credits / Artist names"
             />
           </div>
-          <div className="flex items-center gap-1">
-            {/* <label>Album :</label> */}
-            <input
+          <div className="flex flex-col gap-2">
+            <Label>Album : </Label>
+            <Input
               value={album}
               onChange={(e) => setAlbum(e.target.value)}
-              className="border border-stone-200  dark:placeholder:text-stone-200  bg-stone-50 placeholder-stone-600 py-2 px-2 outline-none rounded-md w-full"
               placeholder="Album name"
             />
           </div>
-          <div className="flex items-center gap-1">
+          <div className="flex flex-col gap-2">
+            <Label>Language : </Label>
             <div>
-              <select
-                className="border border-stone-200  dark:placeholder:text-stone-200  bg-stone-50 placeholder-stone-600 py-2 px-2 outline-none rounded-md w-full"
+              <Select
                 value={songLang}
-                onChange={(e) => setSongLang(e.target.value)}
+                onValueChange={(value) => setSongLang(value)}
               >
-                {songLanguages.map((category) => (
-                  <option key={category} value={category}>
-                    {category}
-                  </option>
-                ))}
-              </select>
+                <SelectTrigger>
+                  <SelectValue placeholder="Select language" />
+                </SelectTrigger>
+                <SelectContent>
+                  {songLanguages.map((language) => (
+                    <SelectItem key={language} value={language}>
+                      {language}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
             </div>
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <div className="flex flex-col items-start gap-1">
-            <label>Music file : </label>
-            <input
+          <div className="flex flex-col items-start gap-2">
+            <Label>Music file : </Label>
+            <Input
               onChange={(e) => setAudioLink(e.target.files[0])}
               type="file"
             />
           </div>
-          <div className="flex flex-col items-start gap-1">
-            <label>Featured Image : </label>
-            <input
+          <div className="flex flex-col items-start gap-2">
+            <Label>Featured Image : </Label>
+            <Input
               onChange={(e) => setFeaturedImage(e.target.files[0])}
               type="file"
             />
@@ -289,13 +320,13 @@ const UploadMusic = ({ supabaseURL, session, hostname }) => {
         </div>
 
         <div className="flex items-center gap-2">
-          <div className="flex flex-col w-full gap-1">
-            <label>Lyrics (optional) : </label>
-            <textarea
+          <div className="flex flex-col w-full gap-2">
+            <Label>Lyrics (optional) : </Label>
+            <Textarea
               value={lyrics}
               onChange={(e) => setLyrics(e.target.value)}
               rows={10}
-              className="border border-stone-200  dark:placeholder:text-stone-200  bg-stone-50 placeholder-stone-600 py-2 px-2 outline-none rounded-md w-full"
+              className="resize-none"
             />
           </div>
         </div>
@@ -307,20 +338,17 @@ const UploadMusic = ({ supabaseURL, session, hostname }) => {
           ""
         )}
 
-        <button
-          disabled={isLoading}
-          className="bg-emerald-600 w-fit text-stone-50 flex items-center gap-1 py-1 px-2 rounded-md"
-        >
+        <Button disabled={isLoading} className="w-fit">
           {isLoading ? (
             // <LoaderSmall />
             <SpinnerMain />
           ) : (
             <div className="flex items-center gap-1">
               <p>Upload</p>
-              <Upload className="size-4" weight="bold" />
+              {/* <Upload className="size-4" weight="bold" /> */}
             </div>
           )}
-        </button>
+        </Button>
       </form>
     </div>
   );
