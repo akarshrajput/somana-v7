@@ -1,69 +1,111 @@
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
+"use client";
 import { Label } from "@/components/ui/label";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import React, { useEffect, useState } from "react";
+
 const EditChannel = ({ channelId }) => {
+  const [channel, setChannel] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchChannelData = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch(`/api/v1/channels/${channelId}`);
+        const data = await response.json();
+        if (data.status === "success") {
+          setChannel(data.data);
+        } else {
+          throw new Error(data.message || "Failed to fetch channel details");
+        }
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (channelId) {
+      fetchChannelData();
+    }
+  }, [channelId]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
+  if (!channel) {
+    return <div>No channel data available.</div>;
+  }
+
   return (
-    <Tabs defaultValue="account" className="w-[400px]">
-      <TabsList className="grid w-full grid-cols-2">
-        <TabsTrigger value="account">Account</TabsTrigger>
-        <TabsTrigger value="password">Password</TabsTrigger>
-      </TabsList>
-      <TabsContent value="account">
-        <Card>
-          <CardHeader>
-            <CardTitle>Account</CardTitle>
-            <CardDescription>
-              Make changes to your account here. Click save when you are done.
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-2">
-            <div className="space-y-1">
-              <Label htmlFor="name">Name</Label>
-              <Input id="name" defaultValue="Pedro Duarte" />
-            </div>
-            <div className="space-y-1">
-              <Label htmlFor="username">Username</Label>
-              <Input id="username" defaultValue="@peduarte" />
-            </div>
-          </CardContent>
-          <CardFooter>
-            <Button>Save changes</Button>
-          </CardFooter>
-        </Card>
-      </TabsContent>
-      <TabsContent value="password">
-        <Card>
-          <CardHeader>
-            <CardTitle>Password</CardTitle>
-            <CardDescription>
-              Change your password here. After saving, you will be logged out.
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-2">
-            <div className="space-y-1">
-              <Label htmlFor="current">Current password</Label>
-              <Input id="current" type="password" />
-            </div>
-            <div className="space-y-1">
-              <Label htmlFor="new">New password</Label>
-              <Input id="new" type="password" />
-            </div>
-          </CardContent>
-          <CardFooter>
-            <Button>Save password</Button>
-          </CardFooter>
-        </Card>
-      </TabsContent>
-    </Tabs>
+    <div className="edit-channel">
+      <div className="channel-details">
+        <div className="flex gap-4">
+          <img
+            className="h-24 rounded-md"
+            src={channel.labelImage}
+            alt={`${channel.channelName} label`}
+          />
+          <div className="flex flex-col gap-1.5">
+            <Label>Channel Name - {channel.channelName}</Label>
+            <Label>
+              <strong>Author:</strong> {channel.author.name}
+            </Label>
+            <Label>
+              <strong>Visibility:</strong> {channel.visibility}
+            </Label>
+            <Label>
+              <strong></strong>
+              {new Date(channel.createdAt).toLocaleString()}
+            </Label>
+            <Label>
+              <strong>Content Count:</strong> {channel.contentCount}
+            </Label>
+          </div>
+        </div>
+        <Label>
+          <strong>Bio:</strong> {channel.bio}
+        </Label>
+      </div>
+      <div className="channel-content">
+        <h3>Stories</h3>
+        {channel.stories.length ? (
+          <ul>
+            {channel.stories.map((story, index) => (
+              <li key={index}>{story}</li>
+            ))}
+          </ul>
+        ) : (
+          <p>No stories available.</p>
+        )}
+        <h3>Tracks</h3>
+        {channel.tracks.length ? (
+          <ul>
+            {channel.tracks.map((track, index) => (
+              <li key={index}>{track}</li>
+            ))}
+          </ul>
+        ) : (
+          <p>No tracks available.</p>
+        )}
+        <h3>Podcasts</h3>
+        {channel.podcasts.length ? (
+          <ul>
+            {channel.podcasts.map((podcast, index) => (
+              <li key={index}>{podcast}</li>
+            ))}
+          </ul>
+        ) : (
+          <p>No podcasts available.</p>
+        )}
+      </div>
+    </div>
   );
 };
+
 export default EditChannel;
