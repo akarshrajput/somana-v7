@@ -27,27 +27,31 @@ const Header = async () => {
       <SearchInput />
       <ServicesNav />
       <div className="ml-auto flex items-center gap-2">
-        <Link href="/story">
-          <Button variant="outline" size="icon">
-            <BookOpen weight="bold" />
-          </Button>
-        </Link>
-        <Link href="/music">
-          <Button variant="outline" size="icon">
-            <MusicNote weight="bold" />
-          </Button>
-        </Link>
-        <Link href="/podcast">
-          <Button variant="outline" size="icon">
-            <ApplePodcastsLogo weight="bold" />
-          </Button>
-        </Link>
-        <Link href="/upload">
-          <Button variant="outline" className="px-2">
-            Upload
-          </Button>
-        </Link>
-        <ThemeButton />
+        <div className="hidden sm:block">
+          <div className="ml-auto flex items-center gap-2">
+            <Link href="/story">
+              <Button variant="outline" size="icon">
+                <BookOpen weight="bold" />
+              </Button>
+            </Link>
+            <Link href="/music">
+              <Button variant="outline" size="icon">
+                <MusicNote weight="bold" />
+              </Button>
+            </Link>
+            <Link href="/podcast">
+              <Button variant="outline" size="icon">
+                <ApplePodcastsLogo weight="bold" />
+              </Button>
+            </Link>
+            <Link href="/upload">
+              <Button variant="outline" className="px-2">
+                Upload
+              </Button>
+            </Link>
+            <ThemeButton />
+          </div>
+        </div>
         {/* <Link
           href="/upload"
           className="border hover:bg-neutral-100 rounded-full p-2"

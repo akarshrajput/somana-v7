@@ -18,17 +18,19 @@ export default function SearchInput() {
   };
 
   return (
-    <form onSubmit={handleSearch} className="flex items-center gap-1">
-      <Input
-        type="text"
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        placeholder="Search"
-        className="w-64 outline-none"
-      />
-      <Button size="icon">
-        <MagnifyingGlass weight="bold" />
-      </Button>
-    </form>
+    <div className="hidden sm:block ">
+      <form onSubmit={handleSearch} className="flex items-center gap-1">
+        <Input
+          type="text"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Search"
+          className="w-64 outline-none"
+        />
+        <Button size="icon">
+          <MagnifyingGlass weight="bold" />
+        </Button>
+      </form>
+    </div>
   );
 }

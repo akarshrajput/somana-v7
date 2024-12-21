@@ -104,9 +104,7 @@ const Page = async ({ params }) => {
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <p className="px-0 font-semibold text-lg text-teal-700">
-                    {blog?.genre}
-                  </p>
+                  <p className="px-0 font-semibold text-lg">{blog?.genre}</p>
                 </TooltipTrigger>
                 <TooltipContent>
                   <p>There story belongs to {blog?.genre} category.</p>
@@ -115,7 +113,7 @@ const Page = async ({ params }) => {
             </TooltipProvider>
             <div className="ml-auto">
               <BlogDate
-                className="font-semibold text-sm"
+                className="font-semibold text-xs"
                 blogDate={blog.createdAt}
               />
             </div>

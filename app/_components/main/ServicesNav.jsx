@@ -40,38 +40,40 @@ import { CaretDown } from "@phosphor-icons/react";
 
 export function ServicesNav() {
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button size="icon" variant="outline">
-          <ChevronDown />
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56">
-        <DropdownMenuLabel>Services</DropdownMenuLabel>
-        <DropdownMenuSeparator />
-        <DropdownMenuGroup>
-          <DropdownMenuItem>
-            <FileLock />
-            <span>Share File [Private]</span>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            <FileLock />
-            <span>Share File [Public]</span>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            <Webhook />
-            <span>API</span>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            <Server />
-            <span>Cloud API</span>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            <Database />
-            <span>Cloud Storage</span>
-          </DropdownMenuItem>
-        </DropdownMenuGroup>
-      </DropdownMenuContent>
-    </DropdownMenu>
+    <div className="hidden md:block">
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button size="icon" variant="outline">
+            <ChevronDown />
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent className="w-56">
+          <DropdownMenuLabel>Services</DropdownMenuLabel>
+          <DropdownMenuSeparator />
+          <DropdownMenuGroup>
+            <DropdownMenuItem>
+              <FileLock />
+              <span>Share File [Private]</span>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <FileLock />
+              <span>Share File [Public]</span>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Webhook />
+              <span>API</span>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Server />
+              <span>Cloud API</span>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Database />
+              <span>Cloud Storage</span>
+            </DropdownMenuItem>
+          </DropdownMenuGroup>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    </div>
   );
 }
