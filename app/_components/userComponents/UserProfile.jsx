@@ -2,6 +2,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import SpinnerMain from "../main/SpinnerMain";
+import { Label } from "@/components/ui/label";
 
 const UserProfile = ({ username }) => {
   const [userProfile, setUserProfile] = useState({});
@@ -31,145 +32,115 @@ const UserProfile = ({ username }) => {
         <img
           src={userProfile.photo}
           alt={`${userProfile.name}'s profile`}
-          className="w-36 h-36 rounded-lg border-4 border-stone-300"
+          className="w-36 h-36 rounded-lg border border-stone-300"
         />
 
-        <div className="flex items-center gap-2">
-          <p className="bg-stone-100 dark:bg-stone-800 dark:text-stone-50 dark:border-stone-700 antialiased px-4 py-1 border rounded-md">
-            {userProfile.name}
-          </p>
-          <p className="bg-stone-100 dark:bg-stone-800 dark:text-stone-50 dark:border-stone-700 antialiased px-4 py-1 border rounded-md ">
-            {userProfile.email}
-          </p>
-          <p className="bg-stone-100 dark:bg-stone-800 dark:text-stone-50 dark:border-stone-700 antialiased px-4 py-1 border rounded-md ">
+        <div className="flex items-center gap-4">
+          <Label>{userProfile.name}</Label>
+          <Label>@{userProfile.userName}</Label>
+          <Label>
             Subscription : {userProfile.subscription ? "Yes" : "No"}
-          </p>
+          </Label>
         </div>
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-4">
           <label className="flex flex-col gap-1">
-            <span className="text-gray-700  dark:text-stone-50  ">Bio</span>
+            <Label>Bio</Label>
             <textarea
               name="bio"
               rows={4}
               value={userProfile.bio}
               readOnly={true}
-              className="bg-stone-100 dark:bg-stone-800 dark:text-stone-50 dark:border-stone-700 resize-none antialiased px-2 py-1.5 border rounded-md"
+              className="p-2 px-3 border rounded-md resize-none outline-none"
             />
           </label>
           <div className="grid grid-cols-3 gap-2">
             <label className="flex flex-col gap-1">
-              <span className="text-gray-700 dark:text-stone-50">
-                Mobile Number
-              </span>
-              <p className="bg-stone-100 dark:bg-stone-800 dark:text-stone-50 dark:border-stone-700 antialiased px-2 py-1 border rounded-md">
+              <Label>Mobile Number</Label>
+              <p className="p-2 px-3 border rounded-md">
                 {userProfile.mobileNumber}
               </p>
             </label>
             <label className="flex flex-col gap-1">
-              <span className="text-gray-700 dark:text-stone-50">Status</span>
-              <p className="bg-stone-100 dark:bg-stone-800 dark:text-stone-50 dark:border-stone-700 antialiased px-2 py-1 border rounded-md">
-                {userProfile.status}
-              </p>
+              <Label>Status</Label>
+              <p className="p-2 px-3 border rounded-md">{userProfile.status}</p>
             </label>
             <label className="flex flex-col gap-1">
-              <span className="text-gray-700 dark:text-stone-50">Gender</span>
-              <p className="bg-stone-100 dark:bg-stone-800 dark:text-stone-50 dark:border-stone-700 antialiased px-2 py-1 border rounded-md">
-                {userProfile.gender}
-              </p>
+              <Label>Gender</Label>
+              <p className="p-2 px-3 border rounded-md">{userProfile.gender}</p>
             </label>
           </div>
           <div className="grid grid-cols-3 gap-2">
             <label className="flex flex-col gap-1">
-              <span className="text-gray-700 dark:text-stone-50">City</span>
-              <p className="bg-stone-100 dark:bg-stone-800 dark:text-stone-50 dark:border-stone-700 antialiased px-2 py-1 border rounded-md">
-                {userProfile.city}
-              </p>
+              <Label>City</Label>
+              <p className="p-2 px-3 border rounded-md">{userProfile.city}</p>
             </label>
             <label className="flex flex-col gap-1">
-              <span className="text-gray-700 dark:text-stone-50">State</span>
-              <p className="bg-stone-100 dark:bg-stone-800 dark:text-stone-50 dark:border-stone-700 antialiased px-2 py-1 border rounded-md">
-                {userProfile.state}
-              </p>
+              <Label>State</Label>
+              <p className="p-2 px-3 border rounded-md">{userProfile.state}</p>
             </label>
             <label className="flex flex-col gap-1">
-              <span className="text-gray-700 dark:text-stone-50">Country</span>
-              <p className="bg-stone-100 dark:bg-stone-800 dark:text-stone-50 dark:border-stone-700 antialiased px-2 py-1 border rounded-md">
+              <Label>Country</Label>
+              <p className="p-2 px-3 border rounded-md">
                 {userProfile.country}
               </p>
             </label>
           </div>
           <div className="grid grid-cols-3 gap-2">
             <label className="flex flex-col gap-1">
-              <span className="text-gray-700 dark:text-stone-50">
-                Occupation
-              </span>
-              <p className="bg-stone-100 dark:bg-stone-800 dark:text-stone-50 dark:border-stone-700 antialiased px-2 py-1 border rounded-md">
+              <Label>Occupation</Label>
+              <p className="p-2 px-3 border rounded-md">
                 {userProfile.occupation}
               </p>
             </label>
             <label className="flex flex-col gap-1">
-              <span className="text-gray-700 dark:text-stone-50">
-                Qualification
-              </span>
-              <p className="bg-stone-100 dark:bg-stone-800 dark:text-stone-50 dark:border-stone-700 antialiased px-2 py-1 border rounded-md">
+              <Label>Qualification</Label>
+              <p className="p-2 px-3 border rounded-md">
                 {userProfile.qualification}
               </p>
             </label>
             <label className="flex flex-col gap-1">
-              <span className="text-gray-700 dark:text-stone-50">
-                Studied From
-              </span>
-              <p className="bg-stone-100 dark:bg-stone-800 dark:text-stone-50 dark:border-stone-700 antialiased px-2 py-1 border rounded-md">
+              <Label>Studied From</Label>
+              <p className="p-2 px-3 border rounded-md">
                 {userProfile.studiedFrom}
               </p>
             </label>
           </div>
           <div className="grid grid-cols-3 gap-2">
             <label className="flex flex-col gap-1">
-              <span className="text-gray-700 dark:text-stone-50">Nickname</span>
-              <p className="bg-stone-100 dark:bg-stone-800 dark:text-stone-50 dark:border-stone-700 antialiased px-2 py-1 border rounded-md">
+              <Label>Nickname</Label>
+              <p className="p-2 px-3 border rounded-md">
                 {userProfile.nickname}
               </p>
             </label>
             <label className="flex flex-col gap-1">
-              <span className="text-gray-700 dark:text-stone-50">
-                Marital Status
-              </span>
-              <p
-                className="bg-stone-100 
-                antialiased px-2 py-1 border dark:bg-stone-800 dark:text-stone-50 dark:border-stone-700 rounded-md"
-              >
+              <Label>Marital Status</Label>
+              <p className="p-2 px-3 border rounded-md">
                 {userProfile.maritalStatus}
               </p>
             </label>
             <label className="flex flex-col gap-1">
-              <span className="text-gray-700 dark:text-stone-50">Company</span>
-              <p className="bg-stone-100 dark:bg-stone-800 dark:text-stone-50 dark:border-stone-700  antialiased px-2 py-1 border rounded-md">
+              <Label className="text-gray-700 dark:text-stone-50">
+                Company
+              </Label>
+              <p className="p-2 px-3 border rounded-md">
                 {userProfile.company}
               </p>
             </label>
           </div>
           <div className="grid grid-cols-3 gap-2">
             <label className="flex flex-col gap-1">
-              <span className="text-gray-700 dark:text-stone-50">
-                Date of Birth
-              </span>
+              <Label>Date of Birth</Label>
               <input
                 type="date"
                 name="dob"
                 disabled={true}
                 value={userProfile.dob}
-                className="bg-stone-100 dark:bg-stone-800 dark:text-stone-50 dark:border-stone-700  antialiased px-2 py-1 border rounded-md"
+                className="p-2 px-3 border bg-white rounded-md"
               />
             </label>
             <label className="flex flex-col gap-1">
-              <span className="text-gray-700 dark:text-stone-50">
-                Account Type
-              </span>
-              <p
-                className="bg-stone-100 
-                antialiased px-2 py-1 border dark:bg-stone-800 dark:text-stone-50 dark:border-stone-700 rounded-md"
-              >
+              <Label>Account Type</Label>
+              <p className="p-2 px-3 border rounded-md">
                 {userProfile.accountType}
               </p>
             </label>
