@@ -109,3 +109,13 @@ body {
 .toolbar button.active {
   background: #005bb5;
 }
+
+/* .custom-link * {
+  color: black ;
+} */
+
+.custom-link a {
+  text-decoration: underline;
+  font-weight: 500;
+  color: #000000 !important;
+}
