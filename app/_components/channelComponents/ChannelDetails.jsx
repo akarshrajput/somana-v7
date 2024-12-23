@@ -1,23 +1,31 @@
-"use client";
-import { Label } from "@/components/ui/label";
-import axios from "axios";
 import { useEffect, useState } from "react";
+import ChannelStories from "./ChannelStories";
+import axios from "axios";
+import { Label } from "@/components/ui/label";
 
-const ChannelStructure = async ({ channelId, session }) => {
+const ChannelDetails = ({ channelId }) => {
   const [channel, setChannel] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  try {
-    setLoading(true);
-    const response = await axios.get(`/api/v1/channels/${channelId}`);
-    console.log(response);
-    setChannel(response.data.data);
-  } catch (err) {
-    setError(err.message);
-  } finally {
-    setLoading(false);
-  }
+  useEffect(() => {
+    const fetchChannelData = async () => {
+      try {
+        setLoading(true);
+        const response = await axios.get(`/api/v1/channels/${channelId}`);
+        console.log(response);
+        setChannel(response.data.data);
+      } catch (err) {
+        setError(err.response?.data?.message || err.message); // Improved error handling
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (channelId) {
+      fetchChannelData();
+    }
+  }, [channelId]);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -34,15 +42,16 @@ const ChannelStructure = async ({ channelId, session }) => {
   return (
     <div className="edit-channel">
       <div className="channel-details">
-        {session.user.userId === channel.author.id ? "Edit" : "All"}
+        <div className="my-2">
+          <Label>Edit channel - {channel.channelName}</Label>
+        </div>
         <div className="flex gap-4">
           <img
-            className="h-24 rounded-md"
+            className="max-h-32 max-w-64 rounded-md border"
             src={channel.labelImage}
             alt={`${channel.channelName} label`}
           />
           <div className="flex flex-col gap-1.5">
-            <Label>Channel Name - {channel.channelName}</Label>
             <Label>
               <strong>Author:</strong> {channel.author.name}
             </Label>
@@ -58,11 +67,15 @@ const ChannelStructure = async ({ channelId, session }) => {
             </Label>
           </div>
         </div>
-        <Label>
-          <strong>Bio:</strong> {channel.bio}
-        </Label>
+        <div className="mt-2">
+          <Label>
+            <strong>Bio:</strong> {channel.bio || "No bio available."}{" "}
+          </Label>
+        </div>
       </div>
+      <ChannelStories channelId={channelId} />
     </div>
   );
 };
-export default ChannelStructure;
+
+export default ChannelDetails;

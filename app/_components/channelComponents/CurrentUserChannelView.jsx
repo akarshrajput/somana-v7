@@ -53,7 +53,7 @@ const CurrentUserChannelView = ({ session }) => {
 
 const Channel = ({ channel }) => {
   return (
-    <Link href={`channel/${channel?.id}`} className="border rounded-md p-2">
+    <Link href={`mychannel/${channel?.id}`} className="border rounded-md p-2">
       <div className="flex justify-center w-full overflow-hidden h-24 md:h-24 rounded-sm">
         <img
           src={channel?.labelImage}
