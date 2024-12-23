@@ -1,6 +1,10 @@
 "use client";
 import { Label } from "@/components/ui/label";
 import React, { useEffect, useState } from "react";
+import AddStoryToChannel from "./AddStoryToChannel";
+import Link from "next/link";
+import { Eye } from "@phosphor-icons/react";
+import { Button } from "@/components/ui/button";
 
 const EditChannel = ({ channelId }) => {
   const [channel, setChannel] = useState(null);
@@ -45,14 +49,23 @@ const EditChannel = ({ channelId }) => {
   return (
     <div className="edit-channel">
       <div className="channel-details">
+        <div>
+          <Link href={`/channel/${channelId}`}>
+            <Button variant="outline">
+              Public view <Eye weight="bold" />
+            </Button>
+          </Link>
+        </div>
+        <div className="my-2">
+          <Label>Edit channel - {channel.channelName}</Label>
+        </div>
         <div className="flex gap-4">
           <img
-            className="h-24 rounded-md"
+            className="max-h-32 max-w-64 rounded-md border"
             src={channel.labelImage}
             alt={`${channel.channelName} label`}
           />
           <div className="flex flex-col gap-1.5">
-            <Label>Channel Name - {channel.channelName}</Label>
             <Label>
               <strong>Author:</strong> {channel.author.name}
             </Label>
@@ -68,12 +81,12 @@ const EditChannel = ({ channelId }) => {
             </Label>
           </div>
         </div>
-        <Label>
+        {/* <Label>
           <strong>Bio:</strong> {channel.bio}
-        </Label>
+        </Label> */}
       </div>
       <div className="channel-content">
-        <h3>Stories</h3>
+        {/* <h3>Stories</h3>
         {channel.stories.length ? (
           <ul>
             {channel.stories.map((story, index) => (
@@ -82,27 +95,10 @@ const EditChannel = ({ channelId }) => {
           </ul>
         ) : (
           <p>No stories available.</p>
-        )}
-        <h3>Tracks</h3>
-        {channel.tracks.length ? (
-          <ul>
-            {channel.tracks.map((track, index) => (
-              <li key={index}>{track}</li>
-            ))}
-          </ul>
-        ) : (
-          <p>No tracks available.</p>
-        )}
-        <h3>Podcasts</h3>
-        {channel.podcasts.length ? (
-          <ul>
-            {channel.podcasts.map((podcast, index) => (
-              <li key={index}>{podcast}</li>
-            ))}
-          </ul>
-        ) : (
-          <p>No podcasts available.</p>
-        )}
+        )} */}
+        <div>
+          <AddStoryToChannel channelId={channelId} />
+        </div>
       </div>
     </div>
   );

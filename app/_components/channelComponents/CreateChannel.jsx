@@ -1,5 +1,14 @@
 "use client";
 import supabase from "@/app/_lib/supabase";
+import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
 import { ToastAction } from "@/components/ui/toast";
 import { useToast } from "@/hooks/use-toast";
 import axios from "axios";
@@ -19,28 +28,51 @@ const CreateChannel = ({ session, supabaseURL }) => {
     e.preventDefault(); // Prevent page reload
     setLoading(true);
 
-    const imageName = `${Math.random()}-${Date.now()}-${labelImage.name}`;
-    const imagePath = `${supabaseURL}/storage/v1/object/public/channel-labels/${imageName}`;
-    await supabase.storage.from("channel-labels").upload(imageName, labelImage);
-
-    const data = {
-      channelName: channelName,
-      bio: bio,
-      visibility: visibility,
-      labelImage: imagePath,
-      author: session?.user?.userId,
-    };
-
-    try {
-      const response = await axios.post("/api/v1/channels", data);
-      console.log(response);
-      const channelId = response?.data?.data?.newChannel?.id;
-      console.log(channelId);
-      router.push(`/mychannel/${channelId}`);
+    // Check for empty fields
+    if (!channelName || !bio || !labelImage) {
       toast({
         title: "Error",
-        description: "Error creating channel",
-        action: <ToastAction altText="Goto schedule to undo">Undo</ToastAction>,
+        description: "All fields are required to create a channel.",
+        action: <ToastAction altText="Retry">Retry</ToastAction>,
+      });
+      setLoading(false);
+      return;
+    }
+
+    try {
+      // Upload image to Supabase
+      const imageName = `${Math.random()}-${Date.now()}-${labelImage.name}`;
+      const { data: uploadData, error: uploadError } = await supabase.storage
+        .from("channel-labels")
+        .upload(imageName, labelImage);
+
+      if (uploadError) {
+        throw new Error("Failed to upload label image.");
+      }
+
+      const imagePath = `${supabaseURL}/storage/v1/object/public/channel-labels/${imageName}`;
+
+      // Create channel data
+      const data = {
+        channelName: channelName,
+        bio: bio,
+        visibility: visibility,
+        labelImage: imagePath,
+        author: session?.user?.userId,
+      };
+
+      // API call to create channel
+      const response = await axios.post("/api/v1/channels", data);
+      const channelId = response?.data?.data?.newChannel?.id;
+
+      // Navigate to the created channel
+      router.push(`/mychannel/${channelId}`);
+
+      // Success toast
+      toast({
+        title: "Success",
+        description: "Channel created successfully!",
+        action: <ToastAction altText="View Channel">View</ToastAction>,
       });
 
       // Reset the form
@@ -52,8 +84,8 @@ const CreateChannel = ({ session, supabaseURL }) => {
       console.error("Error uploading data:", error);
       toast({
         title: "Error",
-        description: "Error creating channel",
-        action: <ToastAction altText="Goto schedule to undo">Undo</ToastAction>,
+        description: error.message || "Error creating channel.",
+        action: <ToastAction altText="Retry">Retry</ToastAction>,
       });
     } finally {
       setLoading(false);
@@ -62,47 +94,47 @@ const CreateChannel = ({ session, supabaseURL }) => {
 
   return (
     <form
-      className="text-sm font-medium flex flex-col gap-4"
+      className="text-sm w-96 font-medium flex flex-col gap-4"
       onSubmit={handleSubmit}
     >
       <div className="flex flex-col gap-1">
         <label>Channel Name</label>
-        <input
+        <Input
           type="text"
-          className="bg-neutral-100 border font-normal outline-none rounded-md w-96 p-1.5"
           value={channelName}
           onChange={(e) => setChannelName(e.target.value)}
-          required
+          placeholder="Enter channel name"
         />
       </div>
       <div className="flex flex-col gap-1">
         <label>Bio</label>
-        <textarea
+        <Textarea
           rows={8}
-          className="bg-neutral-100 border resize-none font-normal outline-none rounded-md w-96 p-1.5"
           value={bio}
           onChange={(e) => setBio(e.target.value)}
-          required
+          className="resize-none"
+          placeholder="Enter channel bio"
         />
       </div>
+
       <div className="flex flex-col gap-1">
         <label>Visibility</label>
-        <select
-          className="bg-neutral-100 border resize-none font-normal outline-none rounded-md w-fit p-1.5"
+        <Select
           value={visibility}
-          onChange={(e) => setVisibility(e.target.value)}
+          onValueChange={(value) => setVisibility(value)}
         >
-          <option value="public">Public</option>
-          <option value="private">Private</option>
-        </select>
+          <SelectTrigger>
+            <SelectValue placeholder="Select visibility" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="public">Public</SelectItem>
+            <SelectItem value="private">Private</SelectItem>
+          </SelectContent>
+        </Select>
       </div>
       <div className="flex flex-col gap-1">
         <label>Label Image</label>
-        <input
-          type="file"
-          className="bg-neutral-100 border w-fit font-normal outline-none rounded-md p-1.5"
-          onChange={(e) => setLabelImage(e.target.files[0])}
-        />
+        <Input type="file" onChange={(e) => setLabelImage(e.target.files[0])} />
       </div>
       <button
         type="submit"

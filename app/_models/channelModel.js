@@ -1,8 +1,6 @@
 import mongoose from "mongoose";
 import Blog from "./blogModel";
 import User from "./userModel";
-import Music from "./musicModel";
-import Podcast from "./podcastModel";
 
 const channelSchema = new mongoose.Schema(
   {
@@ -32,18 +30,6 @@ const channelSchema = new mongoose.Schema(
       {
         type: mongoose.Schema.ObjectId,
         ref: "Blog",
-      },
-    ],
-    tracks: [
-      {
-        type: mongoose.Schema.ObjectId,
-        ref: "Music",
-      },
-    ],
-    podcasts: [
-      {
-        type: mongoose.Schema.ObjectId,
-        ref: "Podcast",
       },
     ],
     subscribers: [
@@ -76,29 +62,12 @@ channelSchema.pre(/^find/, function (next) {
     path: "author",
     select: "name email photo verified accountType",
   });
-  // .populate({
-  //   path: "stories",
-  //   select: "heading description featuredImage",
-  // })
-  // .populate({
-  //   path: "tracks",
-  //   select: "musicName featuredImage",
-  // })
-  // .populate({
-  //   path: "podcasts",
-  //   select: "podcastName featuredImage",
-  // });
   next();
 });
 
-// Virtual field to calculate total content count
-// channelSchema.virtual("contentCount").get(function () {
-//   return (
-//     (this.stories ? this.stories.length : 0) +
-//     (this.tracks ? this.tracks.length : 0) +
-//     (this.podcasts ? this.podcasts.length : 0)
-//   );
-// });
+channelSchema.virtual("contentCount").get(function () {
+  return this.stories ? this.stories.length : 0;
+});
 
 const Channel =
   mongoose.models.Channel || mongoose.model("Channel", channelSchema);
