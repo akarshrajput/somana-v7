@@ -6,6 +6,7 @@ import ReactQueryProvider from "./_components/providers/ReactQueryProvider";
 import { Rubik } from "next/font/google";
 import { Toaster } from "@/components/ui/toaster";
 import { Analytics } from "@vercel/analytics/react";
+import Script from "next/script";
 
 const fonts = Rubik({
   subsets: ["latin"],
@@ -22,6 +23,25 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        {/* Add Google Analytics script */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-4T3N7M8Q6Y"
+          strategy="afterInteractive"
+        />
+        <Script
+          id="google-analytics"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-4T3N7M8Q6Y');
+            `,
+          }}
+        />
+      </head>
       <body className={`${fonts.className} antialiased`}>
         <ReactQueryProvider>
           <ThemeProvider
