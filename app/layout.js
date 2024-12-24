@@ -5,6 +5,7 @@ import { ThemeProvider } from "./_components/providers/ThemeProvider";
 import ReactQueryProvider from "./_components/providers/ReactQueryProvider";
 import { Rubik } from "next/font/google";
 import { Toaster } from "@/components/ui/toaster";
+import { Analytics } from "@vercel/analytics/react";
 
 const fonts = Rubik({
   subsets: ["latin"],
@@ -37,6 +38,7 @@ export default function RootLayout({ children }) {
           </ThemeProvider>
         </ReactQueryProvider>
         <Toaster />
+        <Analytics />
       </body>
     </html>
   );
