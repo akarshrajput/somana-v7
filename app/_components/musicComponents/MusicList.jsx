@@ -22,18 +22,18 @@ const MusicList = () => {
     <div>
       <>
         {isSuccess ? (
-          <div className="px-2 font-medium text-sm flex items-center gap-1">
+          <div className="px-2 py-1 bg-neutral-100 rounded-md mb-2 w-fit font-medium border text-xs flex items-center gap-1">
             More Music <MusicNote weight="bold" />
           </div>
         ) : (
           ""
         )}
-        <div className="grid p-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-10 gap-2">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-10 gap-2">
           {data?.tracks.map((track) => (
             <MusicInfo key={track._id} track={track} />
           ))}
         </div>
-        {isSuccess ? (
+        {/* {isSuccess ? (
           <div className="flex ml-2">
             <button className="bg-neutral-200 py-1 px-2 rounded-md w-fit text-xs mt-2">
               Explore More ...
@@ -41,7 +41,7 @@ const MusicList = () => {
           </div>
         ) : (
           ""
-        )}
+        )} */}
       </>
     </div>
   );
