@@ -62,10 +62,10 @@ const BlogComments = ({ hostname, blogId }) => {
 const Comment = ({ comment }) => {
   return (
     <div className="flex gap-4 p-2 font-medium  rounded-md">
-      <div className="h-10 w-10 flex-shrink-0">
+      <div className="h-8 w-8 flex-shrink-0">
         <img
           src={comment.author.photo}
-          className="h-full w-full rounded-full object-cover"
+          className="h-full w-full rounded-md object-cover"
           alt={`${comment.author.name}'s profile`}
         />
       </div>
@@ -78,7 +78,7 @@ const Comment = ({ comment }) => {
             <BlogDate blogDate={comment.createdAt}></BlogDate>
           </div>
         </div>
-        <p className="text-sm text-stone-600  mt-1">{comment.content}</p>
+        <p className="text-sm  mt-1">{comment.content}</p>
       </div>
     </div>
   );

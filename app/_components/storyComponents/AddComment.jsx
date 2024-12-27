@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import axios from "axios";
+import { Button } from "@/components/ui/button";
 // import { useToast } from "@chakra-ui/react";
 
 const AddComment = ({ session, hostname, blogId, authorId }) => {
@@ -53,26 +54,22 @@ const AddComment = ({ session, hostname, blogId, authorId }) => {
   };
 
   return (
-    <div className="add-comment w-full max-w-3xl mx-auto p-4 bg-white  rounded-md">
-      <form onSubmit={handleSubmit} className="flex gap-4">
-        <img className="size-10 rounded-full" src={`${session.user.photo}`} />
-        <div className="w-full flex flex-col gap-2 border rounded-md p-2">
+    <div className="add-comment w-full max-w-3xl mx-auto p-2 bg-white  rounded-md">
+      <form onSubmit={handleSubmit} className="flex gap-2">
+        <img className="size-8 rounded-md" src={`${session.user.photo}`} />
+        <div className="w-full flex flex-col gap-2 border rounded-md p-1.5">
           <textarea
             value={content}
             onChange={(e) => setContent(e.target.value)}
-            placeholder="Add your comment here..."
-            className="font-medium p-1 outline-none resize-none rounded-md text-sm"
+            placeholder="Write comment here"
+            className="p-1 outline-none resize-none rounded-md text-sm"
             rows="3"
             required
           />
 
-          <button
-            type="submit"
-            disabled={loading}
-            className={`bg-green-600 text-sm w-fit ml-auto p-2 rounded-md text-white transition-all duration-300 hover:bg-green-700 disabled:bg-blue-300`}
-          >
-            {loading ? "Submitting..." : "Submit"}
-          </button>
+          <Button type="submit" className="w-fit ml-auto" disabled={loading}>
+            {loading ? "Posting..." : "Post"}
+          </Button>
         </div>
       </form>
     </div>
