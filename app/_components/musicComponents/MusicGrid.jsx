@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ApplePodcastsLogo, MusicNote } from "@phosphor-icons/react/dist/ssr";
 import LoadingSmall from "../main/LoadingSmall";
 import { useQuery } from "@tanstack/react-query";
+import MusicInfo from "./MusicInfo";
 
 const fetchMusic = async () => {
   const res = await axios.get(`/api/v1/music?limit=6`);
@@ -28,8 +29,8 @@ const MusicGrid = () => {
           ""
         )} */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
-          {data?.tracks.map((podcast) => (
-            <PodcastInfo key={podcast._id} podcast={podcast} />
+          {data?.tracks.map((track) => (
+            <MusicInfo key={track._id} track={track} />
           ))}
         </div>
         {isSuccess ? (
@@ -43,35 +44,6 @@ const MusicGrid = () => {
         )}
       </>
     </div>
-  );
-};
-
-const PodcastInfo = ({ podcast }) => {
-  return (
-    <Link
-      href={`/music/${podcast._id}?${podcast.musicName}`}
-      className="group block border p-1 rounded-md"
-    >
-      <div className="relative">
-        <div className="flex justify-center w-full overflow-hidden h-20 rounded-sm">
-          <img
-            src={podcast?.featuredImage}
-            className="w-full h-full hover:scale-105 object-cover duration-300"
-            alt="Featured Image"
-          />
-        </div>
-        <MusicNote
-          weight="bold"
-          className="absolute size-6 bottom-2 left-2 text-black bg-gray-200 p-1 rounded-md"
-        />
-      </div>
-      <p className="text-xs truncate font-semibold text-gray-900 dark:text-gray-100 mt-1 transition-colors">
-        {podcast.musicName}
-      </p>
-      {/* <p className="text-xs text-gray-500 dark:text-gray-400">
-        {podcast.author.name}
-      </p> */}
-    </Link>
   );
 };
 

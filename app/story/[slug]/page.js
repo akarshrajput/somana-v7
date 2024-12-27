@@ -204,7 +204,7 @@ const Page = async ({ params }) => {
 
         {/* Blog Content */}
         <div
-          className="my-10 custom-link text-lg dark:text-stone-50 text-black"
+          className="my-10 custom-link text-lg dark:text-stone-50 text-stone-700"
           dangerouslySetInnerHTML={{ __html: contentWithLineBreaks }}
         ></div>
 

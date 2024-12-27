@@ -19,7 +19,7 @@ import { ServicesNav } from "./ServicesNav";
 const Header = async () => {
   const session = await auth();
   return (
-    <div className="bg-white/80 dark:bg-black z-50 fixed w-full py-2 px-2 flex items-center gap-2 text-sm">
+    <div className="bg-white dark:bg-black z-50 fixed w-full py-2 px-2 flex items-center gap-2 text-sm">
       <div>
         <Logo />
       </div>

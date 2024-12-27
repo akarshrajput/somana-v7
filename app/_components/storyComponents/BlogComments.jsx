@@ -78,7 +78,7 @@ const Comment = ({ comment }) => {
             <BlogDate blogDate={comment.createdAt}></BlogDate>
           </div>
         </div>
-        <p className="text-sm  mt-1">{comment.content}</p>
+        <p className="text-sm">{comment.content}</p>
       </div>
     </div>
   );

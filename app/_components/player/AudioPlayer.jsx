@@ -156,13 +156,6 @@ const AudioPlayer = ({ audioFile }) => {
 
   return (
     <div className="flex flex-col gap-2">
-      <div>
-        {loading && (
-          <p className="bg-green-400 rounded-md text-xs w-fit p-1 px-2">
-            Loading Music, Please Wait
-          </p>
-        )}
-      </div>
       <div className="flex items-center gap-0 w-full">
         <button
           onClick={handlePreviousTrack}
@@ -224,6 +217,13 @@ const AudioPlayer = ({ audioFile }) => {
         </div>
 
         <audio ref={audioRef} preload="auto" />
+      </div>
+      <div>
+        {loading && (
+          <p className="bg-green-400 rounded-md text-xs w-fit p-1 px-2">
+            Loading Music, Please Wait
+          </p>
+        )}
       </div>
     </div>
   );
