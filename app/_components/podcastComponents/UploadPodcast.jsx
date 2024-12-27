@@ -6,6 +6,16 @@ import { useToast } from "@/hooks/use-toast";
 import axios from "axios";
 import { Button } from "@/components/ui/button";
 import { Spinner, Upload } from "@phosphor-icons/react/dist/ssr";
+import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 // import { UploadIcon } from "lucide-react";
 // import { ReloadIcon } from "@radix-ui/react-icons";
 
@@ -155,59 +165,68 @@ const UploadPodcast = ({ supabaseURL, session, hostname }) => {
         onSubmit={handleSubmit}
         className="flex flex-col gap-4 p-4 overflow-hidden"
       >
-        <div className="flex  gap-4">
-          <input
-            className="border border-stone-200  dark:placeholder:text-stone-200  bg-stone-50 placeholder-stone-600 py-2 px-2 outline-none rounded-md w-fit"
-            value={podcastName}
-            onChange={(e) => setPodcastName(e.target.value)}
-            placeholder="Podcast Name"
-          />
-          <div className="flex flex-col gap-1">
-            <select
+        <div className="flex gap-4">
+          <div className="flex flex-col gap-2">
+            <Label>Podcast name :</Label>
+            <Input
+              value={podcastName}
+              onChange={(e) => setPodcastName(e.target.value)}
+              placeholder="Podcast Name"
+              className="w-96"
+            />
+          </div>
+          <div className="flex flex-col gap-2">
+            <Label>Category:</Label>
+            <Select
               value={podcastCategory}
-              onChange={(e) => setPodcastCategory(e.target.value)}
-              className="border border-stone-200  dark:placeholder:text-stone-200  bg-stone-50 placeholder-stone-600 py-2 px-2 outline-none rounded-md w-full"
+              onValueChange={(value) => setPodcastCategory(value)}
             >
-              <option value="" disabled>
-                Select a category
-              </option>
-              {podcastCategories.map((category) => (
-                <option key={category} value={category}>
-                  {category}
-                </option>
-              ))}
-            </select>
+              <SelectTrigger>
+                <SelectValue placeholder="Select a category" />
+              </SelectTrigger>
+              <SelectContent>
+                {podcastCategories.map((category) => (
+                  <SelectItem key={category} value={category}>
+                    {category}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           </div>
 
           <div className="flex items-center gap-2">
-            <div className="flex flex-col gap-1">
-              <select
+            <div className="flex flex-col gap-2">
+              <Label>Language:</Label>
+              <Select
                 value={language}
-                onChange={(e) => setLanguage(e.target.value)}
-                className="border border-stone-200  dark:placeholder:text-stone-200  bg-stone-50 placeholder-stone-600 py-2 px-2 outline-none rounded-md w-full"
+                onValueChange={(value) => setLanguage(value)}
               >
-                <option value="" disabled>
-                  Select a language
-                </option>
-                {podcastLanguages.map((lang) => (
-                  <option key={lang} value={lang}>
-                    {lang}
-                  </option>
-                ))}
-              </select>
+                <SelectTrigger>
+                  <SelectValue placeholder="Select a language" />
+                </SelectTrigger>
+                <SelectContent>
+                  {podcastLanguages.map((lang) => (
+                    <SelectItem key={lang} value={lang}>
+                      {lang}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
             </div>
           </div>
         </div>
         <div className="flex items-center gap-3">
-          <div className="flex flex-col items-start gap-1">
-            <input
+          <div className="flex flex-col items-start gap-2">
+            <Label>Podcast Audio:</Label>
+            <Input
               onChange={(e) => setAudioLink(e.target.files[0])}
               type="file"
               id="podcast-audio"
             />
           </div>
-          <div className="flex flex-col items-start gap-1">
-            <input
+          <div className="flex flex-col items-start gap-2">
+            <Label>Featured Image:</Label>
+            <Input
               onChange={(e) => setFeaturedImage(e.target.files[0])}
               type="file"
               id="podcasts-image"
@@ -215,14 +234,15 @@ const UploadPodcast = ({ supabaseURL, session, hostname }) => {
           </div>
         </div>
 
-        <div className="flex items-center gap-2 w-[590px]">
-          <div className="flex flex-col w-full gap-1">
-            <textarea
+        <div className="flex items-center gap-2">
+          <div className="flex flex-col w-full gap-2">
+            <Label>Description:</Label>
+            <Textarea
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              rows={5}
-              placeholder="Description"
-              className="border border-stone-200  dark:placeholder:text-stone-200  bg-stone-50 placeholder-stone-600 py-2 px-2 outline-none rounded-md w-full"
+              rows={4}
+              placeholder="Write podcast description"
+              className="resize-none"
             />
           </div>
         </div>
@@ -237,10 +257,7 @@ const UploadPodcast = ({ supabaseURL, session, hostname }) => {
           </Alert>
         ) : null} */}
 
-        <button
-          disabled={isLoading}
-          className="bg-emerald-600 w-fit text-stone-50 flex items-center gap-1 py-1 px-2 rounded-md"
-        >
+        <Button className="w-fit" disabled={isLoading}>
           {isLoading ? (
             <div className="flex items-center gap-1">
               <p>Uploading</p>
@@ -252,7 +269,7 @@ const UploadPodcast = ({ supabaseURL, session, hostname }) => {
               <Upload className="size-4" weight="bold" />
             </div>
           )}
-        </button>
+        </Button>
       </form>
     </div>
   );
