@@ -15,11 +15,6 @@ import LoadingSmall from "../main/LoadingSmall";
 import CommonNav from "../main/CommonNav";
 import SpinnerMain from "../main/SpinnerMain";
 
-const rubik = Rubik({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
-});
-
 // Fetch blogs with a simple query
 const fetchBlogs = async () => {
   const res = await axios.get(`/api/v1/blogs?limit=9`);
@@ -37,7 +32,7 @@ const StoryGrid = () => {
   return (
     <div className="dark:bg-black dark:text-stone-50 mx-auto">
       {/* {isSuccess ? <CommonNav /> : ""} */}
-      <div className="mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
+      <div className="mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-1">
         {isLoading ? (
           <SpinnerMain />
         ) : (
@@ -45,7 +40,7 @@ const StoryGrid = () => {
             <Link
               href={`/story/${post.slug}`}
               key={post.id}
-              className="flex border rounded-md cursor-pointer flex-col  duration-300 p-1.5 gap-1"
+              className="flex rounded-md cursor-pointer flex-col hover:bg-neutral-100 dark:hover:bg-neutral-900 duration-300 p-2 gap-0.5"
             >
               <div className="flex items-center gap-2">
                 <img
@@ -61,7 +56,10 @@ const StoryGrid = () => {
                     {post.author.name}
                   </Link>
                   {post.author.verified && (
-                    <SealCheck className="text-black size-3" weight="fill" />
+                    <SealCheck
+                      className="text-black dark:text-white size-3"
+                      weight="fill"
+                    />
                   )}
                   in
                   <Link
@@ -73,11 +71,8 @@ const StoryGrid = () => {
                 </div>
               </div>
 
-              <Link
-                href={`/story/${post.slug}`}
-                className={`${rubik.className}`}
-              >
-                <h3 className="font-semibold text-sm truncate mb-1 leading-5">
+              <Link href={`/story/${post.slug}`}>
+                <h3 className="font-bold text-sm truncate mb-1 leading-5">
                   {post.heading}
                 </h3>
               </Link>
@@ -86,7 +81,7 @@ const StoryGrid = () => {
                 <div className="flex justify-center w-full overflow-hidden h-40 md:h-40 rounded-md">
                   <img
                     src={post?.featuredImage}
-                    className="w-full hover:scale-105 duration-300 h-full object-cover rounded-md"
+                    className="w-full duration-300 h-full object-cover rounded-md"
                     alt="Featured Image"
                   />
                 </div>

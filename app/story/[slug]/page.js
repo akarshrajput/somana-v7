@@ -4,7 +4,12 @@ import BlogComments from "@/app/_components/storyComponents/BlogComments";
 import BlogDate from "@/app/_components/storyComponents/BlogDate";
 import DeleteButton from "@/app/_components/storyComponents/DeleteBlog";
 import LikeButton from "@/app/_components/storyComponents/LikeButton";
-import { LineVertical, SealCheck } from "@phosphor-icons/react/dist/ssr";
+import {
+  LineVertical,
+  SealCheck,
+  ShareNetwork,
+  TwitterLogo,
+} from "@phosphor-icons/react/dist/ssr";
 import { Lora, Rubik } from "next/font/google";
 import { auth } from "@/app/_lib/auth";
 import Link from "next/link";
@@ -15,6 +20,14 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import {
+  FacebookIcon,
+  Linkedin,
+  Share,
+  Share2,
+  Twitter,
+  TwitterIcon,
+} from "lucide-react";
 
 const lora = Lora({
   subsets: ["latin"],
@@ -95,7 +108,7 @@ const Page = async ({ params }) => {
   const blogDate = new Date(blog.createdAt);
 
   return (
-    <div className="flex justify-center mt-20 py-6 px-4 dark:bg-black dark:text-stone-50">
+    <div className="flex justify-center mt-16 py-6 px-4 dark:bg-black dark:text-stone-50">
       <div className="w-[700px]">
         {blog.genre === "top-10" ? (
           ""
@@ -201,12 +214,30 @@ const Page = async ({ params }) => {
             alt="Featured"
           />
         </div>
+        <div className="my-4">{blog.description}</div>
 
         {/* Blog Content */}
-        <div
-          className="my-10 custom-link text-lg dark:text-stone-50 text-stone-700"
-          dangerouslySetInnerHTML={{ __html: contentWithLineBreaks }}
-        ></div>
+        <div className="flex gap-10">
+          <div className="flex flex-col gap-4 mt-10 ">
+            <Share2
+              weight="bold"
+              className="size-8 p-1.5 bg-neutral-100 rounded-sm"
+            />
+            <FacebookIcon
+              weight="bold"
+              className="size-8 p-1.5 bg-neutral-100 rounded-sm"
+            />
+            <TwitterIcon
+              weight="bold"
+              className="size-8 p-1.5 bg-neutral-100 rounded-sm"
+            />
+            <Linkedin className="size-8 p-1.5 bg-neutral-100 rounded-sm" />
+          </div>
+          <div
+            className="my-10 custom-link text-lg dark:text-stone-50 text-stone-700"
+            dangerouslySetInnerHTML={{ __html: contentWithLineBreaks }}
+          ></div>
+        </div>
 
         {/* Comments Section */}
         <div className="mt-20">

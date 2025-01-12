@@ -15,11 +15,6 @@ import LoadingSmall from "../main/LoadingSmall";
 import CommonNav from "../main/CommonNav";
 import SpinnerMain from "../main/SpinnerMain";
 
-const rubik = Rubik({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
-});
-
 // Fetch blogs with a simple query
 const fetchBlogs = async () => {
   const res = await axios.get(`/api/v1/blogs?limit=10`);
@@ -45,7 +40,7 @@ const StoryGridFull = () => {
             <Link
               href={`/story/${post.slug}`}
               key={post.id}
-              className="flex border rounded-md cursor-pointer hover:bg-neutral-100 duration-300 p-1.5 gap-1 dark:hover:bg-neutral-800"
+              className="flex rounded-md cursor-pointer hover:bg-neutral-100 duration-300 p-1.5 gap-1 dark:hover:bg-neutral-800"
             >
               <div>
                 <div className="flex items-center gap-2">
@@ -74,20 +69,11 @@ const StoryGridFull = () => {
                   </div>
                 </div>
 
-                <Link
-                  href={`/story/${post.slug}`}
-                  className={`${rubik.className}`}
-                >
-                  <h3 className="font-semibold text-sm mb-1 leading-5">
-                    {post.heading.length > 40
-                      ? `${post.heading.substring(0, 40)}...`
-                      : post.heading}
+                <Link href={`/story/${post.slug}`}>
+                  <h3 className="font-semibold line-clamp-2 text-sm mb-1 leading-5">
+                    {post.heading}
                   </h3>
-                  <p className="text-xs">
-                    {post.description.length > 80
-                      ? `${post.description.substring(0, 80)}...`
-                      : post.description}
-                  </p>
+                  <p className="text-xs line-clamp-2">{post.description}</p>
                 </Link>
               </div>
 

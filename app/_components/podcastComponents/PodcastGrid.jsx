@@ -2,7 +2,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Link from "next/link";
-import { ApplePodcastsLogo, TrendUp } from "@phosphor-icons/react/dist/ssr";
+import {
+  ApplePodcastsLogo,
+  Play,
+  TrendUp,
+} from "@phosphor-icons/react/dist/ssr";
 import LoadingSmall from "../main/LoadingSmall";
 import { useQuery } from "@tanstack/react-query";
 
@@ -49,19 +53,23 @@ const PodcastInfo = ({ podcast }) => {
   return (
     <Link
       href={`/podcast/${podcast._id}?${podcast.podcastName}`}
-      className="group block border p-1 rounded-md"
+      className="group block rounded-md p-0.5"
     >
-      <div className="relative">
-        <div className="flex justify-center w-full overflow-hidden h-20 rounded-md">
+      <div className="relative rounded-sm overflow-hidden">
+        <div className="flex justify-center w-full overflow-hidden h-20 rounded-sm relative group">
           <img
             src={podcast?.featuredImage}
-            className="w-full h-full object-cover hover:scale-105 duration-300"
+            className="w-full h-full object-cover duration-300"
             alt="Featured Image"
           />
+          <div className="absolute inset-0 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <Play weight="fill" className="size-10" />
+          </div>
         </div>
+
         <ApplePodcastsLogo
           weight="bold"
-          className="absolute size-6 bottom-2 left-2 text-black bg-gray-200 p-1 rounded-md"
+          className="absolute size-4 bottom-2 left-2 text-black bg-gray-200 p-0.5 rounded-sm"
         />
       </div>
       <p className="text-xs truncate font-semibold text-gray-900 dark:text-gray-100 mt-1 transition-colors">

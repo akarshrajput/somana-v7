@@ -37,6 +37,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { CaretDown } from "@phosphor-icons/react";
+import { Circle, Sparkle } from "@phosphor-icons/react/dist/ssr";
 
 export function ServicesNav() {
   return (
@@ -53,24 +54,20 @@ export function ServicesNav() {
           <DropdownMenuGroup>
             <DropdownMenuItem>
               <FileLock />
-              <span>Share File [Private]</span>
+              <span className="font-medium cursor-pointer w-full">
+                Anon Share
+              </span>
+              <p className="ml-auto">
+                <Circle weight="fill" />
+              </p>
             </DropdownMenuItem>
-            <DropdownMenuItem>
-              <FileLock />
-              <span>Share File [Public]</span>
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              <Webhook />
-              <span>API</span>
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              <Server />
-              <span>Cloud API</span>
-            </DropdownMenuItem>
-            <DropdownMenuItem>
+
+            {/* <DropdownMenuItem>
               <Database />
-              <span>Cloud Storage</span>
-            </DropdownMenuItem>
+              <span className="font-medium cursor-pointer w-full">
+                Cloud Storage
+              </span>
+            </DropdownMenuItem> */}
           </DropdownMenuGroup>
         </DropdownMenuContent>
       </DropdownMenu>

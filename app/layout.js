@@ -3,7 +3,7 @@ import Header from "./_components/main/Header";
 import Dots from "./_components/designs/Dots";
 import { ThemeProvider } from "./_components/providers/ThemeProvider";
 import ReactQueryProvider from "./_components/providers/ReactQueryProvider";
-import { Rubik } from "next/font/google";
+import { Kanit, Montserrat, Nunito_Sans, Rubik } from "next/font/google";
 import { Toaster } from "@/components/ui/toaster";
 import { Analytics } from "@vercel/analytics/react";
 import Script from "next/script";
