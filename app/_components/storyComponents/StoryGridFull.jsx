@@ -1,0 +1,75 @@
+"use client";
+import { useQuery } from "@tanstack/react-query";
+import Link from "next/link";
+import { SealCheck } from "@phosphor-icons/react/dist/ssr";
+import SpinnerMain from "../main/SpinnerMain";
+import axios from "axios";
+
+// Fetch blogs with a simple query
+const fetchBlogs = async () => {
+  const res = await axios.get(`/api/v1/blogs?limit=10`);
+  return res?.data?.data;
+};
+
+const StoryGridFull = () => {
+  // Update to use single argument object format for useQuery
+  const { data, isLoading, isSuccess } = useQuery({
+    queryKey: ["blogs2"],
+    queryFn: fetchBlogs,
+  });
+
+  return (
+    <div className="dark:bg-black dark:text-stone-50">
+      <div className="mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-2">
+        {isLoading ? (
+          <SpinnerMain />
+        ) : (
+          data?.blogs?.map((post) => (
+            <Link
+              href={`/story/${post.slug}`}
+              key={post.id}
+              className="block rounded-md border bg-white dark:bg-neutral-900 p-2 shadow-sm hover:shadow-md transition-shadow duration-300"
+            >
+              {/* Author and Genre Section */}
+              <div className="flex items-center gap-2 mb-2">
+                <div className="flex items-center gap-1">
+                  <span className="text-sm font-medium">
+                    <Link
+                      href={`profile/${post.author.userName}`}
+                      className="hover:underline"
+                    >
+                      {post.author.name}
+                    </Link>
+                  </span>
+                  {post.author.verified && (
+                    <SealCheck
+                      className="text-blue-500 w-4 h-4"
+                      weight="fill"
+                    />
+                  )}
+                </div>
+                <span className="text-xs text-gray-500">in</span>
+                <Link
+                  href={`/blogs/topic/${post.genre}`}
+                  className="text-xs font-medium text-blue-500 hover:underline"
+                >
+                  {post.genre}
+                </Link>
+              </div>
+
+              {/* Title and Description */}
+              <h3 className="text-sm font-semibold text-gray-900 dark:text-gray-100 line-clamp-2 mb-1">
+                {post.heading}
+              </h3>
+              <p className="text-xs text-gray-700 dark:text-gray-400 line-clamp-3">
+                {post.description}
+              </p>
+            </Link>
+          ))
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default StoryGridFull;
