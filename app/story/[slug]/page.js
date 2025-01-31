@@ -4,13 +4,8 @@ import BlogComments from "@/app/_components/storyComponents/BlogComments";
 import BlogDate from "@/app/_components/storyComponents/BlogDate";
 import DeleteButton from "@/app/_components/storyComponents/DeleteBlog";
 import LikeButton from "@/app/_components/storyComponents/LikeButton";
-import {
-  LineVertical,
-  SealCheck,
-  ShareNetwork,
-  TwitterLogo,
-} from "@phosphor-icons/react/dist/ssr";
-import { Lora, Rubik } from "next/font/google";
+import { SealCheck } from "@phosphor-icons/react/dist/ssr";
+import { Lora } from "next/font/google";
 import { auth } from "@/app/_lib/auth";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -20,14 +15,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import {
-  FacebookIcon,
-  Linkedin,
-  Share,
-  Share2,
-  Twitter,
-  TwitterIcon,
-} from "lucide-react";
+import { FacebookIcon, Linkedin, Share2, TwitterIcon } from "lucide-react";
 
 const lora = Lora({
   subsets: ["latin"],
@@ -38,21 +26,19 @@ const lora = Lora({
 const fetchBlogData = async (slug) => {
   const session = await auth();
   const userId = session?.user?.userId;
-  let api = "";
-  if (
-    session?.user
-      ? (api = `${process.env.HOSTNAME}/api/v1/blogs/slug/${slug}?userId=${userId}`)
-      : (api = `${process.env.HOSTNAME}/api/v1/blogs/slug/${slug}`)
-  )
-    try {
-      const res = await fetch(api, { cache: "no-store" });
-      if (!res.ok) throw new Error("Failed to fetch blog data");
-      const data = await res.json();
-      return data.data;
-    } catch (error) {
-      console.error("Error fetching blog data:", error);
-      return null;
-    }
+  let api = session?.user
+    ? `${process.env.HOSTNAME}/api/v1/blogs/slug/${slug}?userId=${userId}`
+    : `${process.env.HOSTNAME}/api/v1/blogs/slug/${slug}`;
+
+  try {
+    const res = await fetch(api, { cache: "no-store" });
+    if (!res.ok) throw new Error("Failed to fetch blog data");
+    const data = await res.json();
+    return data.data;
+  } catch (error) {
+    console.error("Error fetching blog data:", error);
+    return null;
+  }
 };
 
 // Generate metadata for the page
@@ -105,43 +91,42 @@ const Page = async ({ params }) => {
   }
 
   const contentWithLineBreaks = blog.content;
-  const blogDate = new Date(blog.createdAt);
 
   return (
-    <div className="flex justify-center mt-16 py-6 px-4 dark:bg-black dark:text-stone-50">
+    <div className="flex justify-center mt-16 py-6 px-4 bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100">
       <div className="w-[700px]">
-        {blog.genre === "top-10" ? (
-          ""
-        ) : (
+        {blog.genre !== "top-10" && (
           <div className="flex items-center gap-4">
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <p className="px-0 font-semibold text-lg">{blog?.genre}</p>
+                  <p className="font-semibold text-lg text-gray-700 dark:text-gray-300">
+                    {blog?.genre}
+                  </p>
                 </TooltipTrigger>
                 <TooltipContent>
-                  <p>There story belongs to {blog?.genre} category.</p>
+                  <p>This story belongs to the {blog?.genre} category.</p>
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>
             <div className="ml-auto">
               <BlogDate
-                className="font-semibold text-xs"
+                className="font-semibold text-xs text-gray-600 dark:text-gray-400"
                 blogDate={blog.createdAt}
               />
             </div>
           </div>
         )}
-        <div className="my-4 font-medium">
-          <h1 className={`font-semibold  text-3xl leading-tight`}>
+
+        <div className="my-4">
+          <h1 className="font-bold text-3xl leading-tight text-gray-900 dark:text-gray-100">
             {blog.heading}
           </h1>
         </div>
 
-        {/* Author Info */}
         {blog.genre === "top-10" ? (
           <div className="ml-2 flex gap-2 items-center">
-            <p className="font-semibold bg-neutral-100 p-1 px-2 rounded-md text-sm">
+            <p className="font-semibold bg-gray-100 dark:bg-gray-800 p-1 px-2 rounded-md text-sm">
               {blog.numberOfViews} views
             </p>
             {(userId === blog.author._id ||
@@ -159,35 +144,35 @@ const Page = async ({ params }) => {
               alt={`${blog.author.name} profile`}
             />
             <Link href={`/profile/${blog?.author?.userName}`}>
-              <Button className="px-1" variant="link">
+              <Button className="px-1 text-sm" variant="link">
                 {blog.author.name}
               </Button>
             </Link>
-            {blog.author.verified && <SealCheck weight="fill" />}
+            {blog.author.verified && (
+              <SealCheck weight="fill" className="text-blue-500" />
+            )}
             <div className="ml-2 flex gap-3 items-center">
               <LikeButton
                 blogId={slug}
                 initialLikes={blog.likes}
                 userId={userId}
               />
-
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <p className="px-0 font-medium text-sm">
+                    <p className="text-sm font-medium  dark:text-gray-400">
                       {blog?.numberOfViews} views
                     </p>
                   </TooltipTrigger>
                   <TooltipContent>
-                    <p>{blog?.numberOfViews} people view this story.</p>
+                    <p>{blog?.numberOfViews} people have viewed this story.</p>
                   </TooltipContent>
                 </Tooltip>
               </TooltipProvider>
-
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <p className="px-0 font-medium text-sm">
+                    <p className="text-sm font-medium  dark:text-gray-400">
                       {blog?.readTime} min read
                     </p>
                   </TooltipTrigger>
@@ -206,40 +191,31 @@ const Page = async ({ params }) => {
           </div>
         )}
 
-        {/* Featured Image */}
         <div className="mt-4 flex justify-center">
           <img
             src={blog.featuredImage}
-            className="w-full max-w-8xl rounded-sm"
+            className="w-full rounded-md shadow-md"
             alt="Featured"
           />
         </div>
-        <div className="my-4">{blog.description}</div>
 
-        {/* Blog Content */}
+        <div className="my-4 text-gray-700 dark:text-gray-300">
+          {blog.description}
+        </div>
+
         <div className="flex gap-10">
-          <div className="flex flex-col gap-4 mt-10 ">
-            <Share2
-              weight="bold"
-              className="size-8 p-1.5 bg-neutral-100 rounded-sm"
-            />
-            <FacebookIcon
-              weight="bold"
-              className="size-8 p-1.5 bg-neutral-100 rounded-sm"
-            />
-            <TwitterIcon
-              weight="bold"
-              className="size-8 p-1.5 bg-neutral-100 rounded-sm"
-            />
-            <Linkedin className="size-8 p-1.5 bg-neutral-100 rounded-sm" />
+          <div className="flex flex-col gap-4 mt-10">
+            <Share2 className="size-8 p-2 bg-gray-100 dark:bg-gray-800 rounded-full text-gray-600 dark:text-gray-300" />
+            <FacebookIcon className="size-8 p-2 bg-gray-100 dark:bg-gray-800 rounded-full text-blue-600" />
+            <TwitterIcon className="size-8 p-2 bg-gray-100 dark:bg-gray-800 rounded-full text-blue-500" />
+            <Linkedin className="size-8 p-2 bg-gray-100 dark:bg-gray-800 rounded-full text-blue-700" />
           </div>
           <div
-            className="my-10 custom-link text-lg dark:text-stone-50 text-stone-700"
+            className={` my-10 custom-link text-lg text-gray-800 dark:text-gray-200`}
             dangerouslySetInnerHTML={{ __html: contentWithLineBreaks }}
           ></div>
         </div>
 
-        {/* Comments Section */}
         <div className="mt-20">
           {session?.user ? (
             <AddComment

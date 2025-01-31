@@ -60,6 +60,7 @@ const categories = [
   "Music",
   "News",
   "Nonprofit",
+  "Notes",
   "Parenting",
   "Pets",
   "Photography",
