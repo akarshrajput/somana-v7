@@ -153,11 +153,15 @@ const Page = async ({ params }) => {
               <SealCheck weight="fill" className="text-blue-500" />
             )}
             <div className="ml-2 flex gap-3 items-center">
-              <LikeButton
-                blogId={slug}
-                initialLikes={blog.likes}
-                userId={userId}
-              />
+              {blog?.genre === "Notes" ? (
+                ""
+              ) : (
+                <LikeButton
+                  blogId={slug}
+                  initialLikes={blog.likes}
+                  userId={userId}
+                />
+              )}
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger asChild>
@@ -192,7 +196,7 @@ const Page = async ({ params }) => {
           </div>
         )}
 
-        {blog.genre === "Notes" ? (
+        {blog?.genre === "Notes" ? (
           ""
         ) : (
           <div className="mt-4 flex justify-center">
@@ -203,15 +207,15 @@ const Page = async ({ params }) => {
             />
           </div>
         )}
-        {blog.genre === "Notes" ? (
+        {blog?.genre === "Notes" ? (
           ""
         ) : (
           <div className="my-4 text-gray-700 dark:text-gray-300">
-            {blog.description}
+            {blog?.description}
           </div>
         )}
 
-        {blog.fileLinks.length > 0 ? (
+        {blog?.fileLinks?.length > 0 ? (
           <IframeViewer fileLinks={blog.fileLinks} />
         ) : (
           ""
