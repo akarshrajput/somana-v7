@@ -91,10 +91,6 @@ const Page = async ({ params }) => {
     );
   }
 
-  const modifiedFileLinks = blog.fileLinks.replace(
-    /<iframe /g,
-    '<iframe style="width: 100%; height: 500px;" '
-  );
   const contentWithLineBreaks = blog.content;
 
   return (
@@ -215,7 +211,11 @@ const Page = async ({ params }) => {
           </div>
         )}
 
-        <IframeViewer fileLinks={blog.fileLinks} />
+        {blog.fileLinks.length > 0 ? (
+          <IframeViewer fileLinks={blog.fileLinks} />
+        ) : (
+          ""
+        )}
 
         <div className="flex gap-10">
           <div className="flex flex-col gap-4 mt-10">
