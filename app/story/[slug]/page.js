@@ -16,6 +16,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { FacebookIcon, Linkedin, Share2, TwitterIcon } from "lucide-react";
+import IframeViewer from "@/app/_components/storyComponents/IframeViewer";
 
 const lora = Lora({
   subsets: ["latin"],
@@ -90,6 +91,10 @@ const Page = async ({ params }) => {
     );
   }
 
+  const modifiedFileLinks = blog.fileLinks.replace(
+    /<iframe /g,
+    '<iframe style="width: 100%; height: 500px;" '
+  );
   const contentWithLineBreaks = blog.content;
 
   return (
@@ -191,17 +196,26 @@ const Page = async ({ params }) => {
           </div>
         )}
 
-        <div className="mt-4 flex justify-center">
-          <img
-            src={blog.featuredImage}
-            className="w-full rounded-md shadow-md"
-            alt="Featured"
-          />
-        </div>
+        {blog.genre === "Notes" ? (
+          ""
+        ) : (
+          <div className="mt-4 flex justify-center">
+            <img
+              src={blog.featuredImage}
+              className="w-full rounded-md shadow-md"
+              alt="Featured"
+            />
+          </div>
+        )}
+        {blog.genre === "Notes" ? (
+          ""
+        ) : (
+          <div className="my-4 text-gray-700 dark:text-gray-300">
+            {blog.description}
+          </div>
+        )}
 
-        <div className="my-4 text-gray-700 dark:text-gray-300">
-          {blog.description}
-        </div>
+        <IframeViewer fileLinks={blog.fileLinks} />
 
         <div className="flex gap-10">
           <div className="flex flex-col gap-4 mt-10">

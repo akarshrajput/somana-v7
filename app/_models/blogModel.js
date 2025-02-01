@@ -34,6 +34,10 @@ const blogSchema = new mongoose.Schema(
       type: String,
       default: "default-blog.jpg",
     },
+    fileLinks: {
+      type: String,
+      trim: true,
+    },
     collectedImages: [
       {
         type: String,

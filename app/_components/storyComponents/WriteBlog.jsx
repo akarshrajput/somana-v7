@@ -90,6 +90,7 @@ const WriteBlog = ({ supabaseURL, session, hostname }) => {
   const [collectedImages, setCollectedImages] = useState([]);
   const [tags, setTags] = useState("");
   const [fileInputs, setFileInputs] = useState([0]);
+  const [fileLinks, setFileLinks] = useState("");
   const [genre, setGenre] = useState("Blog");
   const [featuredImage, setFeaturedImage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -135,14 +136,7 @@ const WriteBlog = ({ supabaseURL, session, hostname }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (
-      !heading ||
-      !content ||
-      !description ||
-      !featuredImage ||
-      !tags ||
-      !genre
-    ) {
+    if (!heading || !content || !description || !tags || !genre) {
       // toast({
       //   description: "Please fill all fields",
       //   status: "error",
@@ -152,7 +146,7 @@ const WriteBlog = ({ supabaseURL, session, hostname }) => {
       return;
     }
 
-    if (featuredImage.type.split("/")[0] !== "image") {
+    if (featuredImage && featuredImage.type.split("/")[0] !== "image") {
       // toast({
       //   description: "Only image files are allowed",
       //   status: "error",
@@ -165,25 +159,32 @@ const WriteBlog = ({ supabaseURL, session, hostname }) => {
     try {
       setIsLoading(true);
 
+      let imagePath =
+        "https://qqbscpfkecykuadtjgsv.supabase.co/storage/v1/object/public/blog-featured-images//default-story.png";
+      let collectedImageUrls = [];
       // Upload featured image
-      const imageName = `${Math.random()}-${Date.now()}-${featuredImage?.name}`;
-      const imagePath = `${supabaseURL}/storage/v1/object/public/blog-featured-images/${imageName}`;
-      await supabase.storage
-        .from("blog-featured-images")
-        .upload(imageName, featuredImage);
-
-      // Upload each collected image and store URLs
-      const collectedImageUrls = [];
-      for (const image of collectedImages) {
-        const collectedImageName = `${Math.random()}-${Date.now()}-${
-          image?.name
+      if (featuredImage) {
+        const imageName = `${Math.random()}-${Date.now()}-${
+          featuredImage?.name
         }`;
-        const collectedImagePath = `${supabaseURL}/storage/v1/object/public/blog-collected-images/${collectedImageName}`;
-
+        imagePath = `${supabaseURL}/storage/v1/object/public/blog-featured-images/${imageName}`;
         await supabase.storage
-          .from("blog-collected-images")
-          .upload(collectedImageName, image);
-        collectedImageUrls.push(collectedImagePath);
+          .from("blog-featured-images")
+          .upload(imageName, featuredImage);
+
+        // Upload each collected image and store URLs
+
+        for (const image of collectedImages) {
+          const collectedImageName = `${Math.random()}-${Date.now()}-${
+            image?.name
+          }`;
+          const collectedImagePath = `${supabaseURL}/storage/v1/object/public/blog-collected-images/${collectedImageName}`;
+
+          await supabase.storage
+            .from("blog-collected-images")
+            .upload(collectedImageName, image);
+          collectedImageUrls.push(collectedImagePath);
+        }
       }
 
       // Prepare blog data for MongoDB
@@ -191,6 +192,7 @@ const WriteBlog = ({ supabaseURL, session, hostname }) => {
         heading,
         description,
         content,
+        fileLinks,
         tags,
         genre,
         usedAI: useAI,
@@ -198,6 +200,8 @@ const WriteBlog = ({ supabaseURL, session, hostname }) => {
         featuredImage: imagePath,
         collectedImages: collectedImageUrls, // Store the collected image URLs array
       };
+
+      console.log(blogData);
 
       // Send blog data to MongoDB via your API
       const response = await axios.post(`/api/v1/blogs`, blogData, {
@@ -221,6 +225,7 @@ const WriteBlog = ({ supabaseURL, session, hostname }) => {
       setFeaturedImage("");
       setCollectedImages([]); // Clear collected images
       setTags("");
+      setFileLinks("");
     } catch (error) {
       // toast({
       //   title: "Error",
@@ -256,6 +261,9 @@ const WriteBlog = ({ supabaseURL, session, hostname }) => {
     if (e.target.value.length <= 15) {
       setTags(e.target.value);
     }
+  };
+  const handleFileLinksChange = (e) => {
+    setFileLinks(e.target.value);
   };
 
   const handleImageChange = (e, index) => {
@@ -355,6 +363,14 @@ const WriteBlog = ({ supabaseURL, session, hostname }) => {
               </SelectContent>
             </Select>
           </div>
+        </div>
+        <div className="flex flex-col gap-2">
+          <Label>File Links</Label>
+          <Input
+            value={fileLinks}
+            onChange={handleFileLinksChange}
+            placeholder="Paste links (Drive, Office and many more)"
+          />
         </div>
         <div className="flex flex-col rounded-md   gap-4">
           <Label>Add additional Images (optional)*</Label>
