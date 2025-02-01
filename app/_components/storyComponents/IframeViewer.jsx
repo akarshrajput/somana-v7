@@ -51,22 +51,22 @@ const IframeViewer = ({ fileLinks }) => {
   return (
     <div className="relative w-full">
       {fileLinks.length > 0 && (
-        <div className="w-full">
+        <div className="w-full flex flex-col gap-4 mt-12">
           {modifiedFileLinks
             .split(/(?=<iframe )/) // Split the string at each `<iframe` tag
             .map((file, index) => {
               const isFullscreen = fullscreenIframe === index;
               return (
-                <div key={index} className="relative">
+                <div key={index} className="relative border rounded-md">
                   {!isFullscreen && (
                     <div style={{ zIndex: isFullscreen ? 100 : "auto" }}>
-                      <Button
-                        className="absolute bottom-0 right-0"
+                      <button
+                        className="absolute bottom-2 right-2 p-1 bg-stone-100 rounded-md border"
                         variant="outline"
                         onClick={() => handleFullscreenToggle(index)}
                       >
                         <FullscreenIcon />
-                      </Button>
+                      </button>
                     </div>
                   )}
 
