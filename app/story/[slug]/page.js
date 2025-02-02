@@ -94,7 +94,7 @@ const Page = async ({ params }) => {
   const contentWithLineBreaks = blog.content;
 
   return (
-    <div className="flex justify-center mt-16 py-6 px-4 bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100">
+    <div className="flex justify-center mt-16 py-6 px-4">
       <div className="w-[700px]">
         {blog.genre !== "top-10" && (
           <div className="flex items-center gap-4">
@@ -223,10 +223,10 @@ const Page = async ({ params }) => {
 
         <div className="flex gap-10">
           <div className="flex flex-col gap-4 mt-10">
-            <Share2 className="size-8 p-2 bg-gray-100 dark:bg-gray-800 rounded-full text-gray-600 dark:text-gray-300" />
-            <FacebookIcon className="size-8 p-2 bg-gray-100 dark:bg-gray-800 rounded-full text-blue-600" />
-            <TwitterIcon className="size-8 p-2 bg-gray-100 dark:bg-gray-800 rounded-full text-blue-500" />
-            <Linkedin className="size-8 p-2 bg-gray-100 dark:bg-gray-800 rounded-full text-blue-700" />
+            <Share2 className="size-8 p-2 bg-gray-100 dark:bg-gray-800 rounded-md text-gray-600 dark:text-gray-300" />
+            <FacebookIcon className="size-8 p-2 bg-gray-100 dark:bg-gray-800 rounded-md text-gray-600 dark:text-gray-300" />
+            <TwitterIcon className="size-8 p-2 bg-gray-100 dark:bg-gray-800 rounded-md text-gray-600 dark:text-gray-300" />
+            <Linkedin className="size-8 p-2 bg-gray-100 dark:bg-gray-800 rounded-md text-gray-600 dark:text-gray-300" />
           </div>
           <div
             className={` my-10 custom-link text-lg text-gray-800 dark:text-gray-200`}

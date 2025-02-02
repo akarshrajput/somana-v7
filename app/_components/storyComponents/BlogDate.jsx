@@ -34,7 +34,7 @@ const BlogDate = ({ blogDate, className }) => {
     <TooltipProvider>
       <Tooltip>
         <TooltipTrigger asChild>
-          <p className={`${className} px-0 text-sm`}>{displayDate}</p>
+          <p className={`${className} px-0`}>{displayDate}</p>
         </TooltipTrigger>
         <TooltipContent>
           <p>This story written on {displayDate}.</p>
