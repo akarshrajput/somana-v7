@@ -136,7 +136,7 @@ const WriteBlog = ({ supabaseURL, session, hostname }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!heading || !content || !description || !tags || !genre) {
+    if (!heading || !description || !tags || !genre) {
       // toast({
       //   description: "Please fill all fields",
       //   status: "error",
