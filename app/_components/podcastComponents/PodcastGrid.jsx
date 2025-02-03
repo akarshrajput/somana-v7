@@ -53,7 +53,7 @@ const PodcastInfo = ({ podcast }) => {
   return (
     <Link
       href={`/podcast/${podcast._id}?${podcast.podcastName}`}
-      className="group block rounded-md overflow-hidden bg-white dark:bg-neutral-900 border hover:shadow-md transition-shadow duration-300"
+      className="group block relative rounded-md overflow-hidden bg-white dark:bg-neutral-900 border hover:shadow-md transition-shadow duration-300"
     >
       <div className="relative w-full h-20 aspect-square overflow-hidden">
         {/* Image Section */}
@@ -83,10 +83,10 @@ const PodcastInfo = ({ podcast }) => {
       </div>
 
       {/* Apple Podcast Logo */}
-      <div className="absolute top-2 left-2">
+      <div className="absolute top-1 left-1">
         <ApplePodcastsLogo
           weight="bold"
-          className="text-white w-6 h-6 bg-red-500 p-1 rounded-full"
+          className="text-white w-5 h-5 bg-gradient-to-r from-red-400 to-red-600 p-1 rounded-sm shadow-sm"
         />
       </div>
     </Link>

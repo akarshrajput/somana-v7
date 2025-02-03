@@ -20,11 +20,11 @@ const ChannelList = () => {
 
   return (
     <div className="dark:bg-black dark:text-stone-50 mx-auto">
-      {isSuccess && (
+      {/* {isSuccess && (
         <p className="font-semibold text-lg ml-2 mb-4 text-gray-700 dark:text-gray-300">
           Channels
         </p>
-      )}
+      )} */}
       {isLoading && <SpinnerMain />}
       {isError && (
         <p className="text-red-500">
@@ -49,20 +49,20 @@ const Channel = ({ channel }) => {
   return (
     <Link
       href={`channel/${channel?.id}`}
-      className="bg-white dark:bg-neutral-900 hover:shadow-md rounded-md border transition duration-300"
+      className="bg-white dark:bg-neutral-900 hover:shadow-md rounded-md border overflow-hidden transition duration-300"
     >
-      <div className="flex justify-center overflow-hidden h-32 w-full rounded-md">
+      <div className="flex justify-center overflow-hidden h-28 w-full">
         <img
           src={channel?.labelImage}
-          className="w-full h-full object-cover rounded-md"
+          className="w-full h-full object-cover"
           alt={`${channel.channelName} Cover`}
         />
       </div>
       <div className="p-2">
-        <p className="font-medium text-sm text-gray-800 dark:text-gray-100 truncate">
+        <p className="font-semibold text-xs border-black dark:text-gray-100 truncate">
           {channel.channelName}
         </p>
-        <p className="text-xs text-gray-600 dark:text-gray-400 line-clamp-2">
+        <p className="text-xs  dark:text-gray-400 line-clamp-2">
           {channel?.bio}
         </p>
       </div>

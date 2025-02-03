@@ -60,13 +60,18 @@ const IframeViewer = ({ fileLinks }) => {
                 <div key={index} className="relative border rounded-md">
                   {!isFullscreen && (
                     <div style={{ zIndex: isFullscreen ? 100 : "auto" }}>
-                      <button
-                        className="absolute bottom-2 right-2 p-1 bg-stone-100 rounded-md border"
-                        variant="outline"
-                        onClick={() => handleFullscreenToggle(index)}
-                      >
-                        <FullscreenIcon />
-                      </button>
+                      <div className="absolute bottom-0 right-0">
+                        <div className="flex items-end">
+                          <div className="bg-white w-14 h-6"></div>
+                          <button
+                            className=" p-0.5 dark:bg-black dark:text-white bg-white border"
+                            variant="outline"
+                            onClick={() => handleFullscreenToggle(index)}
+                          >
+                            <FullscreenIcon />
+                          </button>
+                        </div>
+                      </div>
                     </div>
                   )}
 

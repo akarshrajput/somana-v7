@@ -31,12 +31,17 @@ const StoryGridFull = () => {
               className="block rounded-md border bg-white dark:bg-neutral-900 p-2 shadow-sm hover:shadow-md transition-shadow duration-300"
             >
               {/* Author and Genre Section */}
-              <div className="flex items-center gap-2 mb-2">
-                <div className="flex items-center gap-1">
+              <div className="flex items-center gap-1 mb-2">
+                <div className="flex items-center gap-2">
+                  <img
+                    alt="Author"
+                    src={post.author.photo}
+                    className="h-4 w-4 rounded-md"
+                  />
                   <span className="text-sm font-medium">
                     <Link
                       href={`profile/${post.author.userName}`}
-                      className="hover:underline"
+                      className="hover:underline text-xs"
                     >
                       {post.author.name}
                     </Link>
@@ -48,10 +53,10 @@ const StoryGridFull = () => {
                     />
                   )}
                 </div>
-                <span className="text-xs text-gray-500">in</span>
+                <span className="text-xs font-medium text-gray-500">in</span>
                 <Link
                   href={`/blogs/topic/${post.genre}`}
-                  className="text-xs font-medium text-blue-500 hover:underline"
+                  className="text-xs font-medium text-black hover:underline"
                 >
                   {post.genre}
                 </Link>
