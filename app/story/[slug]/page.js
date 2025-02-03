@@ -4,7 +4,7 @@ import BlogComments from "@/app/_components/storyComponents/BlogComments";
 import BlogDate from "@/app/_components/storyComponents/BlogDate";
 import DeleteButton from "@/app/_components/storyComponents/DeleteBlog";
 import LikeButton from "@/app/_components/storyComponents/LikeButton";
-import { SealCheck } from "@phosphor-icons/react/dist/ssr";
+import { Pen, SealCheck } from "@phosphor-icons/react/dist/ssr";
 import { Lora } from "next/font/google";
 import { auth } from "@/app/_lib/auth";
 import Link from "next/link";
@@ -133,6 +133,12 @@ const Page = async ({ params }) => {
             {(userId === blog.author._id ||
               session?.user?.role === "admin") && (
               <div className="flex ml-auto items-center gap-2">
+                <Link href={`/story/edit/${blog?._id}`}>
+                  <Button variant="outline">
+                    <Pen weight="bold" />
+                    Edit
+                  </Button>
+                </Link>
                 <DeleteButton blogId={blog._id} />
               </div>
             )}
@@ -190,7 +196,15 @@ const Page = async ({ params }) => {
             {(userId === blog.author._id ||
               session?.user?.role === "admin") && (
               <div className="flex ml-auto items-center gap-2">
-                <DeleteButton blogId={blog._id} />
+                {blog?._id ? (
+                  <Link href={`/story/edit/${blog?._id}`}>
+                    <Button variant="outline">
+                      <Pen weight="bold" />
+                      Edit
+                    </Button>
+                  </Link>
+                ) : null}
+                <DeleteButton blogId={blog?._id} />
               </div>
             )}
           </div>

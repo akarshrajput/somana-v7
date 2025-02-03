@@ -15,6 +15,7 @@ import SearchInput from "./SearchInput";
 import { Button } from "@/components/ui/button";
 import { Upload } from "lucide-react";
 import { ServicesNav } from "./ServicesNav";
+import SpecialHeaderLinks from "./SpecialHeaderLinks";
 
 const Header = async () => {
   const session = await auth();
@@ -26,6 +27,7 @@ const Header = async () => {
 
       <SearchInput />
       <ServicesNav />
+      <SpecialHeaderLinks />
       <div className="ml-auto flex items-center gap-2">
         <div className="hidden sm:block">
           <div className="ml-auto flex items-center gap-2">

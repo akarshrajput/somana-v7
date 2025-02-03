@@ -201,8 +201,6 @@ const WriteBlog = ({ supabaseURL, session, hostname }) => {
         collectedImages: collectedImageUrls, // Store the collected image URLs array
       };
 
-      console.log(blogData);
-
       // Send blog data to MongoDB via your API
       const response = await axios.post(`/api/v1/blogs`, blogData, {
         headers: { "Content-Type": "application/json" },
