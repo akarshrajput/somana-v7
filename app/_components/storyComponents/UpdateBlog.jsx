@@ -83,13 +83,6 @@ const categories = [
 ];
 
 const UpdateBlog = ({ storyId, supabaseURL, session, hostname }) => {
-  if (!session) {
-    return (
-      <div className="text-center">
-        <p className="font-medium">No Permission to edit this Story</p>
-      </div>
-    );
-  }
   // const toast = useToast();
   const [heading, setHeading] = useState("");
   const [userId, setUserId] = useState("");
@@ -101,6 +94,14 @@ const UpdateBlog = ({ storyId, supabaseURL, session, hostname }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const router = useRouter();
+
+  if (!session) {
+    return (
+      <div className="text-center">
+        <p className="font-medium">No Permission to edit this Story</p>
+      </div>
+    );
+  }
 
   useEffect(() => {
     const fetchBlogData = async () => {
