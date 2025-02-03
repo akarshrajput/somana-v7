@@ -56,20 +56,21 @@ export async function DELETE(request) {
     const imageName = image.split("/").pop();
 
     // Delete the image from Supabase storage
-    const { error } = await supabase.storage
-      .from("blog-featured-images")
-      .remove([imageName]);
-    if (error) {
-      return NextResponse.json(
-        {
-          status: "error",
-          message: "Error deleting image from Supabase",
-          error: error.message,
-        },
-        { status: 500 }
-      );
+    if (imageName != "default-story.png") {
+      const { error } = await supabase.storage
+        .from("blog-featured-images")
+        .remove([imageName]);
+      if (error) {
+        return NextResponse.json(
+          {
+            status: "error",
+            message: "Error deleting image from Supabase",
+            error: error.message,
+          },
+          { status: 500 }
+        );
+      }
     }
-
     // Delete the blog from MongoDB
     await Blog.findByIdAndDelete(minderId);
 
