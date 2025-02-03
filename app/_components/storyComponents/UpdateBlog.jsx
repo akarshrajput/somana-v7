@@ -95,14 +95,6 @@ const UpdateBlog = ({ storyId, supabaseURL, session, hostname }) => {
 
   const router = useRouter();
 
-  if (!session) {
-    return (
-      <div className="text-center">
-        <p className="font-medium">No Permission to edit this Story</p>
-      </div>
-    );
-  }
-
   useEffect(() => {
     const fetchBlogData = async () => {
       try {
@@ -125,6 +117,14 @@ const UpdateBlog = ({ storyId, supabaseURL, session, hostname }) => {
       fetchBlogData();
     }
   }, [storyId]);
+
+  if (!session) {
+    return (
+      <div className="text-center">
+        <p className="font-medium">No Permission to edit this Story</p>
+      </div>
+    );
+  }
 
   if (session.user.role !== "admin" && session.user.userId !== userId) {
     return (
