@@ -9,6 +9,7 @@ import { Lora } from "next/font/google";
 import { auth } from "@/app/_lib/auth";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { headers } from "next/headers";
 import {
   Tooltip,
   TooltipContent,
@@ -79,6 +80,11 @@ const Page = async ({ params }) => {
   const { slug } = params;
 
   const blog = await fetchBlogData(slug);
+
+  const headersList = headers();
+  const host = headersList.get("host");
+  const protocol = headersList.get("x-forwarded-proto") || "http";
+  const pageURL = `${protocol}://${host}`;
 
   if (!blog) {
     return (
@@ -237,10 +243,45 @@ const Page = async ({ params }) => {
 
         <div className="flex gap-10">
           <div className="flex flex-col gap-4 mt-10">
-            <Share2 className="size-8 p-2 bg-gray-100 dark:bg-gray-800 rounded-md text-gray-600 dark:text-gray-300" />
-            <FacebookIcon className="size-8 p-2 bg-gray-100 dark:bg-gray-800 rounded-md text-gray-600 dark:text-gray-300" />
-            <TwitterIcon className="size-8 p-2 bg-gray-100 dark:bg-gray-800 rounded-md text-gray-600 dark:text-gray-300" />
-            <Linkedin className="size-8 p-2 bg-gray-100 dark:bg-gray-800 rounded-md text-gray-600 dark:text-gray-300" />
+            <a
+              href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+                pageURL
+              )}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FacebookIcon className="size-8 p-2 bg-gray-100 dark:bg-gray-800 rounded-md text-gray-600 dark:text-gray-300 cursor-pointer" />
+            </a>
+
+            <a
+              href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(
+                pageURL
+              )}&text=Check this out!`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <TwitterIcon className="size-8 p-2 bg-gray-100 dark:bg-gray-800 rounded-md text-gray-600 dark:text-gray-300 cursor-pointer" />
+            </a>
+
+            <a
+              href={`https://www.linkedin.com/shareArticle?url=${encodeURIComponent(
+                pageURL
+              )}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Linkedin className="size-8 p-2 bg-gray-100 dark:bg-gray-800 rounded-md text-gray-600 dark:text-gray-300 cursor-pointer" />
+            </a>
+
+            {/* <button
+              onClick={() => {
+                navigator.clipboard.writeText(pageURL);
+                alert("Link copied to clipboard!");
+              }}
+              className="size-8 p-2 bg-gray-100 dark:bg-gray-800 rounded-md text-gray-600 dark:text-gray-300 cursor-pointer"
+            >
+              <Share2 />
+            </button> */}
           </div>
           <div
             className={` my-10 custom-link text-lg text-gray-800 dark:text-gray-200`}

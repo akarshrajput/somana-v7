@@ -57,7 +57,10 @@ const IframeViewer = ({ fileLinks }) => {
             .map((file, index) => {
               const isFullscreen = fullscreenIframe === index;
               return (
-                <div key={index} className="relative border rounded-md">
+                <div
+                  key={index}
+                  className="relative border rounded-md overflow-hidden"
+                >
                   {!isFullscreen && (
                     <div style={{ zIndex: isFullscreen ? 100 : "auto" }}>
                       <div className="absolute bottom-0 right-0">

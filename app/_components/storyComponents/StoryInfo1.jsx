@@ -27,7 +27,7 @@ const StoryInfo1 = ({ post }) => {
         <div className="absolute bottom-2 left-2 flex items-center gap-2">
           <BookOpen
             weight="bold"
-            className="size-5 text-neutral-900 bg-white dark:text-neutral-100 dark:bg-neutral-800 p-1 rounded-md"
+            className="text-white w-5 h-5 bg-gradient-to-r from-red-400 to-red-600 p-1 shadow-sm rounded-sm"
           />
 
           {post.usedAI && (
