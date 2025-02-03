@@ -23,7 +23,7 @@ const StoryGrid = () => {
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
           {data?.blogs?.map((post) => (
-            <StoryInfo1 post={post} />
+            <StoryInfo1 key={post._id} post={post} />
           ))}
         </div>
       )}
