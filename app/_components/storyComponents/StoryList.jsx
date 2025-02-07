@@ -47,7 +47,7 @@ const StoryList = ({ session, apiLimit = 10 }) => {
     <div className="dark:bg-black dark:text-stone-50 mx-auto">
       <div className="mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-2">
         {blogs?.blogs?.map((post) => (
-          <StoryInfo1 post={post} />
+          <StoryInfo1 key={post._id} post={post} />
         ))}
       </div>
     </div>
