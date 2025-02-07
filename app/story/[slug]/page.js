@@ -74,7 +74,7 @@ export async function generateMetadata({ params }) {
 }
 
 // Main Page Component
-const Page = async ({ params }) => {
+const Page = async ({ params, searchParams }) => {
   const session = await auth();
   const userId = session?.user?.userId || "";
   const { slug } = params;
@@ -84,7 +84,14 @@ const Page = async ({ params }) => {
   const headersList = headers();
   const host = headersList.get("host");
   const protocol = headersList.get("x-forwarded-proto") || "http";
-  const pageURL = `${protocol}://${host}`;
+
+  const pathname = Object.values(params).join("/");
+  const queryString = new URLSearchParams(searchParams).toString();
+
+  const pageURL = `${protocol}://${host}/${pathname}${
+    queryString ? `?${queryString}` : ""
+  }`;
+  console.log(pageURL);
 
   if (!blog) {
     return (

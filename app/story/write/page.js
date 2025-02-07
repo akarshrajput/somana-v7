@@ -1,3 +1,4 @@
+import Warning from "@/app/_components/main/Warning";
 import WriteBlog from "@/app/_components/storyComponents/WriteBlog";
 import { auth } from "@/app/_lib/auth";
 import React from "react";
@@ -10,11 +11,18 @@ const page = async () => {
   return (
     <div className="px-2 my-10 mt-24 flex justify-center">
       <div className="w-[1200px]">
-        <WriteBlog
-          session={session}
-          supabaseURL={supabaseURL}
-          hostname={hostname}
-        />
+        {session.user.role === "admin" || session.user.role === "guide" ? (
+          <WriteBlog
+            session={session}
+            supabaseURL={supabaseURL}
+            hostname={hostname}
+          />
+        ) : (
+          <Warning
+            heading="You have no permission to write stories"
+            description="Only admins and guides can write stories, you can contact Somana Team to get permission."
+          />
+        )}
       </div>
     </div>
   );
