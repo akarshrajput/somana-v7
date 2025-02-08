@@ -9,6 +9,7 @@ import {
 } from "@phosphor-icons/react/dist/ssr";
 import LoadingSmall from "../main/LoadingSmall";
 import { useQuery } from "@tanstack/react-query";
+import PodcastGridSkeleton from "./PodcastGridSkeleton";
 
 const fetchPodcasts = async () => {
   const res = await axios.get(`/api/v1/podcasts?limit=6`);
@@ -16,25 +17,23 @@ const fetchPodcasts = async () => {
 };
 
 const PodcastGrid = () => {
-  const { data, loading, isSuccess } = useQuery({
+  const { data, isLoading, isSuccess } = useQuery({
     queryKey: ["podcasts"],
     queryFn: fetchPodcasts,
   });
   return (
     <div>
       <>
-        {/* {isSuccess ? (
-          <div className="py-2 font-medium text-sm flex items-center gap-1">
-            Podcasts <ApplePodcastsLogo weight="bold" />
-          </div>
+        {isLoading ? (
+          <PodcastGridSkeleton />
         ) : (
-          ""
-        )} */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
-          {data?.podcasts.map((podcast) => (
-            <PodcastInfo key={podcast._id} podcast={podcast} />
-          ))}
-        </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
+            {data?.podcasts.map((podcast) => (
+              <PodcastInfo key={podcast._id} podcast={podcast} />
+            ))}
+          </div>
+        )}
+
         {isSuccess ? (
           <div className="flex">
             <button className="bg-neutral-100 border py-1 px-2 rounded-md w-fit text-xs mt-2">

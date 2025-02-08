@@ -25,7 +25,6 @@ export function CurrentProfileTabSwitcher({ session }) {
       {/* Show only Account tab on Mobile, all tabs on larger screens */}
       <TabsList className="w-full flex md:grid md:grid-cols-6">
         <TabsTrigger value="account">Account</TabsTrigger>
-
         <TabsTrigger value="channel">Channel</TabsTrigger>
         <TabsTrigger value="story">Story</TabsTrigger>
         <TabsTrigger value="music">Music</TabsTrigger>

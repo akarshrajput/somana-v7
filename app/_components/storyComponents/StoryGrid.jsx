@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import SpinnerMain from "../main/SpinnerMain";
 import StoryInfo1 from "./StoryInfo1";
+import StoryGridSkeleton from "./StoryGridSkeleton";
 
 // Fetch blogs with a simple query
 const fetchBlogs = async () => {
@@ -19,7 +20,7 @@ const StoryGrid = () => {
   return (
     <div className="dark:bg-black dark:text-white">
       {isLoading ? (
-        <SpinnerMain />
+        <StoryGridSkeleton /> // Show Skeleton Loader when loading
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
           {data?.blogs?.map((post) => (

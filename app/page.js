@@ -59,13 +59,13 @@ export default async function Home() {
         <div className="my-8">
           <StoryGridFull />
         </div>
-        <div>
+        <div className="my-4">
           <ChannelList />
         </div>
         {/* {session ? ( */}
-        <div className="mt-6">
+        {/* <div className="mt-6">
           <StoryList session={session} />
-        </div>
+        </div> */}
         {/* ) : null} */}
         {/* <div className="my-8">
           <MusicList />

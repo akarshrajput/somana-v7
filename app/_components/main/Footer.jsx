@@ -1,8 +1,9 @@
+import SpecialLink from "../buttons/SpecialLink";
 import Logo from "./Logo";
 
 const Footer = () => {
   return (
-    <footer class="relative z-10 bg-white pb-10 pt-10 lg:pb-10 lg:pt-20 dark:bg-dark">
+    <footer class="relative z-10 bg-white pb-4 pt-10 lg:pb-4 lg:pt-20 dark:bg-dark">
       <div class="container mx-auto">
         <div class="-mx-4 flex flex-wrap">
           <div class="w-full px-4 sm:w-2/3 lg:w-3/12">
@@ -31,38 +32,18 @@ const Footer = () => {
               <h4 class="mb-9 font-semibold text-dark dark:text-white">
                 Resources
               </h4>
-              <ul class="space-y-3">
+              <ul class="space-y-1">
                 <li>
-                  <a
-                    href="javascript:void(0)"
-                    class="inline-block text-sm leading-loose text-body-color hover:text-primary dark:text-dark-6"
-                  >
-                    SaaS Development
-                  </a>
+                  <SpecialLink title="Notes" />
                 </li>
                 <li>
-                  <a
-                    href="javascript:void(0)"
-                    class="inline-block text-sm leading-loose text-body-color hover:text-primary dark:text-dark-6"
-                  >
-                    Our Products
-                  </a>
+                  <SpecialLink title="Our Products" />
                 </li>
                 <li>
-                  <a
-                    href="javascript:void(0)"
-                    class="inline-block text-sm leading-loose text-body-color hover:text-primary dark:text-dark-6"
-                  >
-                    User Flow
-                  </a>
+                  <SpecialLink title="User Flow" />
                 </li>
                 <li>
-                  <a
-                    href="javascript:void(0)"
-                    class="inline-block text-sm leading-loose text-body-color hover:text-primary dark:text-dark-6"
-                  >
-                    User Strategy
-                  </a>
+                  <SpecialLink title="User Strategy" />
                 </li>
               </ul>
             </div>
@@ -72,38 +53,18 @@ const Footer = () => {
               <h4 class="mb-9 text-lg font-semibold text-dark dark:text-white">
                 Company
               </h4>
-              <ul class="space-y-3">
+              <ul class="space-y-1">
                 <li>
-                  <a
-                    href="javascript:void(0)"
-                    class="inline-block text-sm leading-loose text-body-color hover:text-primary dark:text-dark-6"
-                  >
-                    About Somana
-                  </a>
+                  <SpecialLink title="About Somana" />
                 </li>
                 <li>
-                  <a
-                    href="javascript:void(0)"
-                    class="inline-block text-sm leading-loose text-body-color hover:text-primary dark:text-dark-6"
-                  >
-                    Contact & Support
-                  </a>
+                  <SpecialLink title="Contact & Support" />
                 </li>
                 <li>
-                  <a
-                    href="javascript:void(0)"
-                    class="inline-block text-sm leading-loose text-body-color hover:text-primary dark:text-dark-6"
-                  >
-                    Success History
-                  </a>
+                  <SpecialLink title="Success Story" />
                 </li>
                 <li>
-                  <a
-                    href="javascript:void(0)"
-                    class="inline-block text-sm leading-loose text-body-color hover:text-primary dark:text-dark-6"
-                  >
-                    Setting & Privacy
-                  </a>
+                  <SpecialLink title="Setting & Privacy" />
                 </li>
               </ul>
             </div>
@@ -113,38 +74,18 @@ const Footer = () => {
               <h4 class="mb-9 text-lg font-semibold text-dark dark:text-white">
                 Quick Links
               </h4>
-              <ul class="space-y-3">
+              <ul class="space-y-1">
                 <li>
-                  <a
-                    href="javascript:void(0)"
-                    class="inline-block text-sm leading-loose text-body-color hover:text-primary dark:text-dark-6"
-                  >
-                    Premium Support
-                  </a>
+                  <SpecialLink title="Premium Support" />
                 </li>
                 <li>
-                  <a
-                    href="javascript:void(0)"
-                    class="inline-block text-sm leading-loose text-body-color hover:text-primary dark:text-dark-6"
-                  >
-                    Our Services
-                  </a>
+                  <SpecialLink title="Our Services" />
                 </li>
                 <li>
-                  <a
-                    href="javascript:void(0)"
-                    class="inline-block text-sm leading-loose text-body-color hover:text-primary dark:text-dark-6"
-                  >
-                    Know Our Team
-                  </a>
+                  <SpecialLink title="Know our Team" />
                 </li>
                 <li>
-                  <a
-                    href="javascript:void(0)"
-                    class="inline-block text-sm leading-loose text-body-color hover:text-primary dark:text-dark-6"
-                  >
-                    Download App
-                  </a>
+                  <SpecialLink title="Download App" />
                 </li>
               </ul>
             </div>
