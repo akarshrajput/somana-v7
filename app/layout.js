@@ -58,6 +58,16 @@ export default function RootLayout({ children }) {
           src="//pl24109204.effectiveratecpm.com/2a23f44d708874fffe31b49e3f5cd5d5/invoke.js"
           strategy="lazyOnload"
         />
+
+        <script
+          type="text/javascript"
+          src="//pl24108613.effectiveratecpm.com/5e/01/19/5e011983bc3dd426495a69571c73ae5c.js"
+        ></script>
+
+        <script
+          type="text/javascript"
+          src="//www.highperformanceformat.com/bcc1400ed4c6e1019b60916e7171eb70/invoke.js"
+        ></script>
       </head>
       <body className={`${fonts.className} antialiased`}>
         <ReactQueryProvider>
