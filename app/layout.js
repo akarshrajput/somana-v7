@@ -43,12 +43,10 @@ export default function RootLayout({ children }) {
         />
 
         {/* Google Adsense script */}
-        <Script
-          async
-          strategy="afterInteractive"
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3750195818284635"
-          crossOrigin="anonymous"
-        />
+        <meta
+          name="google-adsense-account"
+          content="ca-pub-3750195818284635"
+        ></meta>
 
         {/* Adsterra Social Bar (Updated) */}
         <Script
