@@ -55,10 +55,10 @@ const Footer = () => {
               </h4>
               <ul class="space-y-1">
                 <li>
-                  <SpecialLink title="About Somana" />
+                  <SpecialLink href="/about" title="About Somana" />
                 </li>
                 <li>
-                  <SpecialLink title="Contact & Support" />
+                  <SpecialLink href="/contact" title="Contact & Support" />
                 </li>
                 <li>
                   <SpecialLink title="Success Story" />

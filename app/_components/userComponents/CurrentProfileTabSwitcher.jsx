@@ -20,7 +20,6 @@ export function CurrentProfileTabSwitcher({ session }) {
       defaultValue={currentTab}
       value={currentTab}
       onValueChange={handleTabChange}
-      className="w-full"
     >
       {/* Show only Account tab on Mobile, all tabs on larger screens */}
       <TabsList className="w-full flex md:grid md:grid-cols-6">

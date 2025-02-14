@@ -5,8 +5,9 @@ import AddStoryToChannel from "./AddStoryToChannel";
 import Link from "next/link";
 import { Eye } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
+import Warning from "../main/Warning";
 
-const EditChannel = ({ channelId }) => {
+const EditChannel = ({ channelId, session }) => {
   const [channel, setChannel] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -34,6 +35,16 @@ const EditChannel = ({ channelId }) => {
     }
   }, [channelId]);
 
+  if (session?.user?.userId !== channel?.author?._id) {
+    return (
+      <div>
+        <Warning
+          heading="No permission"
+          description="You have no permission to edit this channel."
+        />
+      </div>
+    );
+  }
   if (loading) {
     return <div>Loading...</div>;
   }
