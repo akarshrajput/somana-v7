@@ -295,6 +295,12 @@ const Page = async ({ params, searchParams }) => {
             dangerouslySetInnerHTML={{ __html: contentWithLineBreaks }}
           ></div>
         </div>
+        <script
+          async="async"
+          data-cfasync="false"
+          src="//pl24109204.effectiveratecpm.com/2a23f44d708874fffe31b49e3f5cd5d5/invoke.js"
+        ></script>
+        <div id="container-2a23f44d708874fffe31b49e3f5cd5d5"></div>
 
         <div className="mt-20">
           {session?.user ? (

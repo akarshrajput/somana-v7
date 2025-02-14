@@ -12,7 +12,7 @@ import { useQuery } from "@tanstack/react-query";
 import PodcastGridSkeleton from "./PodcastGridSkeleton";
 
 const fetchPodcasts = async () => {
-  const res = await axios.get(`/api/v1/podcasts?limit=6`);
+  const res = await axios.get(`/api/v1/podcasts?limit=9`);
   return res?.data?.data;
 };
 

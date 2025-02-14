@@ -7,7 +7,7 @@ const PodcastGridSkeleton = () => {
   return (
     <div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
-        {[...Array(6)].map((_, index) => (
+        {[...Array(9)].map((_, index) => (
           <div
             key={index}
             className="relative rounded-md overflow-hidden bg-white dark:bg-neutral-900 border hover:shadow-md transition-shadow duration-300"
