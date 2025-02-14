@@ -123,10 +123,10 @@ const CurrentUserProfile = ({ session }) => {
   }
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col w-full">
       <form
         onSubmit={handleSubmit}
-        className="customised-input flex flex-col text-sm gap-4 rounded-md w-full"
+        className="customised-input flex  flex-col text-sm gap-4 rounded-md w-full"
       >
         <img
           src={userProfile.photo}
