@@ -59,15 +59,15 @@ export default function RootLayout({ children }) {
           strategy="lazyOnload"
         />
 
-        <script
-          type="text/javascript"
+        <Script
           src="//pl24108613.effectiveratecpm.com/5e/01/19/5e011983bc3dd426495a69571c73ae5c.js"
-        ></script>
+          strategy="lazyOnload"
+        ></Script>
 
-        <script
-          type="text/javascript"
+        <Script
           src="//www.highperformanceformat.com/bcc1400ed4c6e1019b60916e7171eb70/invoke.js"
-        ></script>
+          strategy="lazyOnload"
+        ></Script>
       </head>
       <body className={`${fonts.className} antialiased`}>
         <ReactQueryProvider>
