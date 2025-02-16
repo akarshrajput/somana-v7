@@ -28,7 +28,7 @@ const StorySkeleton = () => {
 const StoryGridFullSkeleton = () => {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-2 w-full">
-      {[...Array(20)].map((_, index) => (
+      {[...Array(40)].map((_, index) => (
         <StorySkeleton key={index} />
       ))}
     </div>

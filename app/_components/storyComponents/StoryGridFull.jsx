@@ -7,7 +7,7 @@ import StoryGridFullSkeleton from "./StoryGridFullSkeleton";
 
 // Fetch blogs with a simple query
 const fetchBlogs = async () => {
-  const res = await axios.get(`/api/v1/blogs?limit=20`);
+  const res = await axios.get(`/api/v1/blogs?limit=40`);
   return res?.data?.data;
 };
 
