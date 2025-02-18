@@ -105,6 +105,7 @@ const Page = async ({ params, searchParams }) => {
   }
 
   const contentWithLineBreaks = blog.content;
+  const modifiedContent = contentWithLineBreaks.replace(/target="_blank"/g, "");
 
   return (
     <div className="flex justify-center mt-16 py-6 px-4">
@@ -292,7 +293,7 @@ const Page = async ({ params, searchParams }) => {
           </div>
           <div
             className={` my-10 custom-link text-lg text-gray-800 dark:text-gray-200`}
-            dangerouslySetInnerHTML={{ __html: contentWithLineBreaks }}
+            dangerouslySetInnerHTML={{ __html: modifiedContent }}
           ></div>
         </div>
 
