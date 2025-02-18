@@ -36,11 +36,11 @@ const Header = async () => {
                 <BookOpen weight="bold" />
               </Button>
             </Link>
-            <Link href="/music">
+            {/* <Link href="/music">
               <Button variant="outline" size="icon">
                 <MusicNote weight="bold" />
               </Button>
-            </Link>
+            </Link> */}
             <Link href="/podcast">
               <Button variant="outline" size="icon">
                 <ApplePodcastsLogo weight="bold" />
