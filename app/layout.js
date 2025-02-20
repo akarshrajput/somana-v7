@@ -8,6 +8,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Script from "next/script";
+import Bot from "./_components/main/Bot";
 
 const fonts = Rubik({
   subsets: ["latin"],
@@ -83,6 +84,7 @@ export default function RootLayout({ children }) {
             </div>
             {/* <Dots>{children}</Dots> */}
             {children}
+            <Bot />
           </ThemeProvider>
         </ReactQueryProvider>
         <Toaster />
