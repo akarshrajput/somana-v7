@@ -49,9 +49,14 @@ const IframeViewer = ({ fileLinks }) => {
   );
 
   return (
-    <div className="relative w-full">
+    <div className="relative w-full mt-12">
+      <div className="text-xs text-yellow-800 dark:text-yellow-400">
+        <p>- Adjust document size by yourself</p>
+        <p>- Document take some time to load so please wait for some seconds</p>
+      </div>
+
       {fileLinks.length > 0 && (
-        <div className="w-full flex flex-col gap-4 mt-12">
+        <div className="w-full flex flex-col gap-4 mt-2">
           {modifiedFileLinks
             .split(/(?=<iframe )/) // Split the string at each `<iframe` tag
             .map((file, index) => {

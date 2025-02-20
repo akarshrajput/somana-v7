@@ -19,6 +19,7 @@ import ChannelList from "./_components/channelComponents/ChannelList";
 import { auth } from "./_lib/auth";
 import StoryList from "./_components/storyComponents/StoryList";
 import Footer from "./_components/main/Footer";
+import ShareReferral from "./_components/main/ShareReferral";
 
 export default async function Home() {
   const session = await auth();
@@ -50,9 +51,11 @@ export default async function Home() {
               {/* <div className="font-medium border-neutral-200 flex-col">
                 <MusicGrid apiEndpoint="/api/v1/podcasts?limit=6" />
               </div> */}
+
               <div className="font-medium flex-col">
                 <PodcastGrid api="/api/v1/podcasts?limit=9" />
               </div>
+              <ShareReferral />
             </div>
           </div>
         </div>
