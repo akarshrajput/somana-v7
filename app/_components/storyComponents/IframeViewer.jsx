@@ -65,9 +65,9 @@ const IframeViewer = ({ fileLinks }) => {
                     <div style={{ zIndex: isFullscreen ? 100 : "auto" }}>
                       <div className="absolute bottom-0 right-0">
                         <div className="flex items-end">
-                          <div className="bg-white w-14 h-6"></div>
+                          <div className="bg-white w-16 h-6"></div>
                           <button
-                            className=" p-0.5 dark:bg-black dark:text-white bg-white border"
+                            className=" p-0.5 dark:bg-black dark:text-white bg-neutral-200 hover:bg-neutral-300 border"
                             variant="outline"
                             onClick={() => handleFullscreenToggle(index)}
                           >
