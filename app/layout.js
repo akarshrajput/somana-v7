@@ -6,6 +6,7 @@ import ReactQueryProvider from "./_components/providers/ReactQueryProvider";
 import { Kanit, Montserrat, Nunito_Sans, Rubik } from "next/font/google";
 import { Toaster } from "@/components/ui/toaster";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import Script from "next/script";
 
 const fonts = Rubik({
@@ -85,6 +86,8 @@ export default function RootLayout({ children }) {
           </ThemeProvider>
         </ReactQueryProvider>
         <Toaster />
+        <SpeedInsights />
+
         <Analytics />
       </body>
     </html>
