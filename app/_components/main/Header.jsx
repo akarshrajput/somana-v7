@@ -13,7 +13,7 @@ import { auth } from "@/app/_lib/auth";
 import ProfileMenu from "../userComponents/ProfileMenu";
 import SearchInput from "./SearchInput";
 import { Button } from "@/components/ui/button";
-import { Upload } from "lucide-react";
+import { ForwardIcon, Upload } from "lucide-react";
 import { ServicesNav } from "./ServicesNav";
 import SpecialHeaderLinks from "./SpecialHeaderLinks";
 import HeaderEvent from "./HeaderEvent";
@@ -34,6 +34,15 @@ const Header = async () => {
         <div className="ml-auto flex items-center gap-2">
           <div className="hidden sm:block">
             <div className="ml-auto flex items-center gap-2">
+              <Link
+                className="hidden lg:block"
+                target="_blank"
+                href="https://forms.gle/mRRhFPSVLmSwNMCs9"
+              >
+                <Button variant="outline" className="p-2">
+                  Contribute <ForwardIcon />
+                </Button>
+              </Link>
               <Link href="/story">
                 <Button variant="outline" size="icon">
                   <BookOpen weight="bold" />

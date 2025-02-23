@@ -60,7 +60,7 @@ const ShareReferral = () => {
       {/* <Button onClick={handleShare} className="p-3 w-fit gap-2">
         <Share2 size={18} /> Share
       </Button> */}
-      <div className="flex gap-4">
+      <div className="flex gap-4 flex-wrap">
         {shareOptions.map((option) => (
           <a
             key={option.name}
