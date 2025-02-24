@@ -2,6 +2,8 @@
 import { Button } from "@/components/ui/button";
 import { Share2, Twitter, Facebook, Linkedin, Send } from "lucide-react";
 import { WhatsappLogo, TelegramLogo } from "@phosphor-icons/react";
+import { Card } from "@/components/ui/card";
+import Link from "next/link";
 
 const ShareReferral = () => {
   const websiteUrl = "https://somana.in";
@@ -14,27 +16,27 @@ const ShareReferral = () => {
     {
       name: "WhatsApp",
       url: `https://api.whatsapp.com/send?text=${message}`,
-      icon: <WhatsappLogo className="size-5 text-green-500" />,
+      icon: <WhatsappLogo className="size-5 " />,
     },
     {
       name: "Telegram",
       url: `https://t.me/share/url?url=${websiteUrl}&text=${message}`,
-      icon: <TelegramLogo className="size-5 text-blue-500" />,
+      icon: <TelegramLogo className="size-5 " />,
     },
     {
       name: "Twitter",
       url: `https://twitter.com/intent/tweet?text=${message}`,
-      icon: <Twitter className="size-5 text-blue-400" />,
+      icon: <Twitter className="size-5" />,
     },
     {
       name: "Facebook",
       url: `https://www.facebook.com/sharer/sharer.php?u=${websiteUrl}`,
-      icon: <Facebook className="size-5 text-blue-600" />,
+      icon: <Facebook className="size-5" />,
     },
     {
       name: "LinkedIn",
       url: `https://www.linkedin.com/shareArticle?mini=true&url=${websiteUrl}&title=Check+out+Somana`,
-      icon: <Linkedin className="size-5 text-blue-700" />,
+      icon: <Linkedin className="size-5" />,
     },
   ];
 
@@ -53,8 +55,8 @@ const ShareReferral = () => {
   };
 
   return (
-    <div className="bg-white rounded-md border p-3 flex flex-col w-full max-w-md mx-auto">
-      <p className="mb-4 text-sm text-gray-700 font-medium">
+    <Card className="rounded-md border p-3 flex flex-col w-full max-w-md mx-auto">
+      <p className="mb-4 text-sm  font-medium">
         Share us with your friends and get access to upcoming features.
       </p>
       {/* <Button onClick={handleShare} className="p-3 w-fit gap-2">
@@ -62,18 +64,20 @@ const ShareReferral = () => {
       </Button> */}
       <div className="flex gap-4 flex-wrap">
         {shareOptions.map((option) => (
-          <a
+          <Link
             key={option.name}
             href={option.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-1.5 rounded-md bg-gray-200 hover:bg-gray-300 transition duration-300 flex items-center justify-center"
+            className="rounded-md bg-gray-200 hover:bg-gray-300 transition duration-300 flex items-center justify-center"
           >
-            {option.icon}
-          </a>
+            <Button variant="secondary" size="icon">
+              {option.icon}
+            </Button>
+          </Link>
         ))}
       </div>
-    </div>
+    </Card>
   );
 };
 

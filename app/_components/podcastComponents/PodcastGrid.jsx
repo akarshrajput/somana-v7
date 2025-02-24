@@ -10,6 +10,7 @@ import {
 import LoadingSmall from "../main/LoadingSmall";
 import { useQuery } from "@tanstack/react-query";
 import PodcastGridSkeleton from "./PodcastGridSkeleton";
+import { Button } from "@/components/ui/button";
 
 const fetchPodcasts = async () => {
   const res = await axios.get(`/api/v1/podcasts?limit=9`);
@@ -34,15 +35,15 @@ const PodcastGrid = () => {
           </div>
         )}
 
-        {isSuccess ? (
+        {/* {isSuccess ? (
           <div className="flex">
-            <button className="bg-neutral-100 border py-1 px-2 rounded-md w-fit text-xs mt-2">
+            <Button className="bg-neutral-100 border py-1 px-2 rounded-md w-fit text-xs mt-2">
               Explore More Podcasts
-            </button>
+            </Button>
           </div>
         ) : (
           ""
-        )}
+        )} */}
       </>
     </div>
   );
