@@ -11,7 +11,7 @@ const StoryInfo1 = ({ post }) => {
       key={post.id}
       className="flex w-full flex-col rounded-lg shadow-sm border border-gray-200 dark:border-neutral-800 overflow-hidden hover:shadow-md transition-shadow duration-300"
     >
-      <div className="relative h-36 bg-gray-100 dark:bg-neutral-800">
+      <div className="relative w-full h-36 bg-gray-100 dark:bg-neutral-800">
         <img
           src={post.featuredImage}
           alt={post.heading}

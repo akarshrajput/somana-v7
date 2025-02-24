@@ -3,9 +3,9 @@ import Logo from "./Logo";
 
 const Footer = () => {
   return (
-    <footer class="relative z-10 bg-white pb-4 pt-10 lg:pb-4 lg:pt-20 dark:bg-dark">
+    <footer class="relative bg-white pb-4 pt-10 lg:pb-4 lg:pt-20 dark:bg-dark">
       <div class="container mx-auto">
-        <div class="-mx-4 flex flex-wrap">
+        <div class="flex flex-wrap">
           <div class="w-full px-4 sm:w-2/3 lg:w-3/12">
             <div class="mb-10 w-full">
               <a

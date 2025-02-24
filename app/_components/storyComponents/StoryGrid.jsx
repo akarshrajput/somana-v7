@@ -18,11 +18,11 @@ const StoryGrid = () => {
   });
 
   return (
-    <div className="dark:bg-black dark:text-white">
+    <div className="dark:bg-black w-full dark:text-white">
       {isLoading ? (
         <StoryGridSkeleton /> // Show Skeleton Loader when loading
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+        <div className="grid w-full grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
           {data?.blogs?.map((post) => (
             <StoryInfo1 key={post._id} post={post} />
           ))}
