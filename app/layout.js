@@ -51,7 +51,7 @@ export default function RootLayout({ children }) {
         ></meta>
 
         {/* Adsterra Social Bar (Updated) */}
-        {/* <Script
+        <Script
           src="//pl24108933.effectiveratecpm.com/6d/f8/17/6df8171da1018fd7c9114e8a5b55b7ba.js"
           strategy="lazyOnload"
         />
@@ -69,7 +69,7 @@ export default function RootLayout({ children }) {
         <Script
           src="//www.highperformanceformat.com/bcc1400ed4c6e1019b60916e7171eb70/invoke.js"
           strategy="lazyOnload"
-        ></Script> */}
+        ></Script>
       </head>
       <body className={`${fonts.className} antialiased`}>
         <ReactQueryProvider>
