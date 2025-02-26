@@ -53,6 +53,7 @@ const IframeViewer = ({ fileLinks }) => {
       <div className="text-xs text-yellow-800 dark:text-yellow-400">
         <p>- Adjust document size by yourself</p>
         <p>- Document take some time to load so please wait for some seconds</p>
+        <p>- To remove ADS : Go to Fullscreen</p>
       </div>
 
       {fileLinks.length > 0 && (
