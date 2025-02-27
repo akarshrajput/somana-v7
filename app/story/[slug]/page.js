@@ -19,6 +19,7 @@ import {
 import { FacebookIcon, Linkedin, Share2, TwitterIcon } from "lucide-react";
 import IframeViewer from "@/app/_components/storyComponents/IframeViewer";
 import StoryAdsHeader from "@/app/_components/googleads/story_ads_header";
+import StoryAdsFooter from "@/app/_components/googleads/story_ads_footer";
 
 const lora = Lora({
   subsets: ["latin"],
@@ -225,7 +226,7 @@ const Page = async ({ params, searchParams }) => {
           </div>
         )}
 
-        <div>
+        <div className="mt-4">
           <StoryAdsHeader />
         </div>
 
@@ -302,7 +303,9 @@ const Page = async ({ params, searchParams }) => {
           ></div>
         </div>
 
-        <div id="container-2a23f44d708874fffe31b49e3f5cd5d5"></div>
+        <div className="my-4">
+          <StoryAdsFooter />
+        </div>
 
         <div className="mt-20">
           {session?.user ? (

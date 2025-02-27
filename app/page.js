@@ -20,6 +20,7 @@ import { auth } from "./_lib/auth";
 import StoryList from "./_components/storyComponents/StoryList";
 import Footer from "./_components/main/Footer";
 import ShareReferral from "./_components/main/ShareReferral";
+import MultiplexAdUnit from "./_components/googleads/multiplex_ad_unit";
 
 export default async function Home() {
   const session = await auth();
@@ -43,6 +44,9 @@ export default async function Home() {
         </div>
         <div className="my-8">
           <StoryGridFull />
+        </div>
+        <div className="my-4">
+          <MultiplexAdUnit />
         </div>
         <div>
           <Footer />
