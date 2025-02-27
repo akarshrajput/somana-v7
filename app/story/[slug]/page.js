@@ -107,7 +107,10 @@ const Page = async ({ params, searchParams }) => {
   }
 
   const contentWithLineBreaks = blog.content;
-  const modifiedContent = contentWithLineBreaks.replace(/target="_blank"/g, "");
+  const modifiedContent = contentWithLineBreaks
+    .replace(/target="_blank"/g, "") // Remove target="_blank"
+    .replace(/<a /g, "<Link ") // Replace <a> with <Link>
+    .replace(/<\/a>/g, "</Link>"); // Replace </a> with </Link>
 
   return (
     <div className="flex justify-center mt-16 py-6 px-4">
