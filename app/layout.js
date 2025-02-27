@@ -50,6 +50,13 @@ export default function RootLayout({ children }) {
           content="ca-pub-3750195818284635"
         ></meta>
 
+        {/* Global Ads script of adsense */}
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3750195818284635"
+          crossOrigin="anonymous"
+        />
+
         {/* Adsterra Social Bar (Updated) */}
         {/* <Script
           src="//pl24108933.effectiveratecpm.com/6d/f8/17/6df8171da1018fd7c9114e8a5b55b7ba.js"

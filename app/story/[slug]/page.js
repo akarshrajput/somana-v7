@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/tooltip";
 import { FacebookIcon, Linkedin, Share2, TwitterIcon } from "lucide-react";
 import IframeViewer from "@/app/_components/storyComponents/IframeViewer";
+import StoryAdsHeader from "@/app/_components/googleads/story_ads_header";
 
 const lora = Lora({
   subsets: ["latin"],
@@ -223,6 +224,10 @@ const Page = async ({ params, searchParams }) => {
             )}
           </div>
         )}
+
+        <div>
+          <StoryAdsHeader />
+        </div>
 
         {blog?.genre === "Notes" ? (
           ""
