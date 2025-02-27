@@ -225,9 +225,9 @@ const Page = async ({ params, searchParams }) => {
           </div>
         )}
 
-        <div>
+        {/* <div>
           <StoryAdsHeader />
-        </div>
+        </div> */}
 
         {blog?.genre === "Notes" ? (
           ""
