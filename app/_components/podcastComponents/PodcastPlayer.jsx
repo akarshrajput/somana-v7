@@ -3,10 +3,9 @@ import AudioPlayer from "@/app/_components/player/AudioPlayer";
 import { SealCheck } from "@phosphor-icons/react";
 import { Podcast } from "lucide-react";
 import { useEffect, useState } from "react";
-import PodcastList from "./PodcastList";
 import Loading from "@/app/loading";
 
-const PodcastPage = ({ params }) => {
+const PodcastPlayer = ({ params }) => {
   const [podcast, setPodcast] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [audio] = useState(new Audio());
@@ -109,12 +108,12 @@ const PodcastPage = ({ params }) => {
       </div>
       <p className="px-2">More from {podcast?.author?.name}</p>
       <div className="">
-        <PodcastList
+        {/* <PodcastList
           api={`/api/v1/podcasts?authorID=${podcast?.author?._id}`}
-        />
+        /> */}
       </div>
     </>
   );
 };
 
-export default PodcastPage;
+export default PodcastPlayer;

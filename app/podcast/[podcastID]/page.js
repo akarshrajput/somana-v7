@@ -1,12 +1,13 @@
-const page = () => {
+import PodcastPlayer from "@/app/_components/podcastComponents/PodcastPlayer";
+
+const page = ({ params }) => {
   return (
     <div className="px-2 flex justify-center mt-12">
       <div className="w-[1200px]">
         <div className="grid grid-cols-7 gap-12">
           <div className="col-span-5 flex">
             <div className="flex w-full flex-col gap-4">
-              {/* <MusicPlayer musicId={params.track} /> */}
-              Test
+              <PodcastPlayer params={params} />
             </div>
           </div>
           <div className="col-span-2 mt-12 border-neutral-200">
