@@ -21,6 +21,7 @@ import StoryList from "./_components/storyComponents/StoryList";
 import Footer from "./_components/main/Footer";
 import ShareReferral from "./_components/main/ShareReferral";
 import MultiplexAdUnit from "./_components/googleads/multiplex_ad_unit";
+import HorizontalAd from "./_components/googleads/horizontal_ad";
 
 export default async function Home() {
   const session = await auth();
@@ -39,13 +40,16 @@ export default async function Home() {
                 <PodcastGrid api="/api/v1/podcasts?limit=9" />
               </div>
               <ShareReferral />
+              <div className="border rounded-md">
+                <HorizontalAd />
+              </div>
             </div>
           </div>
         </div>
         <div className="my-8">
           <StoryGridFull />
         </div>
-        <div className="my-4">
+        <div className="my-4 border rounded-md">
           <MultiplexAdUnit />
         </div>
         <div>

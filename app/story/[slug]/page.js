@@ -20,6 +20,7 @@ import { FacebookIcon, Linkedin, Share2, TwitterIcon } from "lucide-react";
 import IframeViewer from "@/app/_components/storyComponents/IframeViewer";
 import StoryAdsHeader from "@/app/_components/googleads/story_ads_header";
 import StoryAdsFooter from "@/app/_components/googleads/story_ads_footer";
+import VerticalAd from "@/app/_components/googleads/vertical_ad";
 
 const lora = Lora({
   subsets: ["latin"],
@@ -110,7 +111,10 @@ const Page = async ({ params, searchParams }) => {
   const modifiedContent = contentWithLineBreaks.replace(/target="_blank"/g, "");
 
   return (
-    <div className="flex justify-center mt-16 py-6 px-4">
+    <div className="flex justify-center mt-16 py-6 px-4 gap-4">
+      <div className="hidden lg:block">
+        <VerticalAd />
+      </div>
       <div className="w-[700px]">
         {blog.genre !== "top-10" && (
           <div className="flex items-center gap-4">
@@ -226,7 +230,7 @@ const Page = async ({ params, searchParams }) => {
           </div>
         )}
 
-        <div className="mt-4">
+        <div className="mt-4 border rounded-md">
           <StoryAdsHeader />
         </div>
 
@@ -303,7 +307,7 @@ const Page = async ({ params, searchParams }) => {
           ></div>
         </div>
 
-        <div className="my-4">
+        <div className="my-4 border rounded-md">
           <StoryAdsFooter />
         </div>
 
@@ -320,6 +324,9 @@ const Page = async ({ params, searchParams }) => {
           )}
           <BlogComments hostname={process.env.HOSTNAME} blogId={blog._id} />
         </div>
+      </div>
+      <div className="hidden lg:block">
+        <VerticalAd />
       </div>
     </div>
   );
