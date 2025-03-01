@@ -20,34 +20,18 @@ const CommonNav = () => {
   return (
     <div className="mb-4 flex flex-wrap gap-2">
       <BaseLink href="/upload">
-        Upload
-        <MonitorArrowUp weight="bold" />
+        Buy Web Projects
+        <TrendUp weight="bold" />
       </BaseLink>
 
       <BaseLink href="music/playlist">
-        Top 10 <TrendUp weight="bold" />
+        SRS <TrendUp weight="bold" />
       </BaseLink>
       <BaseLink href="music/playlist">
-        Videos <Play weight="fill" />
-      </BaseLink>
-      <BaseLink href="hello">
-        Share <FolderLock weight="bold" />
+        Custom Projects <TrendUp weight="bold" />
       </BaseLink>
       <BaseLink href="music/playlist">
-        Playlist <MusicNote weight="bold" />
-      </BaseLink>
-      <BaseLink href="music/playlist">
-        Kids <Rabbit weight="bold" />
-      </BaseLink>
-
-      <BaseLink href="music/playlist">
-        News <Newspaper weight="bold" />
-      </BaseLink>
-      <BaseLink href="music/playlist">
-        Anime <Rabbit weight="bold" />
-      </BaseLink>
-      <BaseLink href="music/playlist">
-        Go Live <Rabbit weight="bold" />
+        Join our Team <TrendUp weight="bold" />
       </BaseLink>
     </div>
   );

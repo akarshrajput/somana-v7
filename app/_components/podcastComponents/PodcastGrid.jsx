@@ -53,7 +53,7 @@ const PodcastInfo = ({ podcast }) => {
   return (
     <Link
       href={`/podcast/${podcast._id}?${podcast.podcastName}`}
-      className="group block relative rounded-md overflow-hidden bg-white dark:bg-neutral-900 border hover:shadow-md transition-shadow duration-300"
+      className="group block relative rounded-md overflow-hidden bg-neutral-100 dark:bg-neutral-900 border hover:shadow-md transition-shadow duration-300"
     >
       <div className="relative w-full h-20 aspect-square overflow-hidden">
         {/* Image Section */}

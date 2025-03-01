@@ -33,7 +33,7 @@ const StoryGridFull = () => {
           <Link
             href={`/story/${post.slug}`}
             key={post.id}
-            className="block rounded-md border bg-white dark:bg-neutral-900 p-2 shadow-sm hover:shadow-md transition-shadow duration-300"
+            className="block rounded-md border bg-neutral-50 dark:bg-neutral-900 p-2 shadow-sm hover:shadow-md transition-shadow duration-300"
           >
             {/* Author and Genre Section */}
             <div className="flex items-center gap-1 mb-2">
@@ -55,10 +55,10 @@ const StoryGridFull = () => {
                   <SealCheck className="text-blue-500 w-4 h-4" weight="fill" />
                 )}
               </div>
-              <span className="text-xs font-medium text-gray-500">in</span>
+              <span className="text-xs">in</span>
               <Link
                 href={`/blogs/topic/${post.genre}`}
-                className="text-xs font-medium text-black hover:underline"
+                className="text-xs font-medium hover:underline"
               >
                 {post.genre}
               </Link>
