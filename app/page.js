@@ -29,9 +29,9 @@ export default async function Home() {
   return (
     <div className="px-2 py-2 w-full flex justify-center mt-16">
       <div className="w-[1200px]">
-        <div>
+        {/* <div>
           <CommonNav />
-        </div>
+        </div> */}
         <div className="grid sm:grid-cols-7 sm:gap-8 gap-0">
           <div className="col-span-5 flex">
             <div className="flex flex-col gap-4">
