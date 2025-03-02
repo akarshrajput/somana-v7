@@ -188,7 +188,7 @@ const Page = async ({ params, searchParams }) => {
                   userId={userId}
                 />
               )}
-              <TooltipProvider>
+              {/* <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <p className="text-sm font-medium  dark:text-gray-400">
@@ -199,7 +199,7 @@ const Page = async ({ params, searchParams }) => {
                     <p>{blog?.numberOfViews} people have viewed this story.</p>
                   </TooltipContent>
                 </Tooltip>
-              </TooltipProvider>
+              </TooltipProvider> */}
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger asChild>
