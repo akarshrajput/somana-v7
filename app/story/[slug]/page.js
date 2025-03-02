@@ -112,9 +112,9 @@ const Page = async ({ params, searchParams }) => {
 
   return (
     <div className="flex justify-center mt-16 py-6 px-4 gap-4">
-      <div className="hidden lg:block">
+      {/* <div className="hidden lg:block">
         <VerticalAd />
-      </div>
+      </div> */}
       <div className="w-[700px]">
         {blog.genre !== "top-10" && (
           <div className="flex items-center gap-4">
@@ -230,7 +230,7 @@ const Page = async ({ params, searchParams }) => {
           </div>
         )}
 
-        <div className="mt-4 border rounded-md">
+        <div className="mt-4">
           <StoryAdsHeader />
         </div>
 
@@ -307,7 +307,7 @@ const Page = async ({ params, searchParams }) => {
           ></div>
         </div>
 
-        <div className="my-4 border rounded-md">
+        <div className="my-4">
           <StoryAdsFooter />
         </div>
 
@@ -325,9 +325,9 @@ const Page = async ({ params, searchParams }) => {
           <BlogComments hostname={process.env.HOSTNAME} blogId={blog._id} />
         </div>
       </div>
-      <div className="hidden lg:block">
+      {/* <div className="hidden lg:block">
         <VerticalAd />
-      </div>
+      </div> */}
     </div>
   );
 };

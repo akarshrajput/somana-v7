@@ -44,7 +44,7 @@ export default async function Home() {
                 <PodcastGrid api="/api/v1/podcasts?limit=9" />
               </div>
               <ShareReferral />
-              <div className="border rounded-md">
+              <div>
                 <HorizontalAd />
               </div>
             </div>
@@ -53,9 +53,9 @@ export default async function Home() {
         <div className="my-8">
           <StoryGridFull />
         </div>
-        <div className="my-4 border rounded-md">
+        {/* <div className="my-4 border rounded-md">
           <MultiplexAdUnit />
-        </div>
+        </div> */}
         <div>
           <Footer />
         </div>
