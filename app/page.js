@@ -44,7 +44,7 @@ export default async function Home() {
                 <PodcastGrid api="/api/v1/podcasts?limit=9" />
               </div>
               <ShareReferral />
-              <div>
+              <div className="w-40 border lg:w-full">
                 <HorizontalAd />
               </div>
             </div>

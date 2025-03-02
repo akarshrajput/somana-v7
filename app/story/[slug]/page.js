@@ -230,7 +230,7 @@ const Page = async ({ params, searchParams }) => {
           </div>
         )}
 
-        <div className="mt-4">
+        <div className="mt-4 w-72 md:w-96 lg:w-full">
           <StoryAdsHeader />
         </div>
 
@@ -307,7 +307,7 @@ const Page = async ({ params, searchParams }) => {
           ></div>
         </div>
 
-        <div className="my-4">
+        <div className="mt-4 w-72 md:w-96 lg:w-full">
           <StoryAdsFooter />
         </div>
 
