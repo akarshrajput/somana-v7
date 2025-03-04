@@ -1,6 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { Fullscreen, FullscreenIcon } from "lucide-react";
+import { Fullscreen, FullscreenIcon, MoveDownIcon } from "lucide-react";
 import React, { useState, useRef, useEffect } from "react";
 
 const IframeViewer = ({ fileLinks }) => {
@@ -58,6 +58,11 @@ const IframeViewer = ({ fileLinks }) => {
 
       {fileLinks.length > 0 && (
         <div className="w-full flex flex-col gap-4 mt-2">
+          <div>
+            <p className="flex items-center gap-4">
+              PDF below <MoveDownIcon size={14} />
+            </p>
+          </div>
           {modifiedFileLinks
             .split(/(?=<iframe )/) // Split the string at each `<iframe` tag
             .map((file, index) => {
