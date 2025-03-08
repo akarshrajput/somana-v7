@@ -1,3 +1,4 @@
+import Link from "next/link";
 import SpecialLink from "../buttons/SpecialLink";
 import Logo from "./Logo";
 
@@ -9,9 +10,9 @@ const Footer = () => {
           {/* Logo Section */}
           <div className="w-full px-4 sm:w-2/3 lg:w-3/12">
             <div className="mb-10 w-full">
-              <a href="/" className="mb-6 inline-block max-w-[160px]">
+              <Link href="/" className="mb-6 inline-block max-w-[160px]">
                 <Logo />
-              </a>
+              </Link>
               <p className="mb-7 text-sm text-body-color dark:text-dark-6">
                 Open Source company developed by Unknown Person - Somana Team
               </p>
