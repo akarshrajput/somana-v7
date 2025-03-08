@@ -21,7 +21,7 @@ import HeaderEvent from "./HeaderEvent";
 const Header = async () => {
   const session = await auth();
   return (
-    <div className="bg-white dark:bg-black z-50 fixed w-full py-2 px-2 flex flex-col text-sm">
+    <div className="bg-white max-w-[1250px] px-2 w-full dark:bg-black z-50 fixed py-2 flex flex-col text-sm">
       {/* <HeaderEvent /> */}
       <div className="flex items-center gap-2">
         <div>

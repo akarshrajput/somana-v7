@@ -27,8 +27,8 @@ import CommonNav from "./_components/main/CommonNav";
 export default async function Home() {
   const session = await auth();
   return (
-    <div className="px-2 py-2 w-full flex justify-center mt-16">
-      <div className="w-[1200px]">
+    <div className="w-full flex justify-center mt-16">
+      <div className="w-[1250px] p-2">
         {/* <div>
           <CommonNav />
         </div> */}

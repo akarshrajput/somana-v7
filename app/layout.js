@@ -86,8 +86,10 @@ export default function RootLayout({ children }) {
             enableSystem
             disableTransitionOnChange
           >
-            <div className="sticky z-50 flex justify-center">
-              <Header />
+            <div className="sticky z-50 ">
+              <div className="flex justify-center">
+                <Header />
+              </div>
             </div>
             {/* <Dots>{children}</Dots> */}
             {children}
