@@ -35,7 +35,7 @@ const MusicGrid = () => {
         </div>
         {isSuccess ? (
           <div className="flex">
-            <button className="bg-neutral-100 border py-1 px-2 rounded-md w-fit text-xs mt-2">
+            <button className="bg-neutral-100 dark:bg-neutral-900 border py-1 px-2 rounded-md w-fit text-xs mt-2">
               Explore More Music
             </button>
           </div>

@@ -30,9 +30,9 @@ const MusicPlayer = ({ musicId }) => {
   }
 
   return (
-    <div className="mt-8 dark:bg-stone-900 text-stone-700 dark:text-stone-200 w-full mx-auto my-6 p-4 rounded-lg">
+    <div className=" text-stone-700 dark:text-stone-200 w-full mx-auto rounded-sm">
       {/* Featured Image */}
-      <div className="relative w-full h-72 overflow-hidden rounded-lg mb-4">
+      <div className="relative w-full h-72 overflow-hidden rounded-sm mb-4">
         <img
           src={audio.featuredImage}
           alt={audio.musicName}
@@ -45,7 +45,7 @@ const MusicPlayer = ({ musicId }) => {
               <img
                 src={audio.featuredImage}
                 alt={audio.musicName}
-                className="size-32 object-cover  rounded-lg"
+                className="size-32 object-cover  rounded-sm"
               />
               {/* <h1 className="text-xl font-medium dark:text-white text-black">
                       {podcast.podcastName}

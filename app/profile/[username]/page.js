@@ -2,8 +2,8 @@ import { UserProfileTabSwitcher } from "@/app/_components/userComponents/UserPro
 
 const Page = async ({ params }) => {
   return (
-    <div className="flex flex-col items-center mt-16">
-      <div className="w-[1200px] py-2">
+    <div className="flex flex-col items-center mt-2">
+      <div className="w-full">
         <UserProfileTabSwitcher username={params.username} />
       </div>
     </div>

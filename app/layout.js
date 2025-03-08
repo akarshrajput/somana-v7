@@ -93,7 +93,7 @@ export default function RootLayout({ children }) {
           strategy="lazyOnload"
         ></Script> */}
       </head>
-      <body className={`${fonts.className} antialiased`}>
+      <body className={`${fonts.className} dark:bg-black antialiased`}>
         <ReactQueryProvider>
           <ThemeProvider
             attribute="class"
