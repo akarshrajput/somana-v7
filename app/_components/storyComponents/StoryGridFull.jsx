@@ -28,12 +28,12 @@ const StoryGridFull = () => {
 
   return (
     <div className="dark:bg-black w-full dark:text-stone-50">
-      <div className="mx-auto w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-2">
+      <div className="mx-auto w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2">
         {data?.blogs?.map((post) => (
           <Link
             href={`/story/${post.slug}`}
             key={post.id}
-            className="block rounded-md border bg-neutral-50 dark:bg-neutral-900 p-2 shadow-sm hover:shadow-md transition-shadow duration-300"
+            className="block rounded-sm border bg-neutral-50 dark:bg-neutral-900 p-2 shadow-sm hover:shadow-md transition-shadow duration-300"
           >
             {/* Author and Genre Section */}
             <div className="flex items-center gap-1 mb-2">

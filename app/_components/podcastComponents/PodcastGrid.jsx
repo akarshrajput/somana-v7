@@ -53,7 +53,7 @@ const PodcastInfo = ({ podcast }) => {
   return (
     <Link
       href={`/podcast/${podcast._id}?${podcast.podcastName}`}
-      className="group block relative rounded-md overflow-hidden bg-neutral-100 dark:bg-neutral-900 border hover:shadow-md transition-shadow duration-300"
+      className="group block relative rounded-sm overflow-hidden bg-neutral-100 dark:bg-neutral-900 border hover:shadow-md transition-shadow duration-300"
     >
       <div className="relative w-full h-20 aspect-square overflow-hidden">
         {/* Image Section */}
@@ -65,10 +65,7 @@ const PodcastInfo = ({ podcast }) => {
 
         {/* Play Icon Overlay */}
         <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <Play
-            weight="fill"
-            className="text-white w-10 h-10 p-1 bg-black/50 rounded-md"
-          />
+          <Play weight="fill" className="text-white w-10 h-10 p-1" />
         </div>
       </div>
 

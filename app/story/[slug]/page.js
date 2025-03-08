@@ -111,19 +111,17 @@ const Page = async ({ params, searchParams }) => {
   const modifiedContent = contentWithLineBreaks.replace(/target="_blank"/g, "");
 
   return (
-    <div className="flex justify-center mt-16 py-6 px-4 gap-4">
+    <div className="flex justify-center mt-2 px-2 gap-4 lg:px-32">
       {/* <div className="hidden lg:block">
         <VerticalAd />
       </div> */}
-      <div className="w-[700px]">
+      <div className="w-full">
         {blog.genre !== "top-10" && (
           <div className="flex items-center gap-4">
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <p className="font-semibold text-lg text-gray-700 dark:text-gray-300">
-                    {blog?.genre}
-                  </p>
+                  <p className="font-semibold text-sm">{blog?.genre}</p>
                 </TooltipTrigger>
                 <TooltipContent>
                   <p>This story belongs to the {blog?.genre} category.</p>
@@ -132,7 +130,7 @@ const Page = async ({ params, searchParams }) => {
             </TooltipProvider>
             <div className="ml-auto">
               <BlogDate
-                className="font-semibold text-xs text-gray-600 dark:text-gray-400"
+                className="font-semibold text-xs"
                 blogDate={blog.createdAt}
               />
             </div>
@@ -140,7 +138,7 @@ const Page = async ({ params, searchParams }) => {
         )}
 
         <div className="my-4">
-          <h1 className="font-bold text-3xl leading-tight text-gray-900 dark:text-gray-100">
+          <h1 className="font-bold text-2xl leading-tight text-gray-900 dark:text-gray-100">
             {blog.heading}
           </h1>
         </div>
@@ -218,7 +216,7 @@ const Page = async ({ params, searchParams }) => {
               <div className="flex ml-auto items-center gap-2">
                 {blog?._id ? (
                   <Link href={`/story/edit/${blog?._id}`}>
-                    <Button variant="outline">
+                    <Button variant="secondary">
                       <Pen weight="bold" />
                       Edit
                     </Button>
@@ -302,7 +300,7 @@ const Page = async ({ params, searchParams }) => {
             </button> */}
           </div>
           <div
-            className={` my-10 custom-link text-lg text-gray-800 dark:text-gray-200`}
+            className={`my-10 custom-link text-base text-gray-800 dark:text-gray-200`}
             dangerouslySetInnerHTML={{ __html: modifiedContent }}
           ></div>
         </div>

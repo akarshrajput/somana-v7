@@ -6,8 +6,8 @@ const Page = async ({ params }) => {
   const supabaseURL = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const hostname = process.env.HOSTNAME;
   return (
-    <div className="px-2 my-10 mt-24 flex justify-center">
-      <div className="w-[1200px]">
+    <div className="px-2 my-2 flex justify-center">
+      <div className="w-full">
         <UpdateBlog
           storyId={params.storyId}
           session={session}

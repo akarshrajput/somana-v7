@@ -285,9 +285,9 @@ const WriteBlog = ({ supabaseURL, session, hostname }) => {
 
   return (
     <div>
-      <div className="px-4 flex items-center gap-2">
+      <div className="flex mb-2 items-center gap-2">
         {!useAI ? (
-          <Button onClick={handleUseAI}>
+          <Button variant="outline" onClick={handleUseAI}>
             Use AI
             <Sparkle weight="bold" />
           </Button>
@@ -305,10 +305,40 @@ const WriteBlog = ({ supabaseURL, session, hostname }) => {
           </div>
         )}
       </div>
-      <form
-        className="rounded-md p-4 overflow-hidden flex flex-col gap-4"
-        onSubmit={handleSubmit}
-      >
+      <form className="rounded-md flex flex-col gap-4" onSubmit={handleSubmit}>
+        {useAI ? (
+          <div className="flex flex-col gap-2  py-1">
+            <p className="text-sm text-red-600  w-fit bg-red-50 rounded-md py-1 px-4 flex items-center gap-1">
+              <Info weight="bold" />
+              You are using Somana AI <Sparkle weight="fill" />
+            </p>
+
+            <Textarea
+              value={question}
+              onChange={(e) => setQuestion(e.target.value)}
+              rows={3}
+              placeholder="Write prompt"
+              className="resize-none"
+            />
+
+            <Button
+              onClick={handleAISubmit}
+              className="ml-auto  text-sm cursor-pointer w-fit text-stone-100 bg-stone-800 rounded-md py-1 px-2 flex items-center gap-1"
+            >
+              {aiLoading ? (
+                <p className="ml-auto text-sm cursor-pointer w-fit text-stone-100 bg-stone-800 rounded-md py-1 px-2 flex items-center gap-1">
+                  Generating... Wait.
+                </p>
+              ) : (
+                <p className="ml-auto  text-sm cursor-pointer w-fit text-stone-100 bg-stone-800 rounded-md py-1 px-2 flex items-center gap-1">
+                  Generate <PaperPlaneRight weight="fill" />
+                </p>
+              )}
+            </Button>
+          </div>
+        ) : (
+          ""
+        )}
         <div className="flex flex-col gap-2  py-1">
           <Label>Heading</Label>
           <Input
@@ -388,39 +418,6 @@ const WriteBlog = ({ supabaseURL, session, hostname }) => {
             Add more
           </Button>
         </div>
-        {useAI ? (
-          <div className="flex flex-col gap-2  py-1">
-            <p className="text-sm text-red-600  w-fit bg-red-50 rounded-md py-1 px-4 flex items-center gap-1">
-              <Info weight="bold" />
-              You are using Somana AI <Sparkle weight="fill" />
-            </p>
-
-            <Textarea
-              value={question}
-              onChange={(e) => setQuestion(e.target.value)}
-              rows={3}
-              placeholder="Write prompt"
-              className="resize-none"
-            />
-
-            <Button
-              onClick={handleAISubmit}
-              className="ml-auto  text-sm cursor-pointer w-fit text-stone-100 bg-stone-800 rounded-md py-1 px-2 flex items-center gap-1"
-            >
-              {aiLoading ? (
-                <p className="ml-auto text-sm cursor-pointer w-fit text-stone-100 bg-stone-800 rounded-md py-1 px-2 flex items-center gap-1">
-                  Generating... Wait.
-                </p>
-              ) : (
-                <p className="ml-auto  text-sm cursor-pointer w-fit text-stone-100 bg-stone-800 rounded-md py-1 px-2 flex items-center gap-1">
-                  Generate <PaperPlaneRight weight="fill" />
-                </p>
-              )}
-            </Button>
-          </div>
-        ) : (
-          ""
-        )}
 
         <div className="flex flex-col gap-2">
           <Label>Write content</Label>

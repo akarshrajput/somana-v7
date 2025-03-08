@@ -221,10 +221,7 @@ const UpdateBlog = ({ storyId, supabaseURL, session, hostname }) => {
 
   return (
     <div>
-      <form
-        className="rounded-md p-4 overflow-hidden flex flex-col gap-4"
-        onSubmit={handleSubmit}
-      >
+      <form className="rounded-md flex flex-col gap-4" onSubmit={handleSubmit}>
         <div className="flex flex-col gap-2  py-1">
           <Label>Heading</Label>
           <Input

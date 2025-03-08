@@ -9,7 +9,7 @@ const page = async () => {
   const hostname = process.env.HOSTNAME;
 
   return (
-    <div className="px-2 my-10 mt-24 flex justify-center">
+    <div className="my-2 flex justify-center">
       <div className="w-[1200px]">
         {session.user.role === "admin" || session.user.role === "guide" ? (
           <WriteBlog

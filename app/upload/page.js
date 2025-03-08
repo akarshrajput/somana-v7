@@ -1,11 +1,16 @@
 import { Button } from "@/components/ui/button";
-import BaseLink from "../_components/buttons/BaseLink";
 import Link from "next/link";
+import { auth } from "../_lib/auth";
+import Warning from "../_components/main/Warning";
 
-export default function Page() {
+export default async function Page() {
+  const session = await auth();
+  if (!session?.user) {
+    return <Warning heading="Login to upload" />;
+  }
   return (
-    <div className="px-2 flex justify-center mt-24">
-      <div className="w-[800px] text-center space-y-8">
+    <div className="flex justify-center mt-2">
+      <div className="max-w-[600px] w-full text-center space-y-8">
         <h1 className="text-xl font-bold mb-8">Upload here</h1>
         <div className="flex flex-col gap-6">
           <div>

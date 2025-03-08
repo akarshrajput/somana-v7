@@ -5,12 +5,12 @@ import Link from "next/link";
 const SpecialHeaderLinks = () => {
   return (
     <div className="flex gap-2 items-center">
-      <Link href="/story/lpu-cse-notes-all-courses-67a072b1b2269b959ecb8af6">
+      {/* <Link href="/story/lpu-cse-notes-all-courses-67a072b1b2269b959ecb8af6">
         <Button className="relative" variant="outline">
           LPU Notes
           <TrendUp className="absolute top-0.5 right-0.5 pl-1" />
         </Button>
-      </Link>
+      </Link> */}
     </div>
   );
 };

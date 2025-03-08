@@ -202,10 +202,7 @@ const UploadMusic = ({ supabaseURL, session, hostname }) => {
 
   return (
     <div>
-      <form
-        onSubmit={handleSubmit}
-        className="flex flex-col gap-4 p-4 overflow-hidden"
-      >
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <div className="flex items-center flex-wrap gap-4">
           <div className="flex flex-col gap-2">
             <Label>Music name : </Label>

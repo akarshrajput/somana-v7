@@ -2,7 +2,7 @@ import React from "react";
 
 const StorySkeleton = () => {
   return (
-    <div className="animate-pulse w-full block rounded-md border bg-white dark:bg-neutral-900 p-2 shadow-sm min-h-[120px]">
+    <div className="animate-pulse w-full block rounded-sm border bg-white dark:bg-neutral-900 p-2 shadow-sm min-h-[120px]">
       {/* Author & Genre Skeleton */}
       <div className="flex items-center gap-1 mb-2">
         <div className="flex items-center gap-2">
@@ -27,7 +27,7 @@ const StorySkeleton = () => {
 
 const StoryGridFullSkeleton = () => {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-2 w-full">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 w-full">
       {[...Array(40)].map((_, index) => (
         <StorySkeleton key={index} />
       ))}

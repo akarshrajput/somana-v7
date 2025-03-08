@@ -9,6 +9,21 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Script from "next/script";
 import Bot from "./_components/main/Bot";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import {
+  ApplePodcastsLogo,
+  BookOpen,
+  DotsThree,
+  House,
+  MusicNote,
+  MusicNoteSimple,
+  Sparkle,
+  User,
+} from "@phosphor-icons/react/dist/ssr";
+import { Separator } from "@/components/ui/separator";
+import Footer from "./_components/main/Footer";
+import SideBar from "./_components/main/SideBar";
 
 const fonts = Rubik({
   subsets: ["latin"],
@@ -86,19 +101,28 @@ export default function RootLayout({ children }) {
             enableSystem
             disableTransitionOnChange
           >
-            <div className="sticky z-50 ">
-              <div className="flex justify-center">
-                <Header />
+            <div className="fixed top-0 left-0 w-full z-50">
+              <Header />
+            </div>
+            <div className="max-w-[1250px] mt-14 mx-auto w-full flex">
+              <div className="w-1.5/6 hidden sm:block h-screen sticky top-14 overflow-y-auto border-r px-2">
+                <SideBar />
+              </div>
+              <div className="flex-1 overflow-y-auto px-2">{children}</div>
+              <div className="w-1/6 hidden sm:block  h-screen sticky top-14 overflow-y-auto px-2"></div>
+            </div>
+            <div className="flex flex-col items-center">
+              <div className="max-w-[1250px] w-full">
+                <Footer />
               </div>
             </div>
-            {/* <Dots>{children}</Dots> */}
-            {children}
             <Bot />
           </ThemeProvider>
         </ReactQueryProvider>
+
+        {/* Other Components */}
         <Toaster />
         <SpeedInsights />
-
         <Analytics />
       </body>
     </html>

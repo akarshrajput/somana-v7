@@ -18,13 +18,13 @@ import BaseLink from "../buttons/BaseLink";
 
 const CommonNav = () => {
   return (
-    <div className="mb-4 flex flex-wrap gap-2">
-      <BaseLink href="/upload">
-        Buy Web Projects
+    <div className="mb-2 flex flex-wrap gap-2">
+      <BaseLink href="/story/lpu-cse-notes-all-courses-67a072b1b2269b959ecb8af6">
+        LPU Notes
         <TrendUp weight="bold" />
       </BaseLink>
 
-      <BaseLink href="music/playlist">
+      {/* <BaseLink href="music/playlist">
         SRS <TrendUp weight="bold" />
       </BaseLink>
       <BaseLink href="music/playlist">
@@ -32,7 +32,7 @@ const CommonNav = () => {
       </BaseLink>
       <BaseLink href="music/playlist">
         Join our Team <TrendUp weight="bold" />
-      </BaseLink>
+      </BaseLink> */}
     </div>
   );
 };

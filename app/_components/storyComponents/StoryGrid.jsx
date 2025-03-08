@@ -7,7 +7,7 @@ import StoryGridSkeleton from "./StoryGridSkeleton";
 
 // Fetch blogs with a simple query
 const fetchBlogs = async () => {
-  const res = await axios.get(`/api/v1/blogs?limit=9`);
+  const res = await axios.get(`/api/v1/blogs?limit=12`);
   return res?.data?.data;
 };
 
@@ -22,7 +22,7 @@ const StoryGrid = () => {
       {isLoading ? (
         <StoryGridSkeleton /> // Show Skeleton Loader when loading
       ) : (
-        <div className="grid w-full grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+        <div className="grid w-full grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
           {data?.blogs?.map((post) => (
             <StoryInfo1 key={post._id} post={post} />
           ))}
