@@ -106,11 +106,11 @@ export default function RootLayout({ children }) {
               <Header />
             </div>
             <div className="max-w-[1250px] mt-14 mx-auto w-full flex">
-              <div className="w-1.5/6 hidden sm:block h-screen sticky top-14 overflow-y-auto border-r px-2">
+              <div className="w-1.5/6 hidden sm:block h-screen sticky top-14 overflow-y-auto px-2">
                 <SideBar />
               </div>
               <div className="flex-1 overflow-y-auto px-2">{children}</div>
-              <div className="w-1/6 hidden sm:block  h-screen sticky top-14 overflow-y-auto px-2">
+              <div className="w-1/6  hidden sm:block  h-screen sticky top-14 overflow-y-auto px-2">
                 <SideInfoBar />
               </div>
             </div>

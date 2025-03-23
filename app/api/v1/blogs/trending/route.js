@@ -1,34 +1,43 @@
 import connectMongoDB from "@/app/_lib/mongodb";
 import Blog from "@/app/_models/blogModel";
+import { Description } from "@radix-ui/react-alert-dialog";
 import { NextResponse } from "next/server";
-import mongoose from "mongoose";
 
 export async function GET(request) {
   try {
     await connectMongoDB();
 
-    // Get the date of 7 days ago
     const sevenDaysAgo = new Date();
     sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
 
-    // Fetch blogs viewed in the last 7 days
     const trendingBlogs = await Blog.aggregate([
       {
         $match: {
           views: { $exists: true, $not: { $size: 0 } },
-          updatedAt: { $gte: sevenDaysAgo }, // Check if the blog was updated in the last 7 days
+          updatedAt: { $gte: sevenDaysAgo },
         },
       },
       {
         $addFields: {
-          numberOfViews: { $size: "$views" }, // Count number of views
+          numberOfViews: { $size: "$views" },
+          numberOfLikes: { $size: "$likes" },
         },
       },
       {
-        $sort: { numberOfViews: -1 }, // Sort by most viewed
+        $addFields: {
+          engagementScore: {
+            $add: [
+              { $multiply: ["$numberOfViews", 1] },
+              { $multiply: ["$numberOfLikes", 2] },
+            ],
+          },
+        },
       },
       {
-        $limit: 10, // Limit to top 10 trending blogs
+        $sort: { engagementScore: -1, updatedAt: -1 },
+      },
+      {
+        $limit: 3,
       },
       {
         $lookup: {
@@ -43,9 +52,18 @@ export async function GET(request) {
       },
       {
         $project: {
-          content: 0, // Exclude content to optimize response
-          "author.password": 0,
-          "author.email": 0,
+          heading: 1,
+          description: 1,
+          featuredImage: 1,
+          slug: 1,
+          summary: 1,
+          createdAt: 1,
+          updatedAt: 1,
+          "author._id": 1,
+          "author.name": 1,
+          "author.photo": 1,
+          "author.role": 1,
+          "author.username": 1,
         },
       },
     ]);
@@ -53,7 +71,7 @@ export async function GET(request) {
     return NextResponse.json(
       {
         statusText: "success",
-        message: "Trending blogs fetched successfully",
+        message: "Top trending blogs fetched successfully",
         results: trendingBlogs.length,
         data: {
           blogs: trendingBlogs,
@@ -62,7 +80,6 @@ export async function GET(request) {
       { status: 200 }
     );
   } catch (err) {
-    console.error("Error fetching trending blogs:", err);
     return NextResponse.json(
       {
         statusText: "error",
