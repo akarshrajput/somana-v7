@@ -56,9 +56,9 @@ const LikeButton = ({ blogId, initialLikes, userId }) => {
       >
         <Heart
           className={`size-5 ease-out duration-300 ${
-            !liked ? "text-red-600" : "text-black"
+            liked ? "text-red-600" : "text-black"
           } ${!loading ? "hover:scale-125" : ""}`}
-          weight={!liked ? "fill" : "bold"}
+          weight={liked ? "fill" : "bold"}
         />
       </button>
       <div className="ml-1">
