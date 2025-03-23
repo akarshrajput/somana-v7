@@ -16,6 +16,7 @@ export async function GET(request) {
       if (userId) {
         if (!blog.views.includes(userId)) {
           blog.views.push(userId);
+          blog.viewsCount += 1;
           await blog.save();
         }
       }
@@ -25,18 +26,23 @@ export async function GET(request) {
         if (blog.likes.includes(userId)) {
           // If the user already liked the blog, remove the like
           blog.likes.pull(userId);
+          blog.likesCount -= 1;
         } else {
           // Otherwise, add the like
           blog.likes.push(userId);
+          blog.likesCount += 1;
         }
         await blog.save();
       }
 
+      const blogData = await Blog.findOne({ slug: slug }).lean();
+      delete blogData.views;
+      delete blogData.likes;
       return NextResponse.json(
         {
           status: "success",
           message: "Blog found successfully",
-          data: blog,
+          data: blogData,
         },
         { status: 200 }
       );

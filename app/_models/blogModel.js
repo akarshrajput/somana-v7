@@ -66,6 +66,14 @@ const blogSchema = new mongoose.Schema(
         ref: "User",
       },
     ],
+    viewsCount: {
+      type: Number,
+      default: 0,
+    },
+    likesCount: {
+      type: Number,
+      default: 0,
+    },
     likes: [
       {
         type: mongoose.Schema.ObjectId,
@@ -107,14 +115,6 @@ blogSchema.virtual("readTime").get(function () {
   const words = this.content ? this.content.split(/\s+/).length : 0;
   const readTimeMinutes = Math.ceil(words / wordsPerMinute);
   return readTimeMinutes;
-});
-
-blogSchema.virtual("numberOfViews").get(function () {
-  return this.views.length;
-});
-
-blogSchema.virtual("numberOfLikes").get(function () {
-  return this.likes.length;
 });
 
 const Blog = mongoose.models.Blog || mongoose.model("Blog", blogSchema);

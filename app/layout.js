@@ -24,6 +24,7 @@ import {
 import { Separator } from "@/components/ui/separator";
 import Footer from "./_components/main/Footer";
 import SideBar from "./_components/main/SideBar";
+import SideInfoBar from "./_components/main/SideInfoBar";
 
 const fonts = Rubik({
   subsets: ["latin"],
@@ -109,7 +110,9 @@ export default function RootLayout({ children }) {
                 <SideBar />
               </div>
               <div className="flex-1 overflow-y-auto px-2">{children}</div>
-              <div className="w-1/6 hidden sm:block  h-screen sticky top-14 overflow-y-auto px-2"></div>
+              <div className="w-1/6 hidden sm:block  h-screen sticky top-14 overflow-y-auto px-2">
+                <SideInfoBar />
+              </div>
             </div>
             <div className="flex flex-col items-center">
               <div className="max-w-[1250px] w-full">

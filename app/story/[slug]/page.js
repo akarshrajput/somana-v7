@@ -39,6 +39,7 @@ const fetchBlogData = async (slug) => {
     const res = await fetch(api, { cache: "no-store" });
     if (!res.ok) throw new Error("Failed to fetch blog data");
     const data = await res.json();
+    console.log(data);
     return data.data;
   } catch (error) {
     console.error("Error fetching blog data:", error);
@@ -146,7 +147,7 @@ const Page = async ({ params, searchParams }) => {
         {blog.genre === "top-10" ? (
           <div className="ml-2 flex gap-2 items-center">
             <p className="font-semibold bg-gray-100 dark:bg-gray-800 p-1 px-2 rounded-md text-sm">
-              {blog.numberOfViews} views
+              {blog.viewsCount} views
             </p>
             {(userId === blog.author._id ||
               session?.user?.role === "admin") && (
@@ -182,10 +183,13 @@ const Page = async ({ params, searchParams }) => {
               ) : (
                 <LikeButton
                   blogId={slug}
-                  initialLikes={blog.likes}
+                  initialLikes={blog.likesCount}
                   userId={userId}
                 />
               )}
+              <p className="font-medium  dark:bg-gray-800 p-1 px-2 rounded-md text-sm">
+                {blog.viewsCount} views
+              </p>
               {/* <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger asChild>
