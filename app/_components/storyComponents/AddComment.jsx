@@ -31,6 +31,7 @@ const AddComment = ({ session, hostname, blogId, authorId }) => {
           },
         }
       );
+      setContent("");
       setSuccess(true);
 
       // toast({
@@ -53,9 +54,9 @@ const AddComment = ({ session, hostname, blogId, authorId }) => {
     }
   };
 
-  if (session.user.role == "user") {
-    return <div></div>;
-  }
+  // if (session.user.role == "user") {
+  //   return <div></div>;
+  // }
 
   return (
     <div className="add-comment w-full max-w-3xl mx-auto p-2 bg-white dark:bg-black rounded-md">
@@ -76,6 +77,15 @@ const AddComment = ({ session, hostname, blogId, authorId }) => {
           </Button>
         </div>
       </form>
+      <div className=" text-sm font-medium my-1">
+        {success ? (
+          <p className="bg-green-100 p-1 px-2 rounded-sm">
+            Comment Added Successfully
+          </p>
+        ) : (
+          ""
+        )}
+      </div>
     </div>
   );
 };
