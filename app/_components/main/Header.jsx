@@ -7,6 +7,7 @@ import SearchInput from "./SearchInput";
 import { Button } from "@/components/ui/button";
 import { ServicesNav } from "./ServicesNav";
 import SpecialHeaderLinks from "./SpecialHeaderLinks";
+import NavActivity from "./NavActivity";
 
 const Header = async () => {
   const session = await auth();
@@ -18,7 +19,6 @@ const Header = async () => {
           <div>
             <Logo />
           </div>
-
           <SearchInput />
           <ServicesNav />
           <SpecialHeaderLinks />
@@ -49,7 +49,7 @@ const Header = async () => {
                     <ApplePodcastsLogo weight="bold" />
                   </Button>
                 </Link> */}
-
+                <NavActivity />
                 <ThemeButton />
               </div>
             </div>

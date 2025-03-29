@@ -33,7 +33,7 @@ const StoryGridFull = () => {
           <Link
             href={`/story/${post.slug}`}
             key={post.id}
-            className="block rounded-sm border bg-neutral-50 dark:bg-neutral-900 p-2 shadow-sm hover:shadow-md transition-shadow duration-300"
+            className="block rounded-sm p-2 transition-shadow duration-300"
           >
             {/* Author and Genre Section */}
             <div className="flex items-center gap-1 mb-2">

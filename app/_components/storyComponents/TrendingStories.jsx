@@ -29,8 +29,8 @@ const TrendingStories = () => {
   if (error) return <p className="text-red-500">{error}</p>;
 
   return (
-    <div className="p-2 border rounded-sm">
-      <h2 className="font-medium mb-3">🔥 Trending Blogs</h2>
+    <div className="p-2 rounded-sm">
+      <h2 className="font-medium mb-3 px-2">Trending +</h2>
       {blogs.length === 0 ? (
         <p className="text-gray-500">No trending blogs found</p>
       ) : (
@@ -48,13 +48,13 @@ const TrendingStories = () => {
                   className="w-5 h-5 rounded-md"
                 />
                 <div>
-                  <p className="font-medium">{blog.title}</p>
+                  <p className="font-base">{blog.title}</p>
                   <p className="text-xs">
                     <span className="font-medium">{blog.author.name}</span>
                   </p>
                 </div>
               </div>
-              <div className="text-xs">{blog.heading}</div>
+              <div className="text-xs font-medium">{blog.heading}</div>
             </Link>
           ))}
         </ul>

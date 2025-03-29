@@ -27,126 +27,75 @@ const UserProfile = ({ username }) => {
   console.log(userProfile);
 
   return (
-    <div className="flex flex-col">
-      <div className="customised-input flex flex-col text-sm gap-4 rounded-md w-full">
+    <div className="mx-auto p-1">
+      <div className="flex flex-col sm:flex-row items-center gap-4">
         <img
           src={userProfile.photo}
           alt={`${userProfile.name}'s profile`}
-          className="w-36 h-36 rounded-lg border border-stone-300"
+          className="w-24 h-24 rounded-md border border-gray-300 dark:border-gray-600"
         />
-
-        <div className="flex items-center gap-4">
-          <Label>{userProfile.name}</Label>
-          <Label>@{userProfile.userName}</Label>
-          <Label>
-            Subscription : {userProfile.subscription ? "Yes" : "No"}
-          </Label>
-        </div>
-        <div className="flex flex-col gap-4">
-          <label className="flex flex-col gap-1">
-            <Label>Bio</Label>
-            <textarea
-              name="bio"
-              rows={4}
-              value={userProfile.bio}
-              readOnly={true}
-              className="p-2 px-3 border rounded-md resize-none outline-none"
-            />
-          </label>
-          <div className="grid grid-cols-3 gap-2">
-            <label className="flex flex-col gap-1">
-              <Label>Mobile Number</Label>
-              <p className="p-2 px-3 border rounded-md">
-                {userProfile.mobileNumber}
-              </p>
-            </label>
-            <label className="flex flex-col gap-1">
-              <Label>Status</Label>
-              <p className="p-2 px-3 border rounded-md">{userProfile.status}</p>
-            </label>
-            <label className="flex flex-col gap-1">
-              <Label>Gender</Label>
-              <p className="p-2 px-3 border rounded-md">{userProfile.gender}</p>
-            </label>
-          </div>
-          <div className="grid grid-cols-3 gap-2">
-            <label className="flex flex-col gap-1">
-              <Label>City</Label>
-              <p className="p-2 px-3 border rounded-md">{userProfile.city}</p>
-            </label>
-            <label className="flex flex-col gap-1">
-              <Label>State</Label>
-              <p className="p-2 px-3 border rounded-md">{userProfile.state}</p>
-            </label>
-            <label className="flex flex-col gap-1">
-              <Label>Country</Label>
-              <p className="p-2 px-3 border rounded-md">
-                {userProfile.country}
-              </p>
-            </label>
-          </div>
-          <div className="grid grid-cols-3 gap-2">
-            <label className="flex flex-col gap-1">
-              <Label>Occupation</Label>
-              <p className="p-2 px-3 border rounded-md">
-                {userProfile.occupation}
-              </p>
-            </label>
-            <label className="flex flex-col gap-1">
-              <Label>Qualification</Label>
-              <p className="p-2 px-3 border rounded-md">
-                {userProfile.qualification}
-              </p>
-            </label>
-            <label className="flex flex-col gap-1">
-              <Label>Studied From</Label>
-              <p className="p-2 px-3 border rounded-md">
-                {userProfile.studiedFrom}
-              </p>
-            </label>
-          </div>
-          <div className="grid grid-cols-3 gap-2">
-            <label className="flex flex-col gap-1">
-              <Label>Nickname</Label>
-              <p className="p-2 px-3 border rounded-md">
-                {userProfile.nickname}
-              </p>
-            </label>
-            <label className="flex flex-col gap-1">
-              <Label>Marital Status</Label>
-              <p className="p-2 px-3 border rounded-md">
-                {userProfile.maritalStatus}
-              </p>
-            </label>
-            <label className="flex flex-col gap-1">
-              <Label className="text-gray-700 dark:text-stone-50">
-                Company
-              </Label>
-              <p className="p-2 px-3 border rounded-md">
-                {userProfile.company}
-              </p>
-            </label>
-          </div>
-          <div className="grid grid-cols-3 gap-2">
-            <label className="flex flex-col gap-1">
-              <Label>Date of Birth</Label>
-              <input
-                type="date"
-                name="dob"
-                disabled={true}
-                value={userProfile.dob}
-                className="p-2 px-3 border bg-white rounded-md"
-              />
-            </label>
-            <label className="flex flex-col gap-1">
-              <Label>Account Type</Label>
-              <p className="p-2 px-3 border rounded-md">
-                {userProfile.accountType}
-              </p>
-            </label>
-          </div>
+        <div className="text-center sm:text-left">
+          <h2 className="text-lg font-medium text-gray-900 dark:text-gray-100">
+            {userProfile.name}
+          </h2>
+          <p className="text-sm text-gray-500 dark:text-gray-400">
+            @{userProfile.userName}
+          </p>
+          <p className="text-sm  dark:text-gray-300">
+            Subscription: {userProfile.subscription ? "Active" : "Inactive"}
+          </p>
         </div>
       </div>
+
+      <div className="mt-4 space-y-4">
+        <div>
+          <h3 className="text-sm font-medium dark:text-gray-300">Bio</h3>
+          <textarea
+            rows={4}
+            readOnly
+            className="mt-1 w-full outline-none cursor-default resize-none p-2 bg-gray-100 dark:bg-gray-800 rounded-md text-sm  dark:text-gray-400"
+          >
+            {userProfile.bio || "No bio available"}
+          </textarea>
+        </div>
+
+        <div className="grid grid-cols-2 gap-2 text-sm">
+          <InfoCard label="Mobile" value={userProfile.mobileNumber} />
+          <InfoCard label="Status" value={userProfile.status} />
+          <InfoCard label="Gender" value={userProfile.gender} />
+          <InfoCard label="City" value={userProfile.city} />
+          <InfoCard label="State" value={userProfile.state} />
+          <InfoCard label="Country" value={userProfile.country} />
+          <InfoCard label="Occupation" value={userProfile.occupation} />
+          <InfoCard label="Qualification" value={userProfile.qualification} />
+          <InfoCard label="Studied From" value={userProfile.studiedFrom} />
+          <InfoCard label="Nickname" value={userProfile.nickname} />
+          <InfoCard label="Marital Status" value={userProfile.maritalStatus} />
+          <InfoCard label="Company" value={userProfile.company} />
+          <InfoCard label="Account Type" value={userProfile.accountType} />
+        </div>
+      </div>
+
+      <div className="mt-4">
+        <label className="text-sm font-medium dark:text-gray-300">
+          Date of Birth
+        </label>
+        <input
+          type="date"
+          disabled
+          value={userProfile.dob}
+          className="mt-1 w-full bg-gray-100 dark:bg-gray-800 p-2 rounded-md text-sm  dark:text-gray-400 border border-gray-300 dark:border-gray-600"
+        />
+      </div>
+    </div>
+  );
+};
+
+const InfoCard = ({ label, value }) => {
+  return (
+    <div className="p-2 bg-gray-100 dark:bg-gray-800 rounded-md  dark:text-gray-400 text-sm">
+      <h4 className="font-medium dark:text-gray-300">{label}</h4>
+      <p>{value || "N/A"}</p>
     </div>
   );
 };

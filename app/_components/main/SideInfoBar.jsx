@@ -14,7 +14,7 @@ import TrendingStories from "../storyComponents/TrendingStories";
 
 const SideInfoBar = () => {
   return (
-    <nav className="flex text-sm mt-2  font-medium flex-col gap-2">
+    <nav className="flex text-sm mt-2 flex-col gap-2">
       <TrendingStories />
     </nav>
   );
