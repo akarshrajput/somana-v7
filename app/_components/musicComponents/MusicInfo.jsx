@@ -9,7 +9,7 @@ const MusicInfo = ({ track }) => {
   return (
     <Link
       href={`/music/${track?._id}?${track.musicName}`}
-      className="group block relative rounded-sm overflow-hidden bg-white dark:bg-neutral-900 border hover:shadow-md transition-shadow duration-300"
+      className="group block relative rounded-sm overflow-hidden bg-white dark:bg-neutral-900 border transition-shadow duration-300"
     >
       <div className="relative w-full h-20 aspect-square overflow-hidden">
         {/* Image Section */}
