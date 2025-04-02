@@ -15,6 +15,7 @@ import {
 } from "@phosphor-icons/react/dist/ssr";
 import Link from "next/link";
 import BaseLink from "../buttons/BaseLink";
+import { ChartLine } from "lucide-react";
 
 const CommonNav = () => {
   return (
@@ -22,6 +23,10 @@ const CommonNav = () => {
       <BaseLink href="/story/lpu-cse-notes-all-courses-67a072b1b2269b959ecb8af6">
         LPU Notes
         <TrendUp weight="bold" />
+      </BaseLink>
+      <BaseLink href="https://citeo-v2.vercel.app/" target="_black">
+        Create Website
+        <ChartLine size={16} weight="bold" />
       </BaseLink>
 
       {/* <BaseLink href="music/playlist">

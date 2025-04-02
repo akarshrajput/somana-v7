@@ -10,9 +10,22 @@ const Footer = () => {
           {/* Logo Section */}
           <div className="w-full px-4 sm:w-2/3 lg:w-3/12">
             <div className="mb-10 w-full">
-              <Link href="/" className="mb-6 inline-block max-w-[160px]">
-                <Logo />
-              </Link>
+              <div className="flex items-center gap-2 mb-6">
+                <Link href="/" className="inline-block max-w-[160px]">
+                  <Logo />
+                </Link>
+                <Link
+                  href="https://citeo-v2.vercel.app/"
+                  target="_blank"
+                  className="w-fit"
+                >
+                  <div className="flex gap-1">
+                    <div className="border border-black dark:border-neutral-700 dark:bg-neutral-900 bg-neutral-400 rounded-md w-fit p-2.5">
+                      <img src="/citeo-logo.png" className="h-4" />
+                    </div>
+                  </div>
+                </Link>
+              </div>
               <p className="mb-7 text-sm text-body-color dark:text-dark-6">
                 Open Source company developed by Unknown Person - Somana Team
               </p>
