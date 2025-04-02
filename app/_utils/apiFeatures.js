@@ -19,6 +19,10 @@ class APIFeatures {
       queryObj.heading = { $regex: queryObj.heading, $options: "i" }; // Case-insensitive partial match
     }
 
+    if (queryObj.userName) {
+      queryObj.userName = { $regex: queryObj.userName, $options: "i" }; // Case-insensitive partial match
+    }
+
     if (queryObj.musicName) {
       queryObj.musicName = { $regex: queryObj.musicName, $options: "i" }; // Case-insensitive partial match
     }

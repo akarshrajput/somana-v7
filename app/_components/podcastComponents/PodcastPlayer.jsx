@@ -4,6 +4,7 @@ import { SealCheck } from "@phosphor-icons/react";
 import { Podcast } from "lucide-react";
 import { useEffect, useState } from "react";
 import Loading from "@/app/loading";
+import Link from "next/link";
 
 const PodcastPlayer = ({ params }) => {
   const [podcast, setPodcast] = useState(null);
@@ -18,6 +19,7 @@ const PodcastPlayer = ({ params }) => {
 
         if (result.status === "success") {
           setPodcast(result.data);
+          console.log(result);
         } else {
           console.error("Failed to fetch podcast:", result.message);
         }
@@ -51,7 +53,7 @@ const PodcastPlayer = ({ params }) => {
               <img
                 src={podcast.featuredImage}
                 alt={podcast.podcastName}
-                className="w-full h-96 object-cover"
+                className="w-full h-96 object-cover rounded-sm"
               />
               {/* Overlay for title */}
               <div className="absolute  w-full inset-0 bg-gradient-to-t dark:from-black/70 to-transparent from-white/70 flex items-end">
@@ -60,7 +62,7 @@ const PodcastPlayer = ({ params }) => {
                     <img
                       src={podcast.featuredImage}
                       alt={podcast.podcastName}
-                      className="size-32 object-cover"
+                      className="size-32 object-cover rounded-sm"
                     />
 
                     <h1 className="text-xl font-medium dark:text-white text-black">
@@ -78,18 +80,21 @@ const PodcastPlayer = ({ params }) => {
             </div>
             <div>
               <div>
-                <AudioPlayer podcast={podcast} />
+                <AudioPlayer audioFile={podcast.audioLink} />
               </div>
-              <div className="p-4">
+              <div className="">
                 <div className="flex items-center gap-2">
                   <img
                     src={podcast.author.photo}
                     alt={podcast.author.name}
-                    className="w-8 h-8 rounded-full"
+                    className="w-8 h-8 rounded-md border"
                   />
-                  <h2 className="font-medium text-stone-800 dark:text-stone-200">
+                  <Link
+                    href={`/profile/${podcast?.author?.userName}`}
+                    className="font-medium text-sm text-stone-800 dark:text-stone-200"
+                  >
                     {podcast.author.name}
-                  </h2>
+                  </Link>
                   {podcast.author.verified ? (
                     <SealCheck weight="fill" className="text-sky-400" />
                   ) : (

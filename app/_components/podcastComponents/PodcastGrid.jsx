@@ -28,7 +28,7 @@ const PodcastGrid = () => {
         {isLoading ? (
           <PodcastGridSkeleton />
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-8 gap-2">
             {data?.podcasts.map((podcast) => (
               <PodcastInfo key={podcast._id} podcast={podcast} />
             ))}
@@ -55,7 +55,7 @@ const PodcastInfo = ({ podcast }) => {
       href={`/podcast/${podcast._id}?${podcast.podcastName}`}
       className="group block relative rounded-sm overflow-hidden bg-neutral-100 dark:bg-neutral-900 border hover:shadow-md transition-shadow duration-300"
     >
-      <div className="relative w-full h-20 aspect-square overflow-hidden">
+      <div className="relative w-full aspect-square overflow-hidden">
         {/* Image Section */}
         <img
           src={podcast?.featuredImage || "/default-podcast.jpg"} // Fallback image

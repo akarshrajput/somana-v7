@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Link from "next/link";
+import { TrendingUp } from "lucide-react";
 
 const TrendingStories = () => {
   const [blogs, setBlogs] = useState([]);
@@ -30,7 +31,9 @@ const TrendingStories = () => {
 
   return (
     <div className="p-2 rounded-sm">
-      <h2 className="font-medium mb-3 px-2">Trending +</h2>
+      <h2 className="font-medium mb-3 px-2 flex items-center gap-2">
+        Trending <TrendingUp size={16} />
+      </h2>
       {blogs.length === 0 ? (
         <p className="text-gray-500">No trending blogs found</p>
       ) : (
@@ -39,7 +42,7 @@ const TrendingStories = () => {
             <Link
               href={`/story/${blog.slug}`}
               key={blog._id}
-              className="flex flex-col p-2 hover:bg-neutral-100 gap-1.5 rounded-sm"
+              className="flex flex-col p-2 hover:bg-neutral-100 dark:hover:bg-neutral-800 gap-1.5 rounded-sm"
             >
               <div className="flex gap-1 items-center">
                 <img
@@ -54,7 +57,7 @@ const TrendingStories = () => {
                   </p>
                 </div>
               </div>
-              <div className="text-xs font-medium">{blog.heading}</div>
+              <div className="text-xs font-medium truncate">{blog.heading}</div>
             </Link>
           ))}
         </ul>
