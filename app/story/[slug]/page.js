@@ -39,10 +39,10 @@ const fetchBlogData = async (slug) => {
     const res = await fetch(api, { cache: "no-store" });
     if (!res.ok) throw new Error("Failed to fetch blog data");
     const data = await res.json();
-    console.log(data);
+    // console.log(data);
     return data.data;
   } catch (error) {
-    console.error("Error fetching blog data:", error);
+    console.error("Error fetching blog data:");
     return null;
   }
 };
@@ -95,7 +95,7 @@ const Page = async ({ params, searchParams }) => {
   const pageURL = `${protocol}://${host}/${pathname}${
     queryString ? `?${queryString}` : ""
   }`;
-  console.log(pageURL);
+  // console.log(pageURL);
 
   if (!blog) {
     return (
@@ -112,7 +112,7 @@ const Page = async ({ params, searchParams }) => {
   const modifiedContent = contentWithLineBreaks.replace(/target="_blank"/g, "");
 
   return (
-    <div className="flex justify-center mt-2 px-2 gap-4 lg:px-32">
+    <div className="flex justify-center mt-4 px-2 gap-4 lg:px-32">
       {/* <div className="hidden lg:block">
         <VerticalAd />
       </div> */}
@@ -122,7 +122,7 @@ const Page = async ({ params, searchParams }) => {
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <p className="font-semibold text-sm">{blog?.genre}</p>
+                  <p className="font-semibold">{blog?.genre}</p>
                 </TooltipTrigger>
                 <TooltipContent>
                   <p>This story belongs to the {blog?.genre} category.</p>
@@ -131,7 +131,7 @@ const Page = async ({ params, searchParams }) => {
             </TooltipProvider>
             <div className="ml-auto">
               <BlogDate
-                className="font-semibold text-xs"
+                className="font-semibold text-sm"
                 blogDate={blog.createdAt}
               />
             </div>

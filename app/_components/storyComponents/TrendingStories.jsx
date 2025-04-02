@@ -30,7 +30,7 @@ const TrendingStories = () => {
   if (error) return <p className="text-red-500">{error}</p>;
 
   return (
-    <div className="p-2 rounded-sm">
+    <div className="rounded-sm">
       <h2 className="font-medium mb-3 px-2 flex items-center gap-2">
         Trending <TrendingUp size={16} />
       </h2>
