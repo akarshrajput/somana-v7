@@ -12,7 +12,6 @@ export async function GET(request) {
 
     const blog = await Blog.findOne({ slug: slug });
     if (blog) {
-      // Check if the user ID is already in the views array
       if (userId) {
         if (!blog.views.includes(userId)) {
           blog.views.push(userId);
@@ -22,13 +21,10 @@ export async function GET(request) {
       }
 
       if (action === "like" && userId) {
-        // Handle the like action
         if (blog.likes.includes(userId)) {
-          // If the user already liked the blog, remove the like
           blog.likes.pull(userId);
           blog.likesCount -= 1;
         } else {
-          // Otherwise, add the like
           blog.likes.push(userId);
           blog.likesCount += 1;
         }

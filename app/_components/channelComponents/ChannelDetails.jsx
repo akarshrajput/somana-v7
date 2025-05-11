@@ -42,9 +42,9 @@ const ChannelDetails = ({ channelId }) => {
   return (
     <div className="edit-channel">
       <div className="channel-details">
-        <div className="my-2">
+        {/* <div className="my-2">
           <Label>Edit channel - {channel.channelName}</Label>
-        </div>
+        </div> */}
         <div className="flex gap-4">
           <img
             className="max-h-32 max-w-64 rounded-md border"

@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 
 const page = ({ params }) => {
   return (
-    <div className="px-2 py-2 flex justify-center mt-16">
+    <div className="px-2 py-2 flex justify-center mt-2">
       <div className="w-[1200px]">
         <ChannelDetails channelId={params.channelId} />
       </div>
